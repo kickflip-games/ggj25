@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://vadgf0jnph44"]
+
+[ext_resource type="Script" uid="uid://dgmommrndhawo" path="res://Entities/Pickup/pipckup.gd" id="1_8v3bb"]
+[ext_resource type="Texture2D" uid="uid://csqgxobx5734e" path="res://Art/prototype_soap.png" id="2_03jk5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gt1bb"]
+
+[node name="Pick-up" type="Area2D"]
+script = ExtResource("1_8v3bb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_gt1bb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.0279297, 0.0279297)
+texture = ExtResource("2_03jk5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
