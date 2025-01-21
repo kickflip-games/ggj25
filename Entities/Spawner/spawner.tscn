@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc81r7ciyn7gv"]
+
+[ext_resource type="Script" path="res://Entities/Spawner/spawner.gd" id="1_ycmp0"]
+[ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup.tscn" id="2_fgxaw"]
+[ext_resource type="PackedScene" uid="uid://dqqaa3k8s5jx7" path="res://Entities/Enemy/enemy.tscn" id="3_geb5j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ocvq"]
+size = Vector2(1166, 660)
+
+[node name="Spawner" type="Area2D"]
+script = ExtResource("1_ycmp0")
+pickup_scene = ExtResource("2_fgxaw")
+enemy_scene = ExtResource("3_geb5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(330.5, 176)
+shape = SubResource("RectangleShape2D_4ocvq")
+
+[node name="PickupTimer" type="Timer" parent="."]
+
+[node name="EnemyTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]

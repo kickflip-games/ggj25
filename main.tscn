@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
-[ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup.tscn" id="2_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Entities/Spawner/spawner.tscn" id="3_a5gx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhqqe"]
 size = Vector2(11.25, 645.906)
@@ -33,5 +33,15 @@ shape = SubResource("RectangleShape2D_ia1lp")
 position = Vector2(577, 652)
 shape = SubResource("RectangleShape2D_ia1lp")
 
-[node name="Pick-up" parent="." instance=ExtResource("2_ia1lp")]
-position = Vector2(587, 351)
+[node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
+show_behind_parent = true
+top_level = true
+
+[node name="CollisionShape2D" parent="Spawner" index="0"]
+position = Vector2(573, 320)
+debug_color = Color(0.439216, 0.572549, 0.494118, 0.215686)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 322)
+
+[editable path="Spawner"]

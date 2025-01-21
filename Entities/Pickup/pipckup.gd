@@ -1,12 +1,10 @@
 extends Area2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+@onready var sprite = $Sprite2D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass  
-	
 func _on_body_entered(body: Node2D) -> void:
-	self.queue_free()
+	if body is Player:
+		var tween = create_tween().set_parallel(true)
+		tween.tween_property(sprite, "scale", sprite.scale*2, 0.3)
+		tween.tween_property(sprite, "modulate:a", 0,0.3) 
+		tween.finished.connect(queue_free)
