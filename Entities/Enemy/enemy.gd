@@ -20,6 +20,8 @@ func _ready():
 		EnemyType.ARROW:
 			rotate_and_shoot_in_random_direction()
 		EnemyType.BOUNCER:
+			# bounces either up and down, or left and right
+			# randomly assigned direction
 			pass
 		EnemyType.STATIC:
 			pass
@@ -66,5 +68,5 @@ func die():
 func _physics_process(delta):
 	var collision = move_and_collide(linear_velocity * delta)
 	if collision:
-		print(collision)
+		print(collision )
 		die()
