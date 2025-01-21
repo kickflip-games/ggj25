@@ -14,22 +14,24 @@ size = Vector2(1152, 11)
 [node name="Player" parent="." instance=ExtResource("1_uhqqe")]
 position = Vector2(143, 356)
 
-[node name="GameBounds" type="StaticBody2D" parent="."]
+[node name="GameBounds" type="StaticBody2D" parent="." groups=["WALLS"]]
 position = Vector2(-1, 2)
+collision_layer = 4
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
 position = Vector2(-4.375, 324.047)
 shape = SubResource("RectangleShape2D_uhqqe")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameBounds"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
 position = Vector2(1159, 321.906)
 shape = SubResource("RectangleShape2D_uhqqe")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameBounds"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
 position = Vector2(577, -7.5)
 shape = SubResource("RectangleShape2D_ia1lp")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameBounds"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
 position = Vector2(577, 652)
 shape = SubResource("RectangleShape2D_ia1lp")
 

@@ -15,6 +15,16 @@ config/version="4.3"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
+[global_group]
+
+WALLS=""
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Walls"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -6,8 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 7
 script = ExtResource("1_gb1tc")
-SPEED = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
