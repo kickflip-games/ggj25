@@ -2,7 +2,7 @@ name: "build"
 on:
   push:
     branches:
-      - prod  # Runs automatically only on 'prod' branch
+      - main
   workflow_dispatch:  # Allows manual trigger for the workflow
 
 
