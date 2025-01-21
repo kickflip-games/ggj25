@@ -3,41 +3,56 @@
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Entities/Spawner/spawner.tscn" id="3_a5gx5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhqqe"]
-size = Vector2(11.25, 645.906)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ia1lp"]
 size = Vector2(1152, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhqqe"]
+size = Vector2(11.25, 645.906)
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uhqqe")]
 position = Vector2(143, 356)
 
-[node name="GameBounds" type="StaticBody2D" parent="." groups=["WALLS"]]
+[node name="GameBounds" type="Node2D" parent="." groups=["WALLS"]]
 position = Vector2(-1, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameBounds"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
-position = Vector2(-4.375, 324.047)
-shape = SubResource("RectangleShape2D_uhqqe")
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameBounds/StaticBody2D" groups=["WALLS"]]
+position = Vector2(577, 652)
+shape = SubResource("RectangleShape2D_ia1lp")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
-position = Vector2(1159, 321.906)
-shape = SubResource("RectangleShape2D_uhqqe")
+[node name="StaticBody2D2" type="StaticBody2D" parent="GameBounds"]
+collision_layer = 4
+collision_mask = 5
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameBounds/StaticBody2D2" groups=["WALLS"]]
 position = Vector2(577, -7.5)
 shape = SubResource("RectangleShape2D_ia1lp")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameBounds" groups=["WALLS"]]
-position = Vector2(577, 652)
-shape = SubResource("RectangleShape2D_ia1lp")
+[node name="StaticBody2D3" type="StaticBody2D" parent="GameBounds"]
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameBounds/StaticBody2D3" groups=["WALLS"]]
+position = Vector2(1159, 321.906)
+shape = SubResource("RectangleShape2D_uhqqe")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="GameBounds"]
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/StaticBody2D4" groups=["WALLS"]]
+position = Vector2(-4.375, 324.047)
+shape = SubResource("RectangleShape2D_uhqqe")
 
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
 show_behind_parent = true
 top_level = true
+max_enemies = 10
 
 [node name="CollisionShape2D" parent="Spawner" index="0"]
 position = Vector2(573, 320)

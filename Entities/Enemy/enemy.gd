@@ -8,13 +8,13 @@ enum EnemyType{
 
 @onready var sprite = $Sprite2D
 @onready var hurt_area = $HurtArea
-
 @export var enemy_type:EnemyType = EnemyType.STATIC
 
+var has_started_moving:bool = false
 
 
 func _ready():
-	#hurt_area.collision_occured.connect(die)
+	hurt_area.collision_occured.connect(die)
 	
 	match enemy_type:
 		EnemyType.ARROW:
@@ -29,17 +29,19 @@ func _ready():
 
 func rotate_and_shoot_in_random_direction():
 	# set a random rotation for transform
-	rotation_degrees = randf_range(0, 360)
+	rotation = randf_range(0, 2 * PI)
 	var tween = create_tween()
-	tween.tween_property(self, "rotation_degrees", 10, 2)  # Adjust duration as needed
+	var spin_speed = 360
+	var spin_duration = 2
+	tween.tween_property(self, "rotation_degrees", rotation_degrees + spin_speed * spin_duration, spin_duration)
+	
 	tween.finished.connect(
 		func(): 
-			var forward_dir = Vector2.RIGHT.rotated(rotation)  # RIGHT is the default forward
-			linear_velocity = forward_dir * 400  # Adjust speed as desired
- 
+			has_started_moving= true
+			angular_velocity = 0
+			var direction = Vector2(cos(rotation), sin(rotation)).normalized()
+			linear_velocity = direction * 200  # Adjust speed as desired
 	)
-
-
 
 
 func die():
@@ -62,11 +64,3 @@ func die():
 
 	# Connect to the tween's finished signal to queue_free  
 	tween.finished.connect(queue_free)
-
-
-
-func _physics_process(delta):
-	var collision = move_and_collide(linear_velocity * delta)
-	if collision:
-		print(collision )
-		die()

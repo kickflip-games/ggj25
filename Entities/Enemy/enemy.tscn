@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Entities/Enemy/enemy.gd" id="1_86qvl"]
 [ext_resource type="PackedScene" uid="uid://lq3iq80fj87f" path="res://Entities/Enemy/HurtArea.tscn" id="2_2ch2y"]
-[ext_resource type="Texture2D" uid="uid://ngfk18cd58br" path="res://Art/square.png" id="3_e43mg"]
+[ext_resource type="Texture2D" uid="uid://botn2ausfdphf" path="res://Art/arrow_head.png" id="3_gcwpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbef"]
 
@@ -18,8 +18,10 @@ enemy_type = 1
 collision_layer = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("3_e43mg")
+position = Vector2(-9.53674e-07, 0)
+rotation = 1.5708
+scale = Vector2(0.0539084, 0.14)
+texture = ExtResource("3_gcwpg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lhbef")
