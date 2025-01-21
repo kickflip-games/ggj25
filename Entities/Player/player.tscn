@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://brqlxi1h6j658"]
 
-[ext_resource type="Script" uid="uid://45u25v1x5xfu" path="res://Entities/Player/player.gd" id="1_gb1tc"]
+[ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_gb1tc"]
 [ext_resource type="Texture2D" uid="uid://d2m0vvx8c3ebt" path="res://Art/prototype_bubble.png" id="1_tcnsb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_gb1tc")
+SPEED = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)

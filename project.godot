@@ -10,12 +10,13 @@ config_version=5
 
 [application]
 
-config/name="global_game_jam_2025"
+config/name="ggj25"
 config/version="4.3"
-run/main_scene="res://test_scene.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.00163201, 0.000994491, 0.000240683, 1)
