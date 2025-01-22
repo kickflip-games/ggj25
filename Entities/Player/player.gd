@@ -12,7 +12,7 @@ const MAX_HP = 3
 signal player_died
 signal player_taken_damage
 
-var Direction := {
+var Direction = {
 	0: Vector2(1, 0), # Right
 	1: Vector2(0, 1), # Down
 	2: Vector2(-1, 0), # Left
@@ -24,6 +24,8 @@ var hp:int = MAX_HP
 var _can_take_damage:bool=true
 var _init_sprite_scale:Vector2
 
+var _next_dir:int
+var arrow_tween:Tween
 
 
 
@@ -45,6 +47,26 @@ func start(pos):
 	show()
 	
 	
+func start_arrow_tween(arrow:Sprite2D):
+	if arrow_tween and arrow_tween.is_running():
+		arrow_tween.kill()
+	arrow_tween = create_tween().set_loops()
+	arrow_tween.tween_property(arrow, "modulate:a", 0.5, 0.3)
+	arrow_tween.tween_property(arrow, "modulate:a", 0.3, 0.3)
+
+func show_arrow():
+	$Arrows/Right.modulate.a = 0
+	$Arrows/Left.modulate.a = 0
+	$Arrows/Up.modulate.a =0
+	$Arrows/Down.modulate.a = 0
+	if _next_dir==0:
+		start_arrow_tween($Arrows/Right)
+	elif _next_dir==1:
+		start_arrow_tween($Arrows/Down)
+	elif _next_dir==2:
+		start_arrow_tween($Arrows/Left)
+	elif _next_dir==3:
+		start_arrow_tween($Arrows/Up)
 	
 func _physics_process(delta):
 	velocity = Direction[curr_dir] * SPEED
@@ -59,11 +81,9 @@ func _input(event: InputEvent) -> void:
 	var mouse_press = event is InputEventMouseButton  and event.pressed
 
 	if key_press or mouse_press: # TODO: Make this more generic (e.g. key press at start)
-			_player_change_direction() 
-
-# Change direction in looping clockwise orientation
-func _player_change_direction() -> void:
-	curr_dir = (curr_dir + 1) % 4
+			curr_dir = _next_dir
+			_next_dir = (curr_dir + 1) % 4 
+			show_arrow()
 
 # Hacky way to bounce off a surface, should be changed	
 func _environment_change_direction() -> void:
@@ -72,7 +92,7 @@ func _environment_change_direction() -> void:
 
 func take_damage():
 	if  _can_take_damage:
-		
+		$HurtFx.emitting = true
 		_can_take_damage = false
 		hp -= 1
 		player_taken_damage.emit(hp)
@@ -80,15 +100,19 @@ func take_damage():
 			die()
 		else:
 			var tween = create_flash_tween()
-			tween.finished.connect( func(): _can_take_damage = true)
+			tween.finished.connect( 
+				func(): 
+					_can_take_damage = true
+					sprite.modulate.a = 1
+					)
 
 
 func create_flash_tween():
 	var tween = create_tween()
 	for i in range(3):
 		# Fade out
-		tween.tween_property(sprite, "modulate:a", 0.1, 0.1)
-		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
+		tween.tween_property(sprite, "modulate:a", 0.05, 0.2)
+		tween.tween_property(sprite, "modulate:a", 0.8, 0.2)
 	return tween
 
 

@@ -7,4 +7,5 @@
 enemy_type = 1
 
 [node name="Sprite2D" parent="." index="1"]
+self_modulate = Color(1, 0.553793, 0.600321, 1)
 texture = ExtResource("2_473jq")

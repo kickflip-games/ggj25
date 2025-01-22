@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
 [ext_resource type="PhysicsMaterial" uid="uid://cnalljqlqufl3" path="res://Entities/Enemy/wall.tres" id="3_5otxf"]
-[ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Entities/Spawner/spawner.tscn" id="3_a5gx5"]
+[ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Spawner/spawner.tscn" id="3_a5gx5"]
 [ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lcceg"]
@@ -75,7 +75,7 @@ max_pickups = 1
 max_enemies = 5
 
 [node name="CollisionShape2D" parent="Spawner" index="0"]
-position = Vector2(573, 320)
+position = Vector2(570.5, 316)
 debug_color = Color(0.439216, 0.572549, 0.494118, 0.215686)
 
 [node name="Hud" parent="." instance=ExtResource("4_4td82")]

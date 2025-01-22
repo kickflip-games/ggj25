@@ -8,25 +8,26 @@ enum EnemyType{
 	BOUNCER
 }
 
+@onready var backgroud_sprite = $BackgroundSprite
 @onready var sprite = $Sprite2D
 @onready var hurt_area = $HurtArea
 @export var enemy_type:EnemyType = EnemyType.BOUNCER
 @export var speed = 250
-@export var spawn_time=0.5
+@export var spawn_time=2
 @export var timeout_time = 10
 
 var has_started_moving:bool = false
-var _init_sprite_scale:Vector2
 var _is_dead:bool = false
+
+var _init_background_scale:Vector2
+var _init_sprite_scale:Vector2
 
 
 func _ready():
 	$CollisionShape2D.disabled = true
 	sleeping = true
+	_init_background_scale = backgroud_sprite.scale
 	_init_sprite_scale=sprite.scale
-	linear_damp = 0
-	angular_damp = 0
-	
 	
 	begin_spawn()
 	
@@ -37,8 +38,16 @@ func begin_spawn():
 	# Fade in effect 
 	print("Spawn enemy")
 	sprite.scale = Vector2.ONE * 0.01
+	backgroud_sprite.scale = Vector2.ONE * 0.01
 	sprite.modulate.a = 0.1
+	backgroud_sprite.modulate.a = 0.1
+	
+
+	
 	var tween = create_tween().parallel()
+	
+	tween.tween_property(backgroud_sprite, "scale", _init_background_scale, spawn_time/4)
+	tween.tween_property(backgroud_sprite, "modulate:a", 0.3, spawn_time/4)
 	tween.tween_property(sprite, "scale", _init_sprite_scale, spawn_time)
 	tween.tween_property(sprite, "modulate:a", 1, spawn_time)
 	tween.finished.connect(
@@ -60,16 +69,23 @@ func custom_start_based_on_type():
 		EnemyType.BOUNCER:
 			init_bouncer_enemy()
 		EnemyType.STATIC:
-			pass
+			init_static_enemy()
 
 
 var direction:
 	get:
 		return Vector2(cos(rotation), sin(rotation)).normalized()
 
+func init_static_enemy():
+	var tween = create_tween().set_loops()
+	tween.tween_property(self, "position:y", -20, 2).as_relative()
+	tween.tween_property(self, "position:y", 20, 2).as_relative()
+	
+
 
 func init_arrow_enemy():
 	# rotate_and_shoot_in_random_direction
+	
 	
 	# set a random rotation for transform
 	rotation = randf_range(0, 2 * PI)
@@ -125,6 +141,8 @@ func die():
 	# Optional: rotate and scale down for added effect
 	tween.parallel().tween_property(sprite, "rotation", PI/2, 0.5)
 	tween.parallel().tween_property(sprite, "scale", Vector2.ZERO, 0.5)
+	tween.parallel().tween_property(backgroud_sprite, "scale", Vector2.ZERO, 0.5)
+	
 
 	# Connect to the tween's finished signal to queue_free  
 	tween.finished.connect(queue_free)
