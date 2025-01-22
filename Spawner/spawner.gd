@@ -14,7 +14,6 @@ extends Area2D
 # waves can be something like (5 static enemies, 1 second apart), (2 static, 2 arrow enemies, 0 seconds apart)
 # etc... 
 
-signal increment_score
 
 
 var _active_pickups: Array[Node2D] = []
@@ -72,14 +71,8 @@ func _spawn_entity(packed_scene:PackedScene, current_list:Array[Node2D], max_amo
 		current_list.append(_instance)
 		_instance.tree_exiting.connect(_on_instance_removed.bind(_instance, current_list))
 		
-		if _instance is Pickup:
-			_instance.collected.connect(_on_pickup_colleceted)
-		
+
 		#print("Pickup spawned! Total: ", _active_pickups.size(), " Position: ", pickup_instance.position)
 
 func _on_instance_removed(instance: Node2D,scene_list:Array[Node2D]) -> void:
 	scene_list.erase(instance)
-
-
-func _on_pickup_colleceted():
-	increment_score.emit()

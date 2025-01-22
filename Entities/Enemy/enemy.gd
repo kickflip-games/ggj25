@@ -85,9 +85,6 @@ func init_static_enemy():
 
 func init_arrow_enemy():
 	# rotate_and_shoot_in_random_direction
-	
-	
-	# set a random rotation for transform
 	rotation = randf_range(0, 2 * PI)
 	var tween = create_tween()
 	var spin_speed = 360
@@ -104,7 +101,7 @@ func init_arrow_enemy():
 
 func init_bouncer_enemy():
 	# point_and_start_bouncing
-	var tween = create_flash_tween()
+	var tween = Globals.create_flash_tween(sprite)
 	tween.finished.connect(
 		func():
 			rotation = [0, PI / 2, PI, 3 * PI / 2][randi() % 4]
@@ -112,14 +109,6 @@ func init_bouncer_enemy():
 	)
 	
 
-func create_flash_tween():
-	var tween = create_tween()
-		# Flash the sprite 3 times
-	for i in range(3):
-		# Fade out
-		tween.tween_property(sprite, "modulate:a", 0.2, 0.1)
-		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
-	return tween
 
 
 func die():
@@ -134,7 +123,7 @@ func die():
 	
 	linear_velocity=Vector2.ZERO
 	
-	var tween = create_flash_tween()
+	var tween = Globals.create_flash_tween(sprite)
 	# After flashing, fade away
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
 

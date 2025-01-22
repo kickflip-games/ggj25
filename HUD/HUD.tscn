@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
 [ext_resource type="LabelSettings" uid="uid://cl75yjfkakdb8" path="res://HUD/large_text.tres" id="2_kpn8b"]
-[ext_resource type="LabelSettings" uid="uid://bha0we0d6smco" path="res://HUD/small_text.tres" id="2_xul33"]
+[ext_resource type="PackedScene" uid="uid://bgo5kx0jbt04d" path="res://HUD/player_ui/player_ui.tscn" id="2_pcubi"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -22,25 +22,8 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="PlayerUi" parent="MarginContainer" instance=ExtResource("2_pcubi")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="HealthLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-text = "♥♥♥"
-label_settings = ExtResource("2_xul33")
-
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Score"
 
 [node name="GameText" type="Label" parent="MarginContainer"]
 layout_mode = 2

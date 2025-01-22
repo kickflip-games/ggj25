@@ -1,16 +1,19 @@
 class_name Player
 extends CharacterBody2D
 
-const MAX_HP = 3
+const POWERUP_TIME = 3.0
+const BASE_SPEED = 500.0
+const POWERUP_SPEED_FACTOR = 2 
 
-@export var SPEED: float = 500.0
 @export var damage_cooldown_time:float = 1
-
 @onready var collision_shape:= $CollisionShape2D
 @onready var sprite:=$Sprite2D
+@onready var score_manager:=$Score
+@onready var powerup_timer:=$PowerupTimer
+
+
 
 signal player_died
-signal player_taken_damage
 
 var Direction = {
 	0: Vector2(1, 0), # Right
@@ -20,12 +23,16 @@ var Direction = {
 	-1: Vector2.ZERO
 }
 var curr_dir: int # Current direction
-var hp:int = MAX_HP
+var hp:int
+var _speed:int
+
+
 var _can_take_damage:bool=true
 var _init_sprite_scale:Vector2
 
 var _next_dir:int
 var arrow_tween:Tween
+var ui:PlayerUi
 
 
 
@@ -34,16 +41,19 @@ func _ready() -> void:
 	hide()
 	_init_sprite_scale = sprite.scale
 	
-func start(pos):
+func start(pos:Vector2, player_ui:PlayerUi):
 	position = pos
 	collision_shape.disabled = false
 	set_process_input(true)
 	set_physics_process(true)
 	sprite.modulate.a = 1
 	sprite.scale = _init_sprite_scale
-	hp=MAX_HP
+	hp=Globals.MAX_HP
+	score_manager.reset(player_ui)
 	_can_take_damage=true
-	
+	ui = player_ui
+	ui.reset()
+	_speed = BASE_SPEED
 	show()
 	
 	
@@ -69,7 +79,7 @@ func show_arrow():
 		start_arrow_tween($Arrows/Up)
 	
 func _physics_process(delta):
-	velocity = Direction[curr_dir] * SPEED
+	velocity = Direction[curr_dir] * _speed
 	
 	# Handle bouncing off the screen edge
 	var collision = move_and_collide(velocity * delta)
@@ -95,25 +105,17 @@ func take_damage():
 		$HurtFx.emitting = true
 		_can_take_damage = false
 		hp -= 1
-		player_taken_damage.emit(hp)
+		ui.update_health(hp)
 		if hp <= 0:
 			die()
 		else:
-			var tween = create_flash_tween()
+			var tween = Globals.create_flash_tween(sprite)
 			tween.finished.connect( 
 				func(): 
 					_can_take_damage = true
 					sprite.modulate.a = 1
 					)
 
-
-func create_flash_tween():
-	var tween = create_tween()
-	for i in range(3):
-		# Fade out
-		tween.tween_property(sprite, "modulate:a", 0.05, 0.2)
-		tween.tween_property(sprite, "modulate:a", 0.8, 0.2)
-	return tween
 
 
 
@@ -124,7 +126,7 @@ func die():
 	collision_shape.call_deferred("set_disabled", true)
 
 	# Create a new Tween
-	var tween = create_flash_tween()
+	var tween = Globals.create_flash_tween(sprite)
 	# After flashing, fade away
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
 
@@ -137,8 +139,21 @@ func die():
 			player_died.emit()
 			hide()
 	)
+	
 
-	
-	
-	# restart 
-	
+
+func increment_score():
+	score_manager.increment()
+
+
+func _on_score_powerup_ready():
+	powerup_timer.start(POWERUP_TIME)
+	_speed = BASE_SPEED * POWERUP_SPEED_FACTOR
+	_can_take_damage = false
+	sprite.modulate = Color.DARK_BLUE
+
+
+func _on_powerup_timer_timeout():
+	_speed = BASE_SPEED
+	_can_take_damage = true
+	sprite.modulate = Color.GOLD

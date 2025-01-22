@@ -71,8 +71,6 @@ shape = SubResource("WorldBoundaryShape2D_7isrg")
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
 show_behind_parent = true
 top_level = true
-max_pickups = 1
-max_enemies = 5
 
 [node name="CollisionShape2D" parent="Spawner" index="0"]
 position = Vector2(570.5, 316)
@@ -81,8 +79,6 @@ debug_color = Color(0.439216, 0.572549, 0.494118, 0.215686)
 [node name="Hud" parent="." instance=ExtResource("4_4td82")]
 
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
-[connection signal="player_taken_damage" from="Player" to="." method="_on_player_player_taken_damage"]
-[connection signal="increment_score" from="Spawner" to="." method="_on_spawner_increment_score"]
 [connection signal="start_game" from="Hud" to="." method="_on_hud_start_game"]
 
 [editable path="Spawner"]

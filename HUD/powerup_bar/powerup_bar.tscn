@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq2d5itmp2p1r"]
+
+[ext_resource type="Script" path="res://HUD/powerup_bar/powerup_bar.gd" id="1_7ss3l"]
+
+[node name="PowerupBar" type="TextureProgressBar"]
+script = ExtResource("1_7ss3l")
