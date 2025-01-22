@@ -1,64 +1,88 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=10 format=3 uid="uid://cwppfyu0kwj2h"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
+[ext_resource type="PhysicsMaterial" uid="uid://cnalljqlqufl3" path="res://Entities/Enemy/wall.tres" id="3_5otxf"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Entities/Spawner/spawner.tscn" id="3_a5gx5"]
+[ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia1lp"]
-size = Vector2(1152, 11)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lcceg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhqqe"]
-size = Vector2(11.25, 645.906)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1q758"]
+normal = Vector2(0, 1)
 
-[node name="TestScene" type="Node2D"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_opjrx"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7isrg"]
+normal = Vector2(1, 0)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_lsa5w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 322)
+
+[node name="StartPositionMarker" type="Node2D" parent="."]
+position = Vector2(571, 321)
 
 [node name="Player" parent="." instance=ExtResource("1_uhqqe")]
 position = Vector2(143, 356)
 
-[node name="GameBounds" type="Node2D" parent="." groups=["WALLS"]]
+[node name="GameBounds" type="Node2D" parent="."]
 position = Vector2(-1, 2)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GameBounds"]
+[node name="StaticBody2D" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 3
+physics_material_override = ExtResource("3_5otxf")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="GameBounds/StaticBody2D" groups=["WALLS"]]
 position = Vector2(577, 652)
-shape = SubResource("RectangleShape2D_ia1lp")
+shape = SubResource("WorldBoundaryShape2D_lcceg")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="GameBounds"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 3
+physics_material_override = ExtResource("3_5otxf")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="GameBounds/StaticBody2D2" groups=["WALLS"]]
 position = Vector2(577, -7.5)
-shape = SubResource("RectangleShape2D_ia1lp")
+shape = SubResource("WorldBoundaryShape2D_1q758")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="GameBounds"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 3
+physics_material_override = ExtResource("3_5otxf")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="GameBounds/StaticBody2D3" groups=["WALLS"]]
 position = Vector2(1159, 321.906)
-shape = SubResource("RectangleShape2D_uhqqe")
+shape = SubResource("WorldBoundaryShape2D_opjrx")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="GameBounds"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 3
+physics_material_override = ExtResource("3_5otxf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/StaticBody2D4" groups=["WALLS"]]
 position = Vector2(-4.375, 324.047)
-shape = SubResource("RectangleShape2D_uhqqe")
+shape = SubResource("WorldBoundaryShape2D_7isrg")
 
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
 show_behind_parent = true
 top_level = true
-max_enemies = 10
+max_pickups = 1
+max_enemies = 5
 
 [node name="CollisionShape2D" parent="Spawner" index="0"]
 position = Vector2(573, 320)
 debug_color = Color(0.439216, 0.572549, 0.494118, 0.215686)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(575, 322)
+[node name="Hud" parent="." instance=ExtResource("4_4td82")]
+
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="player_taken_damage" from="Player" to="." method="_on_player_player_taken_damage"]
+[connection signal="increment_score" from="Spawner" to="." method="_on_spawner_increment_score"]
+[connection signal="start_game" from="Hud" to="." method="_on_hud_start_game"]
 
 [editable path="Spawner"]

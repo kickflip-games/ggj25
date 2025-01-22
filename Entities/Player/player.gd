@@ -1,8 +1,16 @@
 class_name Player
 extends CharacterBody2D
 
+const MAX_HP = 3
+
 @export var SPEED: float = 500.0
 @export var damage_cooldown_time:float = 1
+
+@onready var collision_shape:= $CollisionShape2D
+@onready var sprite:=$Sprite2D
+
+signal player_died
+signal player_taken_damage
 
 var Direction := {
 	0: Vector2(1, 0), # Right
@@ -12,16 +20,31 @@ var Direction := {
 	-1: Vector2.ZERO
 }
 var curr_dir: int # Current direction
-
-var hp:int = 3
+var hp:int = MAX_HP
 var _can_take_damage:bool=true
+var _init_sprite_scale:Vector2
 
 
-@onready var collision_shape:= $CollisionShape2D
-@onready var sprite:=$Sprite2D
+
 
 func _ready() -> void:
 	curr_dir = 0
+	hide()
+	_init_sprite_scale = sprite.scale
+	
+func start(pos):
+	position = pos
+	collision_shape.disabled = false
+	set_process_input(true)
+	set_physics_process(true)
+	sprite.modulate.a = 1
+	sprite.scale = _init_sprite_scale
+	hp=MAX_HP
+	_can_take_damage=true
+	
+	show()
+	
+	
 	
 func _physics_process(delta):
 	velocity = Direction[curr_dir] * SPEED
@@ -32,7 +55,10 @@ func _physics_process(delta):
 		_environment_change_direction()  
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE: # TODO: Make this more generic (e.g. key press at start)
+	var key_press = event is InputEventKey   and event.pressed
+	var mouse_press = event is InputEventMouseButton  and event.pressed
+
+	if key_press or mouse_press: # TODO: Make this more generic (e.g. key press at start)
 			_player_change_direction() 
 
 # Change direction in looping clockwise orientation
@@ -45,15 +71,16 @@ func _environment_change_direction() -> void:
 
 
 func take_damage():
-	if not _can_take_damage:
-		return 
-	hp -= 1
-	
-	if hp <= 0:
-		die()	
-	else:
-		var tween = create_flash_tween()
-		tween.finished.connect( func(): _can_take_damage = true)
+	if  _can_take_damage:
+		
+		_can_take_damage = false
+		hp -= 1
+		player_taken_damage.emit(hp)
+		if hp <= 0:
+			die()
+		else:
+			var tween = create_flash_tween()
+			tween.finished.connect( func(): _can_take_damage = true)
 
 
 func create_flash_tween():
@@ -70,7 +97,7 @@ func die():
 	# Disable player input and collision
 	set_process_input(false)
 	set_physics_process(false)
-	collision_shape.set_deferred("disabled", true)
+	collision_shape.call_deferred("set_disabled", true)
 
 	# Create a new Tween
 	var tween = create_flash_tween()
@@ -81,11 +108,13 @@ func die():
 	tween.parallel().tween_property(sprite, "rotation", PI/2, 0.5)
 	tween.parallel().tween_property(sprite, "scale", Vector2.ZERO, 0.5)
 
-	# Connect to the tween's finished signal to queue_free the player
-	tween.finished.connect(func():get_tree().reload_current_scene())
+	tween.finished.connect(
+		func(): 
+			player_died.emit()
+			hide()
+	)
 
-	# You might want to emit a signal here to inform other parts of your game
-	# emit_signal("player_died")
+	
 	
 	# restart 
 	

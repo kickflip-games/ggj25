@@ -1,4 +1,6 @@
+class_name Enemy
 extends RigidBody2D
+
 
 enum EnemyType{
 	STATIC,
@@ -8,26 +10,67 @@ enum EnemyType{
 
 @onready var sprite = $Sprite2D
 @onready var hurt_area = $HurtArea
-@export var enemy_type:EnemyType = EnemyType.STATIC
+@export var enemy_type:EnemyType = EnemyType.BOUNCER
+@export var speed = 250
+@export var spawn_time=0.5
+@export var timeout_time = 10
 
 var has_started_moving:bool = false
+var _init_sprite_scale:Vector2
+var _is_dead:bool = false
 
 
 func _ready():
-	hurt_area.collision_occured.connect(die)
+	$CollisionShape2D.disabled = true
+	sleeping = true
+	_init_sprite_scale=sprite.scale
+	linear_damp = 0
+	angular_damp = 0
 	
+	
+	begin_spawn()
+	
+	
+
+	
+func begin_spawn():
+	# Fade in effect 
+	print("Spawn enemy")
+	sprite.scale = Vector2.ONE * 0.01
+	sprite.modulate.a = 0.1
+	var tween = create_tween().parallel()
+	tween.tween_property(sprite, "scale", _init_sprite_scale, spawn_time)
+	tween.tween_property(sprite, "modulate:a", 1, spawn_time)
+	tween.finished.connect(
+		func():
+				print("Enable ennemy colliders")
+				hurt_area.collision_occured.connect(die)
+				hurt_area.enabled = true
+				$CollisionShape2D.disabled = false
+				sleeping = false
+				custom_start_based_on_type()
+				$TimeoutTimer.start(timeout_time)
+	)
+
+			
+func custom_start_based_on_type():
 	match enemy_type:
 		EnemyType.ARROW:
-			rotate_and_shoot_in_random_direction()
+			init_arrow_enemy()
 		EnemyType.BOUNCER:
-			# bounces either up and down, or left and right
-			# randomly assigned direction
-			pass
+			init_bouncer_enemy()
 		EnemyType.STATIC:
 			pass
 
 
-func rotate_and_shoot_in_random_direction():
+var direction:
+	get:
+		return Vector2(cos(rotation), sin(rotation)).normalized()
+
+
+func init_arrow_enemy():
+	# rotate_and_shoot_in_random_direction
+	
 	# set a random rotation for transform
 	rotation = randf_range(0, 2 * PI)
 	var tween = create_tween()
@@ -39,22 +82,43 @@ func rotate_and_shoot_in_random_direction():
 		func(): 
 			has_started_moving= true
 			angular_velocity = 0
-			var direction = Vector2(cos(rotation), sin(rotation)).normalized()
-			linear_velocity = direction * 200  # Adjust speed as desired
+			linear_velocity = direction * speed  # Adjust speed as desired
 	)
 
 
-func die():
-	print_debug("DIE")
-	hurt_area.queue_free()
-	linear_velocity=Vector2.ZERO
+func init_bouncer_enemy():
+	# point_and_start_bouncing
+	var tween = create_flash_tween()
+	tween.finished.connect(
+		func():
+			rotation = [0, PI / 2, PI, 3 * PI / 2][randi() % 4]
+			linear_velocity = direction * speed
+	)
+	
+
+func create_flash_tween():
 	var tween = create_tween()
 		# Flash the sprite 3 times
 	for i in range(3):
 		# Fade out
 		tween.tween_property(sprite, "modulate:a", 0.2, 0.1)
 		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
+	return tween
 
+
+func die():
+	
+	if _is_dead:
+		return
+	
+	print_debug("DIE")
+	_is_dead = true
+	hurt_area.enabled = false
+	$CollisionShape2D.set_deferred("disabled",  true)
+	
+	linear_velocity=Vector2.ZERO
+	
+	var tween = create_flash_tween()
 	# After flashing, fade away
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
 
@@ -64,3 +128,14 @@ func die():
 
 	# Connect to the tween's finished signal to queue_free  
 	tween.finished.connect(queue_free)
+
+
+func _on_body_entered(body):
+	if body is StaticBody2D:  # Use groups to identify walls
+		print("Collided with a wall")
+		if enemy_type == EnemyType.ARROW:
+			die()
+
+
+func _on_timeout_timer_timeout():
+	die()

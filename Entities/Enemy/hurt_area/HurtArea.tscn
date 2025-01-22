@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lq3iq80fj87f"]
 
-[ext_resource type="Script" path="res://Entities/Enemy/hurt_area.gd" id="1_avda0"]
+[ext_resource type="Script" path="res://Entities/Enemy/hurt_area/hurt_area.gd" id="1_avda0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tc471"]
 radius = 21.0238

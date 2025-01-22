@@ -15,15 +15,21 @@ config/version="4.3"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
-[global_group]
+[display]
 
-WALLS=""
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [layer_names]
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Walls"
+
+[physics]
+
+2d/default_linear_damp=0.0
+2d/default_angular_damp=0.0
 
 [rendering]
 

@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqqaa3k8s5jx7"]
+[gd_scene load_steps=6 format=3 uid="uid://dqqaa3k8s5jx7"]
 
 [ext_resource type="Script" path="res://Entities/Enemy/enemy.gd" id="1_86qvl"]
-[ext_resource type="PackedScene" uid="uid://lq3iq80fj87f" path="res://Entities/Enemy/HurtArea.tscn" id="2_2ch2y"]
-[ext_resource type="Texture2D" uid="uid://botn2ausfdphf" path="res://Art/arrow_head.png" id="3_gcwpg"]
+[ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_ovdki"]
+[ext_resource type="PackedScene" uid="uid://lq3iq80fj87f" path="res://Entities/Enemy/hurt_area/HurtArea.tscn" id="2_2ch2y"]
+[ext_resource type="Texture2D" uid="uid://ngfk18cd58br" path="res://Art/square.png" id="3_e43mg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbef"]
 
-[node name="Enemy" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D" groups=["mobs"]]
 collision_layer = 2
-collision_mask = 6
+collision_mask = 4
+physics_material_override = ExtResource("1_ovdki")
 gravity_scale = 0.0
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_86qvl")
-enemy_type = 1
+enemy_type = 0
 
 [node name="HurtArea" parent="." instance=ExtResource("2_2ch2y")]
 collision_layer = 2
@@ -20,10 +23,17 @@ collision_layer = 2
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, 0)
 rotation = 1.5708
-scale = Vector2(0.0539084, 0.14)
-texture = ExtResource("3_gcwpg")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_e43mg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lhbef")
+disabled = true
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]
