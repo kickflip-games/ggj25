@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7joo32ifr0u8"]
+[gd_scene load_steps=4 format=3 uid="uid://7joo32ifr0u8"]
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
 [ext_resource type="LabelSettings" uid="uid://cl75yjfkakdb8" path="res://HUD/large_text.tres" id="2_kpn8b"]
+[ext_resource type="LabelSettings" uid="uid://bha0we0d6smco" path="res://HUD/small_text.tres" id="2_xul33"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -32,6 +33,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "♥♥♥"
+label_settings = ExtResource("2_xul33")
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(30, 30)

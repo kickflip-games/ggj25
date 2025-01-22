@@ -1,4 +1,7 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://cl75yjfkakdb8"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cl75yjfkakdb8"]
+
+[ext_resource type="FontFile" uid="uid://cfssoiyyfs8r7" path="res://HUD/MPLUSRounded1c.ttf" id="1_iytqo"]
 
 [resource]
+font = ExtResource("1_iytqo")
 font_size = 50

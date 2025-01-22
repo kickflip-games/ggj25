@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmmkhdnftp0hq"]
+
+[ext_resource type="Texture2D" uid="uid://barxobbhncyg4" path="res://Art/ring.png" id="1_lrnga"]
+
+[sub_resource type="Curve" id="Curve_5nlud"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.224679, 0.430676), -1.71376, -1.71376, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 1.4, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_wfqb0"]
+offsets = PackedFloat32Array(0, 0.438438, 0.596096, 0.852853)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.983483, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="HurtFx" type="CPUParticles2D"]
+position = Vector2(0, -1)
+amount = 4
+explosiveness = 1.0
+randomness = 1.0
+texture = ExtResource("1_lrnga")
+emission_shape = 1
+emission_sphere_radius = 14.89
+spread = 117.89
+gravity = Vector2(0, 0)
+initial_velocity_min = 71.87
+initial_velocity_max = 99.42
+scale_amount_curve = SubResource("Curve_5nlud")
+color = Color(1, 1, 0.4, 1)
+color_ramp = SubResource("Gradient_wfqb0")

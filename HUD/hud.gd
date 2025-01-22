@@ -5,8 +5,8 @@ extends Control
 @onready var health_text:= $MarginContainer/VBoxContainer/HealthLabel
 @onready var start_button:= $MarginContainer/MarginContainer/StartGameButton
 
-const HEART_CHAR = '♥'
-const EMPTY_HEART_CHAR = '♡'
+const HEART_CHAR = 'U+2764'
+const EMPTY_HEART_CHAR = 'U+2661'
 const MAX_HP = 3
 
 signal start_game

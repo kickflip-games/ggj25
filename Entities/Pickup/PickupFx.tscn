@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbn84rm71wge0"]
+
+[ext_resource type="Texture2D" uid="uid://barxobbhncyg4" path="res://Art/ring.png" id="1_tj12a"]
+
+[sub_resource type="Curve" id="Curve_ltp4k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.748217, 0.425429), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_kffll"]
+offsets = PackedFloat32Array(0, 0.415916, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.328829, 1, 1, 1, 0)
+
+[node name="PickupFx" type="CPUParticles2D"]
+emitting = false
+amount = 1
+lifetime = 0.3
+one_shot = true
+texture = ExtResource("1_tj12a")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_ltp4k")
+color = Color(0.2, 1, 1, 1)
+color_ramp = SubResource("Gradient_kffll")
