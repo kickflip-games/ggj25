@@ -25,7 +25,7 @@ var Direction = {
 var curr_dir: int # Current direction
 var hp:int
 var _speed:int
-
+var _in_power_up_mode:bool=false
 
 var _can_take_damage:bool=true
 var _init_sprite_scale:Vector2
@@ -147,13 +147,19 @@ func increment_score():
 
 
 func _on_score_powerup_ready():
-	powerup_timer.start(POWERUP_TIME)
-	_speed = BASE_SPEED * POWERUP_SPEED_FACTOR
-	_can_take_damage = false
-	sprite.modulate = Color.DARK_BLUE
+	if not _in_power_up_mode:
+		_in_power_up_mode = true
+		powerup_timer.start(POWERUP_TIME)
+		_speed = BASE_SPEED * POWERUP_SPEED_FACTOR
+		_can_take_damage = false
+		sprite.modulate = Color.DARK_BLUE
 
 
 func _on_powerup_timer_timeout():
+	_in_power_up_mode = false
 	_speed = BASE_SPEED
 	_can_take_damage = true
 	sprite.modulate = Color.GOLD
+	ui.update_bar(0)
+	powerup_timer.stop()
+	score_manager.powerup_progress = 0 
