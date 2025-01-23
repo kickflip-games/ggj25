@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brqlxi1h6j658"]
+[gd_scene load_steps=13 format=3 uid="uid://brqlxi1h6j658"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_750yp"]
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_gb1tc"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cme3w2rlx4n1p" path="res://Entities/Player/BubbleTrail.tscn" id="5_x6a5d"]
 [ext_resource type="PackedScene" uid="uid://bmmkhdnftp0hq" path="res://Entities/Player/HurtFx.tscn" id="6_v4asd"]
 [ext_resource type="PackedScene" uid="uid://basxc6kt5ohww" path="res://Entities/Player/PlayerScore/PlayerScore.tscn" id="7_8w2s6"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_vcf10"]
+[ext_resource type="Resource" uid="uid://euybd2w0bax" path="res://addons/phantom_camera/examples/resources/tween/player_phantom_camera_2d_tween.tres" id="11_pnlmq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 radius = 4.04475
@@ -18,6 +20,7 @@ collision_mask = 6
 physics_material_override = ExtResource("1_750yp")
 gravity_scale = 0.0
 can_sleep = false
+lock_rotation = true
 script = ExtResource("1_gb1tc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,6 +77,23 @@ one_shot = true
 [node name="Score" parent="." instance=ExtResource("7_8w2s6")]
 
 [node name="PowerupTimer" type="Timer" parent="."]
+
+[node name="PlayerPhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+top_level = true
+position = Vector2(0, -45)
+script = ExtResource("10_vcf10")
+priority = 5
+follow_mode = 5
+follow_target = NodePath("..")
+zoom = Vector2(0.9, 0.9)
+tween_resource = ExtResource("11_pnlmq")
+follow_offset = Vector2(0, -45)
+follow_damping = true
+dead_zone_width = 0.25
+dead_zone_height = 0.8
+show_viewfinder_in_play = true
+draw_limits = true
 
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]
 [connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_timer_timeout"]

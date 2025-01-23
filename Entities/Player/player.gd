@@ -3,7 +3,7 @@ extends RigidBody2D
 
 const POWERUP_TIME = 3.0
 const BASE_SPEED = 500.0
-const KICK_FORCE = 2000
+const KICK_FORCE = 3000
 const POWERUP_SPEED_FACTOR = 2 
 
 @export var damage_cooldown_time:float = 1
@@ -154,7 +154,7 @@ func _on_score_powerup_ready():
 		_in_power_up_mode = true
 		powerup_timer.start(POWERUP_TIME)
 		_speed = BASE_SPEED * POWERUP_SPEED_FACTOR
-		_kick_force = KICK_FORCE * POWERUP_SPEED_FACTOR * 4
+		_kick_force = KICK_FORCE * POWERUP_SPEED_FACTOR 
 		kick_in_direction(curr_dir)
 		_can_take_damage = false
 		sprite.modulate = Color.DARK_BLUE
