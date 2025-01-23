@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://str7kpnq2oov"]
+
+[ext_resource type="Script" path="res://Background/background.gd" id="1_xo0pc"]
+[ext_resource type="Material" uid="uid://k635y1acdfw6" path="res://Background/shaders/background_water.tres" id="2_fok6k"]
+[ext_resource type="Material" uid="uid://cb1a7ycknwrx0" path="res://Background/shaders/paint_swirl.tres" id="3_sqier"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_df58r"]
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_xo0pc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("2_fok6k")
+position = Vector2(659.75, 554.471)
+scale = Vector2(1320.5, 1109.94)
+texture = SubResource("CanvasTexture_df58r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("3_sqier")
+offset_right = 2623.0
+offset_bottom = 2392.0
+color = Color(1, 0.48, 0.48, 1)

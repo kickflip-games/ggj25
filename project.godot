@@ -18,11 +18,16 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 Globals="*res://globals.gd"
+DampedOscillator="*res://addons/DampedOscillator/scripts/damped_oscillator.tscn"
 
 [display]
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/DampedOscillator/plugin.cfg")
 
 [layer_names]
 

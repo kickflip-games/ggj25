@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://dcybgjni3ffhk"]
+
+[ext_resource type="Shader" path="res://Background/shaders/pixel_water.gdshader" id="1_8l4wj"]
+
+[sub_resource type="Gradient" id="Gradient_xxur5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i6pxk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j5dda"]
+invert = true
+seamless = true
+seamless_blend_skirt = 0.564
+as_normal_map = true
+bump_strength = 14.7
+color_ramp = SubResource("Gradient_xxur5")
+noise = SubResource("FastNoiseLite_i6pxk")
+
+[sub_resource type="Gradient" id="Gradient_isik8"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i8t5i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rgprb"]
+seamless = true
+seamless_blend_skirt = 0.335
+color_ramp = SubResource("Gradient_isik8")
+noise = SubResource("FastNoiseLite_i8t5i")
+
+[resource]
+shader = ExtResource("1_8l4wj")
+shader_parameter/speed = Vector2(0.03, 0.03)
+shader_parameter/speedSecondNoise = Vector2(-0.03, -0.03)
+shader_parameter/distortionStrength = 0.394
+shader_parameter/noise = SubResource("NoiseTexture2D_j5dda")
+shader_parameter/secNoise = SubResource("NoiseTexture2D_rgprb")
+shader_parameter/toneColor = Color(0.121569, 0.933333, 0.956863, 1)
+shader_parameter/topColor = Color(0, 0.135, 0.3, 1)
+shader_parameter/lightStart = 1.0
+shader_parameter/lightEnd = 0.35
+shader_parameter/pixelSize = 264.0
