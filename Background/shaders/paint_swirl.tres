@@ -6,10 +6,10 @@
 shader = ExtResource("1_uguqk")
 shader_parameter/polar_coordinates = false
 shader_parameter/polar_center = Vector2(0.5, 0.5)
-shader_parameter/polar_zoom = 1.0
-shader_parameter/polar_repeat = 1.0
+shader_parameter/polar_zoom = 0.77
+shader_parameter/polar_repeat = 0.47
 shader_parameter/spin_rotation = 4.76
-shader_parameter/spin_speed = 20.0
+shader_parameter/spin_speed = 20.9
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/colour_1 = Color(0.2325, 0, 0.31, 1)
 shader_parameter/colour_2 = Color(0, 0, 0.67451, 1)

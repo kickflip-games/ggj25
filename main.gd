@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var player:=$Player
 @onready var spawner:=$Spawner
-@onready var hud:=$Hud
+@onready var hud:=$CanvasLayer/Hud
 
 
 func game_over():

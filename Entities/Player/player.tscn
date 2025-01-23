@@ -90,8 +90,8 @@ zoom = Vector2(0.9, 0.9)
 tween_resource = ExtResource("11_pnlmq")
 follow_offset = Vector2(0, -45)
 follow_damping = true
-dead_zone_width = 0.25
-dead_zone_height = 0.8
+dead_zone_width = 0.078
+dead_zone_height = 0.073
 show_viewfinder_in_play = true
 draw_limits = true
 
