@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var game_text:= $MarginContainer/GameText
 @onready var start_button:= $MarginContainer/MarginContainer/StartGameButton

@@ -1,15 +1,32 @@
 extends Node2D
 
 var _tween:Tween
+@onready var active_arrow:=$ActiveArrow
 
-func _start_tween(arrow:Sprite2D):
+#func _start_tween(arrow:Sprite2D):
+	#if _tween and _tween.is_running():
+		#_tween.kill()
+	#_tween = create_tween().set_loops()
+	#_tween.tween_property(arrow, "modulate:a", 0.5, 0.3)
+	#_tween.tween_property(arrow, "modulate:a", 0.3, 0.3)
+	#
+	
+	
+func _start_tween(arrow:Sprite2D) -> void:
+	var new_rotation = arrow.rotation_degrees
+	var current_rotation = active_arrow.rotation_degrees
+	# Find the shortest path for rotation
+	var delta_rotation = wrapf(new_rotation - current_rotation, -180, 180)
+	var final_rotation = current_rotation + delta_rotation
+	# Tween to the final rotation
+	
 	if _tween and _tween.is_running():
 		_tween.kill()
-	_tween = create_tween().set_loops()
-	_tween.tween_property(arrow, "modulate:a", 0.5, 0.3)
-	_tween.tween_property(arrow, "modulate:a", 0.3, 0.3)
+	_tween = create_tween()
+	_tween.tween_property(active_arrow, "rotation_degrees", final_rotation, 0.1)
 
 func show_arrow(dir:int):
+	$ActiveArrow.modulate.a = 0.3
 	$Right.modulate.a = 0
 	$Left.modulate.a = 0
 	$Up.modulate.a =0

@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_gb1tc"]
 [ext_resource type="Texture2D" uid="uid://072jlqrbatbk" path="res://Art/circle.png" id="2_c8wn6"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="3_2m8gp"]
-[ext_resource type="Texture2D" uid="uid://blxyd8puy6pya" path="res://Art/arrows.png" id="3_mp8oq"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerArrows.gd" id="4_2slqy"]
 [ext_resource type="PackedScene" uid="uid://cme3w2rlx4n1p" path="res://Entities/Player/BubbleTrail.tscn" id="5_x6a5d"]
+[ext_resource type="Texture2D" uid="uid://c06iq18ldkxp2" path="res://Art/arrow2.png" id="6_4rn7s"]
 [ext_resource type="PackedScene" uid="uid://bmmkhdnftp0hq" path="res://Entities/Player/HurtFx.tscn" id="6_v4asd"]
 [ext_resource type="PackedScene" uid="uid://basxc6kt5ohww" path="res://Entities/Player/PlayerScore/PlayerScore.tscn" id="7_8w2s6"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_vcf10"]
@@ -21,6 +21,8 @@ physics_material_override = ExtResource("1_750yp")
 gravity_scale = 0.0
 can_sleep = false
 lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_gb1tc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -40,32 +42,37 @@ texture = ExtResource("3_2m8gp")
 [node name="DirectionArrows" type="Node2D" parent="."]
 script = ExtResource("4_2slqy")
 
-[node name="Right" type="Sprite2D" parent="DirectionArrows"]
+[node name="ActiveArrow" type="Sprite2D" parent="DirectionArrows"]
 self_modulate = Color(1, 1, 0.4, 1)
-position = Vector2(60, 0)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_mp8oq")
+scale = Vector2(0.44, 0.35)
+texture = ExtResource("6_4rn7s")
+
+[node name="Right" type="Sprite2D" parent="DirectionArrows"]
+visible = false
+self_modulate = Color(1, 1, 0.4, 1)
+scale = Vector2(0.44, 0.35)
+texture = ExtResource("6_4rn7s")
 
 [node name="Left" type="Sprite2D" parent="DirectionArrows"]
+visible = false
 self_modulate = Color(1, 1, 0.4, 1)
-position = Vector2(-60, 0)
 rotation = 3.14159
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_mp8oq")
+scale = Vector2(0.44, 0.35)
+texture = ExtResource("6_4rn7s")
 
 [node name="Up" type="Sprite2D" parent="DirectionArrows"]
+visible = false
 self_modulate = Color(1, 1, 0.4, 1)
-position = Vector2(0, -60)
 rotation = -1.5708
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_mp8oq")
+scale = Vector2(0.44, 0.35)
+texture = ExtResource("6_4rn7s")
 
 [node name="Down" type="Sprite2D" parent="DirectionArrows"]
+visible = false
 self_modulate = Color(1, 1, 0.4, 1)
-position = Vector2(0, 60)
 rotation = 1.5708
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_mp8oq")
+scale = Vector2(0.44, 0.35)
+texture = ExtResource("6_4rn7s")
 
 [node name="BubbleTrail" parent="." instance=ExtResource("5_x6a5d")]
 
@@ -95,5 +102,6 @@ dead_zone_height = 0.073
 show_viewfinder_in_play = true
 draw_limits = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]
 [connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_timer_timeout"]

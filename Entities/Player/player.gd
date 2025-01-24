@@ -22,7 +22,6 @@ var Direction = {
 	1: Vector2.DOWN, # Down
 	2: Vector2.LEFT, # Left
 	3: Vector2.UP, # Up
-	-1: Vector2.ZERO
 }
 var curr_dir: int # Current direction
 var hp:int
@@ -37,6 +36,7 @@ var _next_dir:int=0
 var _prev_dir:int =0 
 
 var ui:PlayerUi
+var _start_pos:Vector2
 
 
 
@@ -46,7 +46,8 @@ func _ready() -> void:
 	_init_sprite_scale = sprite.scale
 	
 func start(pos:Vector2, player_ui:PlayerUi):
-	position = pos
+	_start_pos = pos
+	position = _start_pos
 	collision_shape.disabled = false
 	set_process_input(true)
 	set_physics_process(true)
@@ -66,41 +67,65 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	# Cap the speed at _speed
 	if state.linear_velocity.length() > _speed:
 		state.linear_velocity = state.linear_velocity.normalized() * _speed
-
-
-
-#func _physics_process(delta):
-	## Handle bouncing off the screen edge
-	#var collision = move_and_collide(velocity * delta)
-	#if collision:
-		#_environment_change_direction()  
 		
-	## Cap the speed at _speed
-	#if linear_velocity.length() > _speed:
-		#linear_velocity = linear_velocity.normalized() * _speed
-		#
-	#if _in_power_up_mode:
-		#linear_velocity = Direction[curr_dir] * _speed
+	if Direction[_next_dir].distance_to(state.linear_velocity.normalized()) < 0.1:
+		print("Manual change dir... TODO: make the new direction point INNWARDS TO CENTER")
+		_update_dir(false)
+
+
+func _get_new_dir(rand_dir:bool):
+	var new_dir:int 
+	if rand_dir:
+		var random_change = (randi() % 2) * 2 - 1  # Generates either -1 or +1
+		new_dir = (curr_dir + random_change) % 4
+		if new_dir < 0:
+			new_dir += 4  # Ensure the direction stays in the range 0 to 3	
+		
+	else:
+		var to_center = _start_pos - position
+
+		# Find the closest direction based on the angle
+		var closest_dir = 0
+		var closest_dot = -INF  # Start with the smallest possible value
+
+		for dir_index in Direction.keys():
+			var dir_vector = Direction[dir_index].normalized()
+			var dot_product = to_center.normalized().dot(dir_vector)
+
+			# Find the direction with the maximum dot product
+			if dot_product > closest_dot:
+				closest_dot = dot_product
+				closest_dir = dir_index
+
+		# Update the current direction to the closest one
+		new_dir = closest_dir
+		print("Closest direction to center:", Direction[curr_dir])
 	
+	return new_dir
+	
+
+
+
+func _update_dir(rand_dir:bool):
+	_prev_dir = curr_dir
+	curr_dir = _next_dir
+	_next_dir = _get_new_dir(rand_dir)
+	direction_arrows.show_arrow(_next_dir)
+
+
 func _input(event: InputEvent) -> void:
 	var key_press = event is InputEventKey   and event.pressed
 	var mouse_press = event is InputEventMouseButton  and event.pressed
 
 	if key_press or mouse_press: # TODO: Make this more generic (e.g. key press at start)
-			_prev_dir = curr_dir
-			curr_dir = _next_dir
-			_next_dir = (curr_dir + 1) % 4 
-			direction_arrows.show_arrow(_next_dir)
+			_update_dir(true)
 			kick_in_direction(curr_dir)
 			 
 
 func kick_in_direction(dir:int):
+	linear_velocity = Vector2.ZERO
 	apply_central_impulse(Direction[dir] * _kick_force)  # Apply force at the center of the body
 
-
-# Hacky way to bounce off a surface, should be changed	
-func _environment_change_direction() -> void:
-	curr_dir = (curr_dir + 2 ) % 4
 
 
 func take_damage():
@@ -124,6 +149,7 @@ func take_damage():
 
 func die():
 	# Disable player input and collision
+	linear_velocity =  Vector2.ZERO
 	set_process_input(false)
 	set_physics_process(false)
 	collision_shape.call_deferred("set_disabled", true)
@@ -169,3 +195,12 @@ func _on_powerup_timer_timeout():
 	ui.update_bar(0)
 	powerup_timer.stop()
 	score_manager.powerup_progress = 0 
+
+
+
+
+func _on_body_entered(body):
+	var spring = 200.0
+	var damp = 10.0
+	var velocity = 15.0
+	DampedOscillator.animate(sprite, "scale", spring, damp, velocity, 0.25)
