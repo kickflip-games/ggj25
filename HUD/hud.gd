@@ -33,13 +33,12 @@ func _show_message(text):
 
 func _on_start_sequence_start_game() -> void:
 	player_uis_container.show()
-	start_game.emit(start_seq.mapping_screen.num_players)
 
 func _on_start_game_button_pressed():
 	start_button.hide()
 	game_text.hide()
 	print_debug("Start game pressed")
-	start_game.emit()
+	start_game.emit(start_seq.mapping_screen.num_players)
 	time_label.show()
 
 func update_timer(time_remaining:int):
