@@ -6,7 +6,7 @@ var name: String
 var x0: Vector2 # start pos
 var ui: PlayerUi
 var color: Color
-
+var id:int
 
 
 
@@ -15,6 +15,7 @@ var color: Color
 
 # Constructor
 func _init(id: int, x0: Vector2, ui:PlayerUi) -> void:
+	self.id = id 
 	self.name = "player" + str(id)
 	self.x0 = x0
 	self.ui = ui

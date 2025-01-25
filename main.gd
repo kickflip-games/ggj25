@@ -2,7 +2,7 @@
 
 extends Node2D
 
-@export var player_scene:PackedScene
+@export var player_scenes:Array[PackedScene]
 
 @onready var spawner:=$Spawner
 @onready var hud:=$Hud
@@ -16,10 +16,10 @@ var _current_players:Array[Player]
 
 func _ready():
 	_player_data = [
-		PlayerData.new(1, $StartPositions/P1.global_position, hud.player_uis[0]),
-		PlayerData.new(2, $StartPositions/P2.global_position, hud.player_uis[1]),
-		PlayerData.new(3, $StartPositions/P3.global_position, hud.player_uis[2]),
-		PlayerData.new(4, $StartPositions/P4.global_position, hud.player_uis[3]),
+		PlayerData.new(0, $StartPositions/P1.global_position, hud.player_uis[0]),
+		PlayerData.new(1, $StartPositions/P2.global_position, hud.player_uis[1]),
+		PlayerData.new(2, $StartPositions/P3.global_position, hud.player_uis[2]),
+		PlayerData.new(3, $StartPositions/P4.global_position, hud.player_uis[3]),
 	]
 
 
@@ -28,7 +28,7 @@ func game_over():
 	spawner.stop()
 
 func _instantiate_player(player_data:PlayerData):
-	var player:Player = player_scene.instantiate()
+	var player:Player = player_scenes[player_data.id].instantiate()
 	add_child(player)
 	player.start(player_data)
 	player.powerup_activated.connect($Shockwave.create_shock)

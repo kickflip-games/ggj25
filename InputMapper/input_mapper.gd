@@ -1,10 +1,10 @@
 extends Node2D
 
 var PLAYER_BUTTONS = {
+	"player0": 0,
 	"player1": 0,
 	"player2": 0,
 	"player3": 0,
-	"player4": 0
 }
 
 
