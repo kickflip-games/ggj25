@@ -34,7 +34,7 @@ fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
 script = ExtResource("1_lsa5w")
 player_scenes = Array[PackedScene]([ExtResource("2_4b18o"), ExtResource("3_xp57s"), ExtResource("4_53qff"), ExtResource("5_ujoku")])
 metadata/_edit_horizontal_guides_ = [-74.7253, 1074.86]
-metadata/_edit_vertical_guides_ = [-116.212, 1097.87]
+metadata/_edit_vertical_guides_ = [-340.0, -140.0]
 
 [node name="InputMapper" parent="." instance=ExtResource("3_7m5ok")]
 
@@ -75,8 +75,9 @@ position = Vector2(-286.104, 282.34)
 position = Vector2(-579.529, -78.5904)
 
 [node name="ColorRect" parent="Background" index="0"]
-offset_right = 103.12
-offset_bottom = 1162.55
+offset_top = 44.0
+offset_right = 103.0
+offset_bottom = 1127.0
 scale = Vector2(20, 1)
 color = Color(0.152941, 0.203922, 0.313726, 1)
 
@@ -93,13 +94,13 @@ color = Color(0.109804, 0.0588235, 0.0941176, 1)
 antialiased = true
 texture = SubResource("ViewportTexture_seagh")
 invert_enabled = true
-invert_border = 163.0
-polygon = PackedVector2Array(1, 198, 1, 798, 201, 998, 801, 998, 1001, 798, 1001, 198, 801, -2, 201, -2)
+invert_border = 110.0
+polygon = PackedVector2Array(-339, 198, -339, 798, -139, 998, 1201, 998, 1401, 798, 1401, 198, 1201, -2, -139, -2)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameBounds/GameBoundsOctagon"]
 position = Vector2(120, 40)
 build_mode = 1
-polygon = PackedVector2Array(81, -42, 681, -42, 881, 158, 881, 758, 681, 958, 81, 958, -119, 758, -119, 158)
+polygon = PackedVector2Array(-259, -42, 1081, -42, 1281, 158, 1281, 758, 1081, 958, -259, 958, -459, 758, -459, 158)
 
 [node name="North" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
 position = Vector2(480, 0)
@@ -118,6 +119,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/NE"]
+position = Vector2(-254.559, 282.843)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
@@ -128,6 +130,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/SE"]
+position = Vector2(282.843, 282.842)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
@@ -138,6 +141,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/SW"]
+position = Vector2(-240.417, 240.416)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
@@ -148,6 +152,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/NW"]
+position = Vector2(268.701, 240.416)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
@@ -167,6 +172,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/West"]
+position = Vector2(1.69822, 340)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
@@ -177,6 +183,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/East"]
+position = Vector2(-1.69844, 400)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
@@ -190,6 +197,7 @@ shape = SubResource("RectangleShape2D_ch7fi")
 debug_color = Color(0, 0.6, 0.701961, 0.172549)
 
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
+visible = false
 show_behind_parent = true
 top_level = true
 collision_layer = 2048
