@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cc81r7ciyn7gv"]
 
 [ext_resource type="Script" path="res://Spawner/spawner.gd" id="1_ycmp0"]
+[ext_resource type="PackedScene" uid="uid://cxx86i3b6gf17" path="res://Entities/Pickup/sub_pickups/score_itm.tscn" id="2_oegsk"]
 [ext_resource type="PackedScene" uid="uid://dqqaa3k8s5jx7" path="res://Entities/Enemy/enemy.tscn" id="3_geb5j"]
 [ext_resource type="PackedScene" uid="uid://cpc70u6dwdmjs" path="res://Entities/Pickup/sub_pickups/health_pickup.tscn" id="3_tft3f"]
-[ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup_base.tscn" id="3_wuo2c"]
 [ext_resource type="PackedScene" uid="uid://cj356q6nq7ki5" path="res://Entities/Enemy/subtypes/enemy_arrow.tscn" id="4_7pv1v"]
 [ext_resource type="PackedScene" uid="uid://dqjdei2tk5av3" path="res://Entities/Enemy/subtypes/enemy_bouncer.tscn" id="5_dr4gn"]
 
@@ -12,7 +12,7 @@ size = Vector2(600, 600)
 
 [node name="Spawner" type="Area2D"]
 script = ExtResource("1_ycmp0")
-pickup_scenes = Array[PackedScene]([ExtResource("3_wuo2c"), ExtResource("3_tft3f")])
+pickup_scenes = Array[PackedScene]([ExtResource("2_oegsk"), ExtResource("3_tft3f")])
 enemy_scenes = Array[PackedScene]([ExtResource("3_geb5j"), ExtResource("4_7pv1v"), ExtResource("5_dr4gn")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,25 +1,27 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxx86i3b6gf17"]
 
 [ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup_base.tscn" id="1_ycf8x"]
-[ext_resource type="Texture2D" uid="uid://barxobbhncyg4" path="res://Art/ring.png" id="2_8nl3r"]
-[ext_resource type="Texture2D" uid="uid://dk1it8cclpyob" path="res://Art/bubble.png" id="2_8r4ii"]
+[ext_resource type="Texture2D" uid="uid://b7wvd21a3kw8o" path="res://Art/pickup.png" id="3_2yk0v"]
 
-[node name="Pick-up" instance=ExtResource("1_ycf8x")]
+[sub_resource type="Gradient" id="Gradient_j5swv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0313726)
+
+[node name="score_item" instance=ExtResource("1_ycf8x")]
 
 [node name="BubbleFx" parent="." index="1"]
 position = Vector2(0, -20)
-amount = 6
+amount = 10
 lifetime = 0.5
 speed_scale = 0.1
 explosiveness = 0.06
-texture = ExtResource("2_8nl3r")
 emission_shape = 3
-emission_rect_extents = Vector2(1, 0)
+emission_rect_extents = Vector2(18.23, 0)
 direction = Vector2(0, 0)
 scale_amount_max = 0.4
-color = Color(1, 1, 1, 0.611765)
+color = Color(1, 1, 1, 0.341176)
+color_ramp = SubResource("Gradient_j5swv")
 
 [node name="Sprite2D" parent="." index="2"]
 position = Vector2(3.8147e-06, 3.33786e-06)
-scale = Vector2(0.153846, 0.153846)
-texture = ExtResource("2_8r4ii")
+scale = Vector2(1.174, 1.174)
+texture = ExtResource("3_2yk0v")
