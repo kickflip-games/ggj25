@@ -12,15 +12,18 @@ func _ready() -> void:
 	curr_player = 1
 
 
+var used_keys = []
+
 func _input(event):
-	if event is InputEventKey and event.pressed and curr_player <= num_players:
-		curr_player += 1
-		
-		if curr_player == (num_players + 1):
-			keys_mapped.emit()
+	if event is InputEventKey and event.pressed:
+		if curr_player <= num_players:
+			curr_player += 1
 			
-		_update_player_label()
-		remap_key("player" + str(curr_player - 2), event)
+			if curr_player == (num_players + 1):
+				keys_mapped.emit()
+				
+			_update_player_label()
+			remap_key("player" + str(curr_player - 2), event)
 		
 				
 func remap_key(player_id:String, event:InputEvent):

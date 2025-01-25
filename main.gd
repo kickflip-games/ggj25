@@ -66,8 +66,8 @@ func new_game(num_players:int):
 
 	
 
-func _on_hud_start_game():
-	new_game(2)
+func _on_hud_start_game(num_players: int):
+	new_game(num_players)
 	hud.update_timer(game_time)
 
 

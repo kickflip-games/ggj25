@@ -3,6 +3,8 @@ class_name HUD
 
 @onready var game_text:= $StartMarginContainer/GameText
 @onready var start_button:= $StartMarginContainer/StartGameButton
+@onready var player_uis_container := $MarginContainer
+@onready var start_seq:=$StartSequence
 @onready var time_label:= $MarginContainer/TimeLabel
 @onready var player_uis:=[
 	$MarginContainer/P1Ui,
@@ -12,6 +14,9 @@ class_name HUD
 ]
 
 signal start_game
+
+func _ready():
+	player_uis_container.hide()
 
 func show_game_over():
 	_show_message("Game Over")
@@ -26,13 +31,15 @@ func _show_message(text):
 	game_text.text = text
 	game_text.show()
 
+func _on_start_sequence_start_game() -> void:
+	player_uis_container.show()
+
 func _on_start_game_button_pressed():
 	start_button.hide()
 	game_text.hide()
 	print_debug("Start game pressed")
-	start_game.emit()
+	start_game.emit(start_seq.mapping_screen.num_players)
 	time_label.show()
-
 
 func update_timer(time_remaining:int):
 	# Convert time_remaining to MM:SS format and update the label
