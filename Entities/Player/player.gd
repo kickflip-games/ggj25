@@ -164,6 +164,11 @@ func die():
 
 func increment_score():
 	score_manager.increment()
+	
+func increment_health():
+	if hp < 3: 
+		hp += 1
+	ui.update_health(hp)
 
 
 func _on_score_powerup_ready():

@@ -52,7 +52,7 @@ func _spawn_enemy():
 	
 func _spawn_powerup():
 	var powerup_scene = pickup_scenes[1 + randi() % (len(pickup_scenes) - 1)] # Takes a random pickup excluding the first element (base pickup)
-	_spawn_entity(powerup_scene, _active_enemies, 1)
+	_spawn_entity(powerup_scene, _active_powerups, 1)
 
 
 func _spawn_entity(packed_scene:PackedScene, current_list:Array[Node2D], max_amount:int) -> void:
