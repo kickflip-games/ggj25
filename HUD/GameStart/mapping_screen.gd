@@ -24,4 +24,4 @@ func _input(event):
 
 func _update_player_label():
 	if curr_player <= num_players:
-		player_text.text = "Player %d:" % curr_player 
+		player_text.text = "Player %d" % curr_player 
