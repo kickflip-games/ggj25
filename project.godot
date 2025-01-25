@@ -20,6 +20,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 Globals="*res://globals.gd"
 DampedOscillator="*res://addons/DampedOscillator/scripts/damped_oscillator.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+TimeManager="*res://TimeManager/TimeManager.tscn"
 
 [display]
 

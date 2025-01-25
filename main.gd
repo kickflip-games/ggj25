@@ -6,7 +6,10 @@ extends Node2D
 
 @onready var spawner:=$Spawner
 @onready var hud:=$Hud
-@onready var input_mapper:=$InputMapper
+@onready var game_timer:=$GameTimer
+@export var game_time:float = 4
+
+var _game_playing:bool= false
 
 
 var _player_data:Array[PlayerData]
@@ -15,6 +18,9 @@ var _current_players:Array[Player]
 
 
 func _ready():
+	_init_player_data()
+	
+func _init_player_data():
 	_player_data = [
 		PlayerData.new(0, $StartPositions/P1.global_position, hud.player_uis[0]),
 		PlayerData.new(1, $StartPositions/P2.global_position, hud.player_uis[1]),
@@ -26,6 +32,8 @@ func _ready():
 func game_over():
 	hud.show_game_over()
 	spawner.stop()
+	_game_playing = false
+	TimeManager.slow_to_pause()
 
 func _instantiate_player(player_data:PlayerData):
 	var player:Player = player_scenes[player_data.id].instantiate()
@@ -33,12 +41,11 @@ func _instantiate_player(player_data:PlayerData):
 	player.start(player_data)
 	player.powerup_activated.connect($Shockwave.create_shock)
 	_current_players.append(player)
-	player.player_died.connect(_on_player_died)
+	#player.player_died.connect(_on_player_died)
 	#%GameCam.append_follow_targets(player)
 
-
-
 func new_game(num_players:int):
+	TimeManager.reset()
 	# clear any already present mobs / pickups 
 	get_tree().call_group("mobs", "queue_free")
 	
@@ -48,10 +55,19 @@ func new_game(num_players:int):
 	
 	 # not the best place... but whatever.. maybe (call_groups(player) for each player connect )...
 	spawner.start()
+	game_timer.start(game_time)
+	_game_playing = true
+
+	
 
 func _on_hud_start_game(num_players: int):
 	new_game(num_players)
+	hud.update_timer(game_time)
 
 
-func _on_player_died():
+func _process(_delta):
+	if _game_playing:
+		hud.update_timer(game_timer.time_left)
+
+func _on_game_timer_timeout():
 	game_over()

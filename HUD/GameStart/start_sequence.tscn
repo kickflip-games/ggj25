@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dps0o7113t4u"]
+[gd_scene load_steps=4 format=3 uid="uid://by0n7vee6h5nx"]
 
 [ext_resource type="Script" path="res://HUD/GameStart/start_sequence.gd" id="1_aa3y5"]
-[ext_resource type="PackedScene" uid="uid://bkmv2huakex1t" path="res://HUD/GameStart/title_screen.tscn" id="2_myih2"]
+[ext_resource type="PackedScene" path="res://HUD/GameStart/title_screen.tscn" id="2_myih2"]
 [ext_resource type="PackedScene" uid="uid://dojiuhnlpuv4h" path="res://HUD/GameStart/mapping_screen.tscn" id="3_dr6dr"]
 
 [node name="StartSequence" type="Control"]

@@ -18,9 +18,7 @@ const PLAYER_COLORS = [
 	Color.GOLD,
 	Color.GREEN,
 	Color.BLUE,
-	
 ]
-
 
 func create_flash_tween(sprite:Sprite2D):
 	var tween = create_tween()

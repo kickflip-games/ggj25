@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dojiuhnlpuv4h"]
+[gd_scene load_steps=7 format=3 uid="uid://dojiuhnlpuv4h"]
 
 [ext_resource type="Script" path="res://HUD/GameStart/mapping_screen.gd" id="1_uw4tk"]
 [ext_resource type="Shader" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
 [ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="3_m0nyd"]
 [ext_resource type="FontFile" uid="uid://cfssoiyyfs8r7" path="res://HUD/MPLUSRounded1c.ttf" id="3_miqk0"]
+[ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="4_pg3lh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cj0h2"]
 shader = ExtResource("2_ot8ng")
@@ -43,6 +44,8 @@ offset_left = 774.0
 offset_top = 431.0
 offset_right = 1178.0
 offset_bottom = 541.0
+theme = ExtResource("4_pg3lh")
+theme_type_variation = &"HeaderLarge"
 theme_override_fonts/font = ExtResource("3_m0nyd")
 theme_override_font_sizes/font_size = 80
 text = "Player 1"
