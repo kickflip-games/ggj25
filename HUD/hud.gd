@@ -14,19 +14,20 @@ signal start_game
 
 func show_game_over():
 	_show_message("Game Over")
-	start_button.show()
+	#start_button.show()
 
-func show_start_game_txt():
-	_show_message("Start game?")
+#func show_start_game_txt():
+	#_show_message("Start game?")
 
 func _show_message(text):
 	game_text.text = text
 	game_text.show()
 
-func _on_start_game_button_pressed():
-	start_button.hide()
-	game_text.hide()
-	print_debug("Start game pressed")
+#func _on_start_game_button_pressed():
+	#start_button.hide()
+	#game_text.hide()
+	#print_debug("Start game pressed")
+	#start_game.emit()
+	
+func _on_start_sequence_start_game() -> void:
 	start_game.emit()
-	
-	

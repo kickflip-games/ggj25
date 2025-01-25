@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkmv2huakex1t"]
+
+[ext_resource type="Script" path="res://HUD/GameStart/title_screen.gd" id="1_jdsd0"]
+[ext_resource type="Texture2D" uid="uid://dtbiepc5qdx73" path="res://Art/Kennny/green_body_square.png" id="2_sv16b"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdsd0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1084.0
+color = Color(0.137255, 0.101961, 0.156863, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 383.0
+offset_right = 1182.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 80
+text = "GameName"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SinglePlayer" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 545.0
+offset_right = 849.0
+offset_bottom = 625.0
+texture_normal = ExtResource("2_sv16b")
+
+[node name="TwoPlayer" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 545.0
+offset_right = 944.0
+offset_bottom = 625.0
+texture_normal = ExtResource("2_sv16b")
+
+[node name="ThreePlayer" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 959.0
+offset_top = 545.0
+offset_right = 1039.0
+offset_bottom = 625.0
+texture_normal = ExtResource("2_sv16b")
+
+[node name="FourPlayer" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1054.0
+offset_top = 545.0
+offset_right = 1134.0
+offset_bottom = 625.0
+texture_normal = ExtResource("2_sv16b")
+
+[connection signal="pressed" from="SinglePlayer" to="." method="_on_single_player_pressed"]
+[connection signal="pressed" from="TwoPlayer" to="." method="_on_two_player_pressed"]
+[connection signal="pressed" from="ThreePlayer" to="." method="_on_three_player_pressed"]
+[connection signal="pressed" from="FourPlayer" to="." method="_on_four_player_pressed"]
