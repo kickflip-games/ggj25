@@ -10,7 +10,6 @@ var player_mappings = []
 func _ready() -> void:
 	player_text = get_node("PlayerText")
 	curr_player = 1
-	_update_player_label()
 	
 func _process(delta: float) -> void:
 	if player_mappings.size() == num_players:

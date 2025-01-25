@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://7joo32ifr0u8"]
+[gd_scene load_steps=5 format=3 uid="uid://7joo32ifr0u8"]
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
 [ext_resource type="LabelSettings" uid="uid://cl75yjfkakdb8" path="res://HUD/large_text.tres" id="2_kpn8b"]
 [ext_resource type="PackedScene" uid="uid://bgo5kx0jbt04d" path="res://HUD/player_ui/player_ui.tscn" id="2_pcubi"]
+[ext_resource type="PackedScene" uid="uid://dojiuhnlpuv4h" path="res://HUD/GameStart/mapping_screen.tscn" id="4_hhkys"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_h3xh4")
@@ -37,6 +38,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="GameText" type="Label" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Start Game?"
@@ -47,5 +49,7 @@ layout_mode = 2
 
 [node name="StartGameButton" type="Button" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="MappingScreen" parent="." instance=ExtResource("4_hhkys")]
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
