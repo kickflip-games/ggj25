@@ -42,7 +42,7 @@ var _prev_dir:int =0
 var ui:PlayerUi
 var _start_pos:Vector2
 
-var _player_id:int
+var _name:String
 
 
 
@@ -53,11 +53,11 @@ func _ready() -> void:
 	hide()
 	_init_sprite_scale = sprite.scale
 	
-func start(pos:Vector2, player_ui:PlayerUi, player_id:int):
+func start(player_data:PlayerData):
 	# Cache varibles into player
-	_start_pos = pos 
-	_player_id = player_id
-	ui = player_ui
+	_start_pos = player_data.x0
+	_name = player_data.name
+	ui = player_data.ui
 	
 	# reset player to starting state
 	_toggle_physics(true)
@@ -65,7 +65,7 @@ func start(pos:Vector2, player_ui:PlayerUi, player_id:int):
 	sprite.modulate.a = 1
 	sprite.scale = _init_sprite_scale
 	hp=Globals.MAX_HP
-	score_manager.reset(player_ui)
+	score_manager.reset(ui)
 	_can_take_damage=true
 	ui.reset()
 	_speed = BASE_SPEED
@@ -117,7 +117,7 @@ func _update_dir(rand_dir:bool):
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("player" + str(_player_id)):
+	if Input.is_action_just_pressed(_name):
 			_update_dir(true)
 			kick_in_direction(curr_dir)
 			 
@@ -170,7 +170,7 @@ func increment_score():
 	score_manager.increment()
 	
 func increment_health():
-	if hp < 3: 
+	if hp < Globals.MAX_HP: 
 		hp += 1
 	ui.update_health(hp)
 

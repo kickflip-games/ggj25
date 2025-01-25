@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://str7kpnq2oov" path="res://Background/Background.tscn" id="2_4d8gk"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_6j1i7"]
 [ext_resource type="PackedScene" uid="uid://cci2kr6oxcji3" path="res://InputMapper/input_mapper.tscn" id="3_7m5ok"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Spawner/spawner.tscn" id="3_a5gx5"]
 [ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
@@ -13,6 +12,9 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_apr01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ch7fi"]
+size = Vector2(1210.62, 1149.09)
 
 [sub_resource type="Environment" id="Environment_eum0w"]
 background_energy_multiplier = 2.65
@@ -29,23 +31,27 @@ fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
 script = ExtResource("1_lsa5w")
 player_scene = ExtResource("1_uhqqe")
 metadata/_edit_horizontal_guides_ = [-74.7253, 1074.86]
-metadata/_edit_vertical_guides_ = [-98.6924, 1097.87]
+metadata/_edit_vertical_guides_ = [-116.212, 1097.87]
 
 [node name="InputMapper" parent="." instance=ExtResource("3_7m5ok")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-position = Vector2(540, 500)
-zoom = Vector2(0.9, 0.9)
-limit_left = -100
-limit_top = -100
-limit_right = 1100
-limit_bottom = 1100
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("3_6j1i7")
+modulate = Color(0.262745, 0.470588, 0.352941, 1)
+show_behind_parent = true
+top_level = true
+position = Vector2(59.2852, 51.8722)
+anchor_mode = 0
+zoom = Vector2(0.94, 0.94)
+limit_left = -573
+limit_top = -73
+limit_right = 1478
+limit_bottom = 1076
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="StartPositions" type="Node2D" parent="."]
 position = Vector2(497.592, 501.697)
@@ -63,9 +69,12 @@ position = Vector2(293.634, 282.34)
 position = Vector2(-286.104, 282.34)
 
 [node name="Background" parent="." instance=ExtResource("2_4d8gk")]
-position = Vector2(-814.081, -640.872)
+position = Vector2(-579.529, -78.5904)
 
 [node name="ColorRect" parent="Background" index="0"]
+offset_right = 103.12
+offset_bottom = 1162.55
+scale = Vector2(20, 1)
 color = Color(0.152941, 0.203922, 0.313726, 1)
 
 [node name="GameBounds" type="Node2D" parent="."]
@@ -81,7 +90,7 @@ color = Color(0.109804, 0.0588235, 0.0941176, 1)
 antialiased = true
 texture = SubResource("ViewportTexture_seagh")
 invert_enabled = true
-invert_border = 713.7
+invert_border = 163.0
 polygon = PackedVector2Array(1, 198, 1, 798, 201, 998, 801, 998, 1001, 798, 1001, 198, 801, -2, 201, -2)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameBounds/GameBoundsOctagon"]
@@ -167,6 +176,14 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/East"]
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
+
+[node name="VISUALBOUNDS" type="StaticBody2D" parent="GameBounds"]
+collision_layer = 524288
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/VISUALBOUNDS"]
+position = Vector2(492.61, 501.558)
+shape = SubResource("RectangleShape2D_ch7fi")
 
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
 show_behind_parent = true

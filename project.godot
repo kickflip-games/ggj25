@@ -24,12 +24,19 @@ Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/DampedOscillator/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/parallax2d_preview/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/DampedOscillator/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+
+[gui]
+
+timers/stretch/aspect="expand"
+timers/size/viewport_height=1920
+timers/size/viewport_width=1080
 
 [input]
 

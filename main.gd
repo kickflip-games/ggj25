@@ -9,22 +9,32 @@ extends Node2D
 @onready var input_mapper:=$InputMapper
 
 
-
+var _player_data:Array[PlayerData]
 var _current_players:Array[Player]
 
+
+
+func _ready():
+	_player_data = [
+		PlayerData.new(1, $StartPositions/P1.global_position, hud.player_uis[0]),
+		PlayerData.new(2, $StartPositions/P2.global_position, hud.player_uis[1]),
+		PlayerData.new(3, $StartPositions/P3.global_position, hud.player_uis[2]),
+		PlayerData.new(4, $StartPositions/P4.global_position, hud.player_uis[3]),
+	]
 
 
 func game_over():
 	hud.show_game_over()
 	spawner.stop()
 
-func _instantiate_player(pos:Vector2, ui, button_key:int):
+func _instantiate_player(player_data:PlayerData):
 	var player:Player = player_scene.instantiate()
 	add_child(player)
-	player.start(pos, ui, button_key)
+	player.start(player_data)
 	player.powerup_activated.connect($Shockwave.create_shock)
 	_current_players.append(player)
 	player.player_died.connect(_on_player_died)
+	#%GameCam.append_follow_targets(player)
 
 
 
@@ -33,7 +43,8 @@ func new_game(num_players:int):
 	get_tree().call_group("mobs", "queue_free")
 	
 	
-	_instantiate_player($StartPositionMarker.position, $Hud.player_ui, 1)
+	for i in range(num_players):
+		_instantiate_player(_player_data[i])
 	
 	 # not the best place... but whatever.. maybe (call_groups(player) for each player connect )...
 	spawner.start()
