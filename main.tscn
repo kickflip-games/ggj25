@@ -1,14 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=12 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
-[ext_resource type="PackedScene" uid="uid://bokk2fwfmehp8" path="res://Entities/Player/sub_players/P1.tscn" id="2_4b18o"]
 [ext_resource type="PackedScene" uid="uid://str7kpnq2oov" path="res://Background/Background.tscn" id="2_4d8gk"]
+[ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_8i14b"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Spawner/spawner.tscn" id="3_a5gx5"]
-[ext_resource type="PackedScene" uid="uid://d3s47w7d554nu" path="res://Entities/Player/sub_players/P2.tscn" id="3_xp57s"]
 [ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
-[ext_resource type="PackedScene" uid="uid://pkjsxolagtbl" path="res://Entities/Player/sub_players/P3.tscn" id="4_53qff"]
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="4_ihst0"]
-[ext_resource type="PackedScene" uid="uid://4lca4la4wpu3" path="res://Entities/Player/sub_players/P4.tscn" id="5_ujoku"]
 [ext_resource type="PackedScene" uid="uid://c5t8b11rju3" path="res://Shockwave/shockwave.tscn" id="7_60swm"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
@@ -32,7 +29,7 @@ fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_lsa5w")
-player_scenes = Array[PackedScene]([ExtResource("2_4b18o"), ExtResource("3_xp57s"), ExtResource("4_53qff"), ExtResource("5_ujoku")])
+player_scene = ExtResource("2_8i14b")
 metadata/_edit_horizontal_guides_ = [-74.7253, 1074.86]
 metadata/_edit_vertical_guides_ = [-340.0, -140.0]
 
