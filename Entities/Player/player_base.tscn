@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://brqlxi1h6j658"]
+[gd_scene load_steps=14 format=3 uid="uid://brqlxi1h6j658"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_750yp"]
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_gb1tc"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="3_2m8gp"]
-[ext_resource type="Texture2D" uid="uid://jpo1m66ttglx" path="res://Art/Kennny/yellow_body_circle.png" id="3_x535b"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerArrows.gd" id="4_2slqy"]
 [ext_resource type="Texture2D" uid="uid://dyfoqxa5p7oox" path="res://Art/Kennny/face_a.png" id="4_ikyms"]
 [ext_resource type="PackedScene" uid="uid://cme3w2rlx4n1p" path="res://Entities/Player/fx/BubbleTrail.tscn" id="5_x6a5d"]
@@ -11,12 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://bmmkhdnftp0hq" path="res://Entities/Player/fx/HurtFx.tscn" id="6_v4asd"]
 [ext_resource type="PackedScene" uid="uid://basxc6kt5ohww" path="res://Entities/Player/PlayerScore/PlayerScore.tscn" id="7_8w2s6"]
 [ext_resource type="PackedScene" uid="uid://is8lanqpy4w3" path="res://Entities/Player/fx/DashFx.tscn" id="9_2c5dh"]
+[ext_resource type="Texture2D" uid="uid://cqyhnna5eula1" path="res://Art/ring2.png" id="10_wbrrk"]
+[ext_resource type="Texture2D" uid="uid://cbw5hjaae8nsw" path="res://Art/star.png" id="12_a80bp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 radius = 4.04475
 
 [node name="Player" type="RigidBody2D"]
-collision_mask = 6
+collision_mask = 7
 physics_material_override = ExtResource("1_750yp")
 gravity_scale = 0.0
 can_sleep = false
@@ -30,6 +31,7 @@ scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_gb1tc")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 0.4, 1)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("3_2m8gp")
@@ -86,14 +88,19 @@ one_shot = true
 [node name="PowerupTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.52, 0.52)
-texture = ExtResource("3_x535b")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_wbrrk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 visible = false
 position = Vector2(0, 3.53)
 scale = Vector2(1.45, 1.45)
 texture = ExtResource("4_ikyms")
+
+[node name="StarSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("12_a80bp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]

@@ -20,12 +20,13 @@
 size = Vector2(1210.62, 1149.09)
 
 [sub_resource type="Environment" id="Environment_eum0w"]
+background_mode = 3
 background_energy_multiplier = 2.65
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 3.34
 glow_enabled = true
-glow_intensity = 2.67
-glow_bloom = 0.71
+glow_intensity = 0.67
+glow_bloom = 0.31
 glow_hdr_threshold = 2.0
 glow_hdr_scale = 1.0
 fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
@@ -197,15 +198,14 @@ shape = SubResource("RectangleShape2D_ch7fi")
 debug_color = Color(0, 0.6, 0.701961, 0.172549)
 
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
-visible = false
 show_behind_parent = true
 top_level = true
 collision_layer = 2048
 collision_mask = 2048
 
 [node name="CollisionShape2D" parent="Spawner" index="0"]
-position = Vector2(500, 500)
-debug_color = Color(0.894118, 0.262745, 0.466667, 0.113725)
+position = Vector2(530, 500)
+debug_color = Color(0.89, 0.2581, 0.458202, 0.12549)
 
 [node name="Hud" parent="." instance=ExtResource("4_4td82")]
 

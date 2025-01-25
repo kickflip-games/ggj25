@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Entities/Enemy/enemy.gd" id="1_86qvl"]
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_ovdki"]
 [ext_resource type="PackedScene" uid="uid://lq3iq80fj87f" path="res://Entities/Enemy/hurt_area/HurtArea.tscn" id="2_2ch2y"]
-[ext_resource type="Texture2D" uid="uid://if5wscf4ned2" path="res://Art/enemy/spikes2.png" id="4_demvy"]
+[ext_resource type="Texture2D" uid="uid://d2g70efm7hx5d" path="res://Art/enemy/spikes3.png" id="4_7xlrn"]
 [ext_resource type="Texture2D" uid="uid://b38qjlu8qaina" path="res://Art/Kennny/face_b.png" id="5_4glrr"]
 [ext_resource type="Texture2D" uid="uid://d3fhfnopkkd55" path="res://Art/enemy/spikes5.png" id="5_c3ut7"]
 
@@ -28,7 +28,7 @@ self_modulate = Color(1, 0.553793, 0.600321, 1)
 position = Vector2(-9.53674e-07, 0)
 rotation = 1.5708
 scale = Vector2(0.19, 0.19)
-texture = ExtResource("4_demvy")
+texture = ExtResource("4_7xlrn")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 visible = false

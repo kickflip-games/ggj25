@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://pkjsxolagtbl"]
+[gd_scene load_steps=2 format=3 uid="uid://pkjsxolagtbl"]
 
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player_base.tscn" id="1_cxuve"]
-[ext_resource type="Texture2D" uid="uid://c4q54kpw2amq8" path="res://Art/Kennny/purple_body_circle.png" id="2_e5c8l"]
 
 [node name="P3" instance=ExtResource("1_cxuve")]
 
@@ -21,4 +20,4 @@ color = Color(0.513726, 0.329412, 0.843137, 0.423529)
 color = Color(0.513726, 0.329412, 0.843137, 0.423529)
 
 [node name="Sprite2D" parent="." index="8"]
-texture = ExtResource("2_e5c8l")
+modulate = Color(0.552941, 0.364706, 0.866667, 1)

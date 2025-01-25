@@ -6,5 +6,8 @@
 [node name="Pick-up" instance=ExtResource("1_xyxl8")]
 pickup_type = 1
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Background" parent="." index="1"]
+modulate = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_gidao")

@@ -1,7 +1,7 @@
 class_name Player
 extends RigidBody2D
 
-const POWERUP_TIME = 3.0
+const POWERUP_TIME = 8.0
 const BASE_SPEED = 500.0
 const KICK_FORCE = 3000
 const POWERUP_SPEED_FACTOR = 2.0
@@ -12,6 +12,9 @@ const POWERUP_SPEED_FACTOR = 2.0
 @onready var score_manager:=$Score
 @onready var powerup_timer:=$PowerupTimer
 @onready var direction_arrows:=$DirectionArrows
+
+
+
 
 
 
@@ -44,6 +47,7 @@ var _start_pos:Vector2
 
 var _name:String
 
+var col:Color
 
 
 
@@ -58,6 +62,7 @@ func start(player_data:PlayerData):
 	_start_pos = player_data.x0
 	_name = player_data.name
 	ui = player_data.ui
+	col = player_data.color
 	
 	# reset player to starting state
 	_toggle_physics(true)
@@ -70,6 +75,7 @@ func start(player_data:PlayerData):
 	ui.reset(player_data.id)
 	_speed = BASE_SPEED
 	_kick_force = KICK_FORCE
+	_set_color()
 	show()
 	
 	
@@ -185,7 +191,10 @@ func _on_score_powerup_ready():
 		_kick_force = KICK_FORCE * POWERUP_SPEED_FACTOR 
 		kick_in_direction(curr_dir)
 		_can_take_damage = false
-		sprite.modulate = Color.DARK_BLUE
+		sprite.hide()
+		$StarSprite.show()
+		$BackgroundSprite.show()
+
 
 
 func _on_powerup_timer_timeout():
@@ -193,11 +202,33 @@ func _on_powerup_timer_timeout():
 	_speed = BASE_SPEED
 	_kick_force = KICK_FORCE
 	_can_take_damage = true
-	sprite.modulate = Color.GOLD
+	sprite.modulate = col
 	ui.update_bar(0)
 	powerup_timer.stop()
 	score_manager.powerup_progress = 0 
+	sprite.show()
+	$StarSprite.hide()
+	$BackgroundSprite.hide()
+	
 
 func _on_body_entered(_body):
+	if not _in_power_up_mode:
+		DampedOscillator.animate(sprite, "scale", 200.0, 10.0, 15.0, 0.25)
+	
+	elif _body is Player:
+		print(_name, "(powerup mode) has hit ", _body._name)	
+		_body.take_damage()
 
-	DampedOscillator.animate(sprite, "scale", 200.0, 10.0, 15.0, 0.25)
+
+
+func _set_color():
+	sprite.modulate = col
+	$StarSprite.modulate = col
+	
+	var col_low_alpha = col
+	col_low_alpha.a = 0.4
+	$BubbleTrail.color = col_low_alpha
+	$HurtFx.color = col_low_alpha
+	$DashFx.color = col_low_alpha 
+	$BackgroundSprite.modulate = col_low_alpha
+	$DirectionArrows/ActiveArrow.modulate = col_low_alpha

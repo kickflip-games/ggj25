@@ -1,27 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxx86i3b6gf17"]
+[gd_scene load_steps=5 format=3 uid="uid://cxx86i3b6gf17"]
 
 [ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup_base.tscn" id="1_ycf8x"]
-[ext_resource type="Texture2D" uid="uid://b7wvd21a3kw8o" path="res://Art/pickup.png" id="3_2yk0v"]
+[ext_resource type="Texture2D" uid="uid://barxobbhncyg4" path="res://Art/ring.png" id="2_8nl3r"]
 
-[sub_resource type="Gradient" id="Gradient_j5swv"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0313726)
+[sub_resource type="Curve" id="Curve_6gfb4"]
+_data = [Vector2(0, 0.00998378), 0.0, -0.0433327, 0, 0, Vector2(0.474483, 0.0809149), -0.547075, -0.547075, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_yr7if"]
+offsets = PackedFloat32Array(0, 0.605697, 1)
+colors = PackedColorArray(1, 1, 1, 0.243137, 1, 1, 1, 0.179369, 1, 1, 1, 0)
 
 [node name="score_item" instance=ExtResource("1_ycf8x")]
 
-[node name="BubbleFx" parent="." index="1"]
-position = Vector2(0, -20)
-amount = 10
-lifetime = 0.5
-speed_scale = 0.1
-explosiveness = 0.06
-emission_shape = 3
-emission_rect_extents = Vector2(18.23, 0)
-direction = Vector2(0, 0)
-scale_amount_max = 0.4
-color = Color(1, 1, 1, 0.341176)
-color_ramp = SubResource("Gradient_j5swv")
+[node name="Background" parent="." index="1"]
+visible = false
 
 [node name="Sprite2D" parent="." index="2"]
 position = Vector2(3.8147e-06, 3.33786e-06)
-scale = Vector2(1.174, 1.174)
-texture = ExtResource("3_2yk0v")
+scale = Vector2(0.144, 0.144)
+texture = ExtResource("2_8nl3r")
+
+[node name="PickupFx" parent="." index="3"]
+color = Color(1, 1, 1, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4"]
+position = Vector2(0, -23)
+amount = 20
+lifetime = 0.4
+preprocess = 1.0
+speed_scale = 0.1
+explosiveness = 0.16
+randomness = 0.7
+lifetime_randomness = 1.0
+texture = ExtResource("2_8nl3r")
+emission_shape = 3
+emission_rect_extents = Vector2(24.08, 1)
+spread = 53.05
+gravity = Vector2(0, -980)
+damping_min = 0.06
+damping_max = 0.06
+scale_amount_min = 0.0
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_6gfb4")
+color_ramp = SubResource("Gradient_yr7if")

@@ -1,16 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://vadgf0jnph44"]
+[gd_scene load_steps=5 format=3 uid="uid://vadgf0jnph44"]
 
 [ext_resource type="Script" path="res://Entities/Pickup/pipckup.gd" id="1_j852t"]
-[ext_resource type="Texture2D" uid="uid://dk1it8cclpyob" path="res://Art/bubble.png" id="2_eh5cx"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="3_aysxq"]
 [ext_resource type="PackedScene" uid="uid://bbn84rm71wge0" path="res://Entities/Pickup/PickupFx.tscn" id="4_bvvfj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gt1bb"]
-
-[sub_resource type="Curve" id="Curve_vb3nw"]
-min_value = 0.1
-_data = [Vector2(0.12, 0.29069), 0.0, 0.0, 0, 0, Vector2(0.830345, 0), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="Pick-up" type="Area2D" groups=["mobs"]]
 script = ExtResource("1_j852t")
@@ -19,20 +13,10 @@ script = ExtResource("1_j852t")
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_gt1bb")
 
-[node name="BubbleFx" type="CPUParticles2D" parent="."]
-amount = 5
-speed_scale = 0.3
-randomness = 1.0
-lifetime_randomness = 0.07
-texture = ExtResource("2_eh5cx")
-emission_shape = 1
-emission_sphere_radius = 22.8
-direction = Vector2(0, -0.34)
-spread = 180.0
-gravity = Vector2(0, -726.98)
-initial_velocity_max = 99.74
-scale_amount_min = 0.3
-scale_amount_curve = SubResource("Curve_vb3nw")
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_aysxq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.38419e-07, 0)

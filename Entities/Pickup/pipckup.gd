@@ -15,6 +15,14 @@ signal collected
  
 func _ready():
 	custom_start_based_on_type()
+	var tween = create_tween().set_loops()
+	tween.tween_property($Background, "modulate:a", 0.1, 1)
+	tween.tween_property($Background, "modulate:a", 1, 1)
+	
+	
+	var tween2 = create_tween().set_loops()
+	tween2.tween_property(self, "position:y", -20, 2).as_relative()
+	tween2.tween_property(self, "position:y", 20, 2).as_relative()
 
 func custom_start_based_on_type():
 	match pickup_type:
@@ -44,9 +52,7 @@ func _on_body_entered(body: Node2D) -> void:
 func init_base_pickup():
 	print("initialising base pickup")
 	sprite.modulate = Color(1, 1, 1)  # Default
-	var tween = create_tween().set_loops()
-	tween.tween_property(sprite, "position:y", -20, 2).as_relative()
-	tween.tween_property(sprite, "position:y", 20, 2).as_relative()
+
 
 func handle_base_pickup(body: Node2D):
 	body.increment_score()

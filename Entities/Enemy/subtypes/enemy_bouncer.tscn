@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqjdei2tk5av3"]
 
 [ext_resource type="PackedScene" uid="uid://dqqaa3k8s5jx7" path="res://Entities/Enemy/enemy.tscn" id="1_4bw83"]
-[ext_resource type="Texture2D" uid="uid://c6erb7ko54ab0" path="res://Art/enemy/square2.png" id="2_nuhfa"]
+[ext_resource type="Texture2D" uid="uid://bscbkawfsdk1t" path="res://Art/enemy/square3.png" id="2_esuyb"]
 [ext_resource type="Texture2D" uid="uid://285p4fdd8xic" path="res://Art/enemy/square4.png" id="3_gjjny"]
 [ext_resource type="Texture2D" uid="uid://bim4u2ysgyb6w" path="res://Art/Kennny/face_m.png" id="3_v8xmo"]
 
@@ -10,7 +10,7 @@ enemy_type = 2
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_nuhfa")
+texture = ExtResource("2_esuyb")
 
 [node name="Sprite2D" parent="Sprite2D" index="0"]
 position = Vector2(3.8147e-06, -7.62939e-06)
