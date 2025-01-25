@@ -8,7 +8,7 @@ enum EnemyType{
 	BOUNCER
 }
 
-@onready var backgroud_sprite = $BackgroundSprite
+@onready var background_sprite = $BackgroundSprite
 @onready var sprite = $Sprite2D
 @onready var hurt_area = $HurtArea
 @export var enemy_type:EnemyType = EnemyType.BOUNCER
@@ -26,7 +26,7 @@ var _init_sprite_scale:Vector2
 func _ready():
 	$CollisionShape2D.disabled = true
 	sleeping = true
-	_init_background_scale = backgroud_sprite.scale
+	_init_background_scale = background_sprite.scale
 	_init_sprite_scale=sprite.scale
 	
 	begin_spawn()
@@ -38,16 +38,16 @@ func begin_spawn():
 	# Fade in effect 
 	print("Spawn enemy")
 	sprite.scale = Vector2.ONE * 0.01
-	backgroud_sprite.scale = Vector2.ONE * 0.01
+	background_sprite.scale = Vector2.ONE * 0.01
 	sprite.modulate.a = 0.1
-	backgroud_sprite.modulate.a = 0.1
+	background_sprite.modulate.a = 0.1
 	
 
 	
 	var tween = create_tween().parallel()
 	
-	tween.tween_property(backgroud_sprite, "scale", _init_background_scale, spawn_time/4)
-	tween.tween_property(backgroud_sprite, "modulate:a", 0.3, spawn_time/4)
+	tween.tween_property(background_sprite, "scale", _init_background_scale, spawn_time/4)
+	tween.tween_property(background_sprite, "modulate:a", 0.3, spawn_time/4)
 	tween.tween_property(sprite, "scale", _init_sprite_scale, spawn_time)
 	tween.tween_property(sprite, "modulate:a", 1, spawn_time)
 	tween.finished.connect(
@@ -130,7 +130,7 @@ func die():
 	# Optional: rotate and scale down for added effect
 	tween.parallel().tween_property(sprite, "rotation", PI/2, 0.5)
 	tween.parallel().tween_property(sprite, "scale", Vector2.ZERO, 0.5)
-	tween.parallel().tween_property(backgroud_sprite, "scale", Vector2.ZERO, 0.5)
+	tween.parallel().tween_property(background_sprite, "scale", Vector2.ZERO, 0.5)
 	
 
 	# Connect to the tween's finished signal to queue_free  
