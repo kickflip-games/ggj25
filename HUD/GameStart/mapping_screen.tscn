@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dojiuhnlpuv4h"]
+
+[ext_resource type="Script" path="res://HUD/GameStart/mapping_screen.gd" id="1_uw4tk"]
+[ext_resource type="Shader" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cj0h2"]
+shader = ExtResource("2_ot8ng")
+shader_parameter/lod = 5.0
+
+[node name="MappingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uw4tk")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cj0h2")
+layout_mode = 0
+offset_right = 1925.0
+offset_bottom = 1079.0
+color = Color(0, 0.911256, 0.61929, 0.603922)
+
+[node name="PromptText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 547.0
+offset_right = 1242.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 50
+text = "Press any key to play!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 431.0
+offset_right = 1178.0
+offset_bottom = 541.0
+theme_override_font_sizes/font_size = 80
+text = "Player 1:"
+
+[node name="WhiteBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1084.0
+color = Color(1, 1, 1, 0.0431373)
