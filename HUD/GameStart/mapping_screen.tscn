@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dojiuhnlpuv4h"]
+[gd_scene load_steps=6 format=3 uid="uid://dojiuhnlpuv4h"]
 
 [ext_resource type="Script" path="res://HUD/GameStart/mapping_screen.gd" id="1_uw4tk"]
 [ext_resource type="Shader" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
+[ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="3_m0nyd"]
+[ext_resource type="FontFile" uid="uid://cfssoiyyfs8r7" path="res://HUD/MPLUSRounded1c.ttf" id="3_miqk0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cj0h2"]
 shader = ExtResource("2_ot8ng")
@@ -29,8 +31,9 @@ offset_left = 724.0
 offset_top = 547.0
 offset_right = 1242.0
 offset_bottom = 616.0
+theme_override_fonts/font = ExtResource("3_miqk0")
 theme_override_font_sizes/font_size = 50
-text = "Press any key to play!"
+text = "press any key to play..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -40,8 +43,11 @@ offset_left = 774.0
 offset_top = 431.0
 offset_right = 1178.0
 offset_bottom = 541.0
+theme_override_fonts/font = ExtResource("3_m0nyd")
 theme_override_font_sizes/font_size = 80
-text = "Player 1:"
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WhiteBackground" type="ColorRect" parent="."]
 layout_mode = 0
