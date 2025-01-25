@@ -42,6 +42,10 @@ var _prev_dir:int =0
 var ui:PlayerUi
 var _start_pos:Vector2
 
+var _player_id:int
+
+
+
 
 
 func _ready() -> void:
@@ -49,22 +53,31 @@ func _ready() -> void:
 	hide()
 	_init_sprite_scale = sprite.scale
 	
-func start(pos:Vector2, player_ui:PlayerUi):
-	_start_pos = pos # cache the start position -- maybe we dont need this idk
+func start(pos:Vector2, player_ui:PlayerUi, player_id:int):
+	# Cache varibles into player
+	_start_pos = pos 
+	_player_id = player_id
+	ui = player_ui
+	
+	# reset player to starting state
+	_toggle_physics(true)
 	position = _start_pos
-	collision_shape.disabled = false
-	set_process_input(true)
-	set_physics_process(true)
 	sprite.modulate.a = 1
 	sprite.scale = _init_sprite_scale
 	hp=Globals.MAX_HP
 	score_manager.reset(player_ui)
 	_can_take_damage=true
-	ui = player_ui
 	ui.reset()
 	_speed = BASE_SPEED
 	_kick_force = KICK_FORCE
 	show()
+	
+	
+func _toggle_physics(on:bool):
+	linear_velocity =  Vector2.ZERO
+	collision_shape.call_deferred("set_disabled", !on)
+	set_process_input(on)
+	set_physics_process(on)
 	
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -104,10 +117,7 @@ func _update_dir(rand_dir:bool):
 
 
 func _input(event: InputEvent) -> void:
-	var key_press = event is InputEventKey   and event.pressed
-	var mouse_press = event is InputEventMouseButton  and event.pressed
-
-	if key_press or mouse_press: # TODO: Make this more generic (e.g. key press at start)
+	if Input.is_action_just_pressed("player" + str(_player_id)):
 			_update_dir(true)
 			kick_in_direction(curr_dir)
 			 
@@ -139,18 +149,12 @@ func take_damage():
 
 
 func die():
-	# Disable player input and collision
-	linear_velocity =  Vector2.ZERO
-	set_process_input(false)
-	set_physics_process(false)
-	collision_shape.call_deferred("set_disabled", true)
+	_toggle_physics(false)
+
 
 	# Create a new Tween
 	var tween = Globals.create_flash_tween(sprite)
-	# After flashing, fade away
-	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
-
-	# Optional: rotate and scale down for added effect
+	tween.tween_property(sprite, "modulate", 0.0, 0.5)
 	tween.parallel().tween_property(sprite, "rotation", PI/2, 0.5)
 	tween.parallel().tween_property(sprite, "scale", Vector2.ZERO, 0.5)
 

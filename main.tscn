@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=13 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://str7kpnq2oov" path="res://Background/Background.tscn" id="2_4d8gk"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_6j1i7"]
+[ext_resource type="PackedScene" uid="uid://cci2kr6oxcji3" path="res://InputMapper/input_mapper.tscn" id="3_7m5ok"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Spawner/spawner.tscn" id="3_a5gx5"]
 [ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="4_ihst0"]
@@ -30,6 +31,8 @@ player_scene = ExtResource("1_uhqqe")
 metadata/_edit_horizontal_guides_ = [-74.7253, 1074.86]
 metadata/_edit_vertical_guides_ = [-98.6924, 1097.87]
 
+[node name="InputMapper" parent="." instance=ExtResource("3_7m5ok")]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
 position = Vector2(540, 500)
@@ -44,8 +47,20 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_6j1i7")
 
-[node name="StartPositionMarker" type="Node2D" parent="."]
-position = Vector2(571, 321)
+[node name="StartPositions" type="Node2D" parent="."]
+position = Vector2(497.592, 501.697)
+
+[node name="Marker2D" type="Marker2D" parent="StartPositions"]
+position = Vector2(-286.104, -284.222)
+
+[node name="Marker2D2" type="Marker2D" parent="StartPositions"]
+position = Vector2(282.34, -284.222)
+
+[node name="Marker2D3" type="Marker2D" parent="StartPositions"]
+position = Vector2(293.634, 282.34)
+
+[node name="Marker2D4" type="Marker2D" parent="StartPositions"]
+position = Vector2(-286.104, 282.34)
 
 [node name="Background" parent="." instance=ExtResource("2_4d8gk")]
 position = Vector2(-814.081, -640.872)

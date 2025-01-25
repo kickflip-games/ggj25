@@ -15,8 +15,21 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PlayerUi" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+[node name="P1Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
 layout_mode = 2
+
+[node name="P2Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="P3Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="P4Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 
 [node name="GameText" type="Label" parent="MarginContainer"]
 layout_mode = 2
