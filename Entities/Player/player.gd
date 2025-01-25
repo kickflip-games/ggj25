@@ -14,13 +14,6 @@ const POWERUP_SPEED_FACTOR = 2.0
 @onready var direction_arrows:=$DirectionArrows
 
 
-
-
-
-
-
-
-
 signal player_died
 signal powerup_activated
 
