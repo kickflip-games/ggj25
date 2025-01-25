@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpc70u6dwdmjs"]
+
+[ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup.tscn" id="1_xyxl8"]
+[ext_resource type="Texture2D" uid="uid://cph7evo70ts78" path="res://Art/heart.png" id="2_gidao"]
+
+[node name="Pick-up" instance=ExtResource("1_xyxl8")]
+pickup_type = 1
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_gidao")

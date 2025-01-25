@@ -1,11 +1,35 @@
 class_name Pickup
 extends Area2D
 
+enum PickupType {
+	BASE,
+	HEALTH
+}
+
+@export var pickup_type:PickupType = PickupType.BASE
 
 @onready var sprite = $Sprite2D
 @onready var fx = $PickupFx
 
 signal collected
+ 
+func _ready():
+	custom_start_based_on_type()
+
+func custom_start_based_on_type():
+	match pickup_type:
+		PickupType.BASE:
+			init_base_pickup()
+		PickupType.HEALTH:
+			init_health_pickup()
+			
+func init_base_pickup():
+	print("initialising base pickup")
+	sprite.modulate = Color(1, 1, 1)  # Default
+
+func init_health_pickup():
+	print("initialising health pickup")
+	sprite.modulate = Color(1, 0, 0)  # Red
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
