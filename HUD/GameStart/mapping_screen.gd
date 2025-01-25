@@ -1,27 +1,35 @@
 extends Control
 
-var num_players = 4 # TODO: Link this up with the button press on previous screen
+signal keys_mapped
+
+var num_players = 1
 var curr_player: int
-
 var player_text: Label
-var player_mappings = []
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	player_text = get_node("PlayerText")
 	curr_player = 1
-	
-func _process(_delta: float) -> void:
-	if player_mappings.size() == num_players:
-		hide()
-		# Start game
-	
+
+
 func _input(event):
-	if event is InputEventKey and event.pressed and player_mappings.size() < num_players:
+	if event is InputEventKey and event.pressed and curr_player <= num_players:
 		curr_player += 1
-		player_mappings.append(event.keycode)
+		
+		if curr_player == (num_players + 1):
+			keys_mapped.emit()
+			
 		_update_player_label()
+		remap_key("player" + str(curr_player - 2), event)
+		
+				
+func remap_key(player_id:String, event:InputEvent):
+	print("Before remapping ", player_id, InputMap.action_get_events(player_id))
+	InputMap.action_erase_events(player_id)
+	InputMap.action_add_event(player_id, event) 
+	print("After remapping ", player_id, InputMap.action_get_events(player_id))
+
 
 func _update_player_label():
 	if curr_player <= num_players:
-		player_text.text = "Player %d" % curr_player 
+		player_text.text = "Player %d" % curr_player

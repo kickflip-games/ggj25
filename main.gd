@@ -6,7 +6,6 @@ extends Node2D
 
 @onready var spawner:=$Spawner
 @onready var hud:=$Hud
-@onready var input_mapper:=$InputMapper
 @onready var game_timer:=$GameTimer
 @export var game_time:float = 4
 
