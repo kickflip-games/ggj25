@@ -9,10 +9,6 @@ var color: Color
 var id:int
 
 
-
-
-
-
 # Constructor
 func _init(id: int, x0: Vector2, ui:PlayerUi) -> void:
 	self.id = id 

@@ -46,8 +46,8 @@ func begin_spawn():
 	
 	var tween = create_tween().parallel()
 	
-	tween.tween_property(background_sprite, "scale", _init_background_scale, spawn_time/4)
-	tween.tween_property(background_sprite, "modulate:a", 0.3, spawn_time/4)
+	tween.tween_property(background_sprite, "scale", _init_background_scale, spawn_time/4.0)
+	tween.tween_property(background_sprite, "modulate:a", 0.3, spawn_time/4.0)
 	tween.tween_property(sprite, "scale", _init_sprite_scale, spawn_time)
 	tween.tween_property(sprite, "modulate:a", 1, spawn_time)
 	tween.finished.connect(

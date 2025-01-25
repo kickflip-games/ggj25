@@ -44,6 +44,9 @@ func _on_body_entered(body: Node2D) -> void:
 func init_base_pickup():
 	print("initialising base pickup")
 	sprite.modulate = Color(1, 1, 1)  # Default
+	var tween = create_tween().set_loops()
+	tween.tween_property(sprite, "position:y", -20, 2).as_relative()
+	tween.tween_property(sprite, "position:y", 20, 2).as_relative()
 
 func handle_base_pickup(body: Node2D):
 	body.increment_score()

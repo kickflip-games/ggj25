@@ -44,11 +44,11 @@ show_behind_parent = true
 top_level = true
 position = Vector2(59.2852, 51.8722)
 anchor_mode = 0
-zoom = Vector2(0.94, 0.94)
+zoom = Vector2(1.01, 1.01)
 limit_left = -573
-limit_top = -73
+limit_top = -33
 limit_right = 1478
-limit_bottom = 1076
+limit_bottom = 1036
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -187,6 +187,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/VISUALBOUNDS"]
 position = Vector2(492.61, 501.558)
 shape = SubResource("RectangleShape2D_ch7fi")
+debug_color = Color(0, 0.6, 0.701961, 0.172549)
 
 [node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
 show_behind_parent = true
@@ -196,7 +197,7 @@ collision_mask = 2048
 
 [node name="CollisionShape2D" parent="Spawner" index="0"]
 position = Vector2(500, 500)
-debug_color = Color(0.893916, 0.263639, 0.468121, 0.215686)
+debug_color = Color(0.894118, 0.262745, 0.466667, 0.113725)
 
 [node name="Hud" parent="." instance=ExtResource("4_4td82")]
 

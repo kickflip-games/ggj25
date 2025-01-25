@@ -11,7 +11,7 @@ func _ready() -> void:
 	player_text = get_node("PlayerText")
 	curr_player = 1
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player_mappings.size() == num_players:
 		hide()
 		# Start game

@@ -90,6 +90,8 @@ scale = Vector2(0.52, 0.52)
 texture = ExtResource("3_x535b")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, 3.53)
+scale = Vector2(1.45, 1.45)
 texture = ExtResource("4_ikyms")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

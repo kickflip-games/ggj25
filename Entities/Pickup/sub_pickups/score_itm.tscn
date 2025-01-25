@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxx86i3b6gf17"]
+
+[ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup_base.tscn" id="1_ycf8x"]
+[ext_resource type="Texture2D" uid="uid://dk1it8cclpyob" path="res://Art/bubble.png" id="2_8r4ii"]
+
+[node name="Pick-up" instance=ExtResource("1_ycf8x")]
+
+[node name="Sprite2D" parent="." index="2"]
+position = Vector2(3.8147e-06, 3.33786e-06)
+scale = Vector2(0.153846, 0.153846)
+texture = ExtResource("2_8r4ii")

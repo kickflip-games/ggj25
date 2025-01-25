@@ -4,7 +4,7 @@ extends RigidBody2D
 const POWERUP_TIME = 3.0
 const BASE_SPEED = 500.0
 const KICK_FORCE = 3000
-const POWERUP_SPEED_FACTOR = 2 
+const POWERUP_SPEED_FACTOR = 2.0
 
 @export var damage_cooldown_time:float = 1
 @onready var collision_shape:= $CollisionShape2D
@@ -29,7 +29,7 @@ var Direction = {
 }
 var curr_dir: int # Current direction
 var hp:int
-var _speed:int
+var _speed:float
 var _kick_force:float
 var _in_power_up_mode:bool=false
 
@@ -90,10 +90,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		_update_dir(false)
 
 
-func _get_new_dir(rand_dir:bool):
+func _get_new_dir(_rand_dir:bool):
 	var new_dir:int 
 	
-	rand_dir = true # TURNED OFF 
+	_rand_dir = true # TURNED OFF 
 	
 
 	#var random_change = (randi() % 2) * 2 - 1  # Generates either -1 or +1
@@ -116,7 +116,7 @@ func _update_dir(rand_dir:bool):
 	direction_arrows.show_arrow(_next_dir)
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(_name):
 			_update_dir(true)
 			kick_in_direction(curr_dir)
@@ -198,6 +198,6 @@ func _on_powerup_timer_timeout():
 	powerup_timer.stop()
 	score_manager.powerup_progress = 0 
 
+func _on_body_entered(_body):
 
-func _on_body_entered(body):
 	DampedOscillator.animate(sprite, "scale", 200.0, 10.0, 15.0, 0.25)

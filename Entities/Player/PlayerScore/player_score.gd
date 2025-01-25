@@ -8,7 +8,6 @@ var _score:int = 0
 var _ui:PlayerUi
 
 var _combo_multiplier = 1
-var _combo_threshold = 5
 var _combo_active = false
 
 
