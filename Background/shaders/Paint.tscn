@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv4ya4cx8ftq1"]
+
+[ext_resource type="Script" path="res://Background/background.gd" id="1_yl7no"]
+[ext_resource type="Material" uid="uid://cb1a7ycknwrx0" path="res://Background/shaders/paint_swirl.tres" id="2_edyje"]
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_yl7no")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_edyje")
+offset_right = 2623.0
+offset_bottom = 2392.0
+color = Color(1, 0.48, 0.48, 1)

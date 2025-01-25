@@ -29,7 +29,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/DampedOscillator/plugin.cfg", "res://addons/parallax2d_preview/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/DampedOscillator/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/parallax2d_preview/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [layer_names]
 

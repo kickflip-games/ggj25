@@ -7,6 +7,14 @@ const POWERUP_THRESHOLD:int = 5
 
 
 
+const COLOR1:Color = Color("#231a28")
+const COLOR2:Color = Color("#273450")
+const COLOR3:Color = Color("#305358")
+const COLOR4:Color = Color("#43785a")
+const COLOR5:Color = Color("#528b57")
+
+
+
 func create_flash_tween(sprite:Sprite2D):
 	var tween = create_tween()
 	for i in range(3):

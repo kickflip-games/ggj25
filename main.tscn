@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=12 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
@@ -14,7 +14,6 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_apr01"]
 
 [sub_resource type="Environment" id="Environment_eum0w"]
-background_mode = 3
 background_energy_multiplier = 2.65
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 3.34
@@ -25,21 +24,11 @@ glow_hdr_threshold = 2.0
 glow_hdr_scale = 1.0
 fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_eymtn"]
-
-[sub_resource type="Compositor" id="Compositor_qd0ip"]
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_lsa5w")
 player_scene = ExtResource("1_uhqqe")
 metadata/_edit_horizontal_guides_ = [-74.7253, 1074.86]
 metadata/_edit_vertical_guides_ = [-98.6924, 1097.87]
-
-[node name="Background" parent="." instance=ExtResource("2_4d8gk")]
-position = Vector2(-794.372, -667.45)
-
-[node name="ColorRect" parent="Background" index="0"]
-color = Color(0.893201, 0.590563, 0.115959, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
@@ -58,6 +47,12 @@ script = ExtResource("3_6j1i7")
 [node name="StartPositionMarker" type="Node2D" parent="."]
 position = Vector2(571, 321)
 
+[node name="Background" parent="." instance=ExtResource("2_4d8gk")]
+position = Vector2(-814.081, -640.872)
+
+[node name="ColorRect" parent="Background" index="0"]
+color = Color(0.152941, 0.203922, 0.313726, 1)
+
 [node name="GameBounds" type="Node2D" parent="."]
 
 [node name="GameBoundsOctagon" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
@@ -67,7 +62,8 @@ collision_mask = 3
 physics_material_override = ExtResource("4_ihst0")
 
 [node name="Polygon2D" type="Polygon2D" parent="GameBounds/GameBoundsOctagon"]
-color = Color(0.027451, 0.0588235, 0.0941176, 1)
+color = Color(0.109804, 0.0588235, 0.0941176, 1)
+antialiased = true
 texture = SubResource("ViewportTexture_seagh")
 invert_enabled = true
 invert_border = 713.7
@@ -174,8 +170,6 @@ layer = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eum0w")
-camera_attributes = SubResource("CameraAttributesPractical_eymtn")
-compositor = SubResource("Compositor_qd0ip")
 
 [connection signal="start_game" from="Hud" to="." method="_on_hud_start_game"]
 

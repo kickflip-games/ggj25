@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2rj43awvh18v"
-path="res://.godot/imported/happy_face.png-a9f09fd88aa7b97eaab85db558a1bb3e.ctex"
+uid="uid://bscbkawfsdk1t"
+path="res://.godot/imported/square3.png-64f1dc6db992e8b36883abd0acc654be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/happy_face.png"
-dest_files=["res://.godot/imported/happy_face.png-a9f09fd88aa7b97eaab85db558a1bb3e.ctex"]
+source_file="res://Art/enemy/square3.png"
+dest_files=["res://.godot/imported/square3.png-64f1dc6db992e8b36883abd0acc654be.ctex"]
 
 [params]
 
