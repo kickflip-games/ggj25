@@ -47,3 +47,5 @@ enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.796243, 0.796243, 0.796243, 1)
+viewport/hdr_2d=true

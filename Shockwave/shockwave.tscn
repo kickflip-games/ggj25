@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5t8b11rju3"]
+[gd_scene load_steps=3 format=3 uid="uid://c5t8b11rju3"]
 
+[ext_resource type="Script" path="res://Shockwave/shockwave.gd" id="1_645vp"]
 [ext_resource type="Material" uid="uid://cje2rlwi61umx" path="res://Shockwave/shockwave.tres" id="1_uc2uv"]
 
 [node name="Shockwave" type="CanvasLayer"]
+script = ExtResource("1_645vp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("1_uc2uv")

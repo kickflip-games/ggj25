@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dqjdei2tk5av3" path="res://Entities/Enemy/subtypes/enemy_bouncer.tscn" id="5_dr4gn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ocvq"]
-size = Vector2(1079, 580)
+size = Vector2(600, 600)
 
 [node name="Spawner" type="Area2D"]
 script = ExtResource("1_ycmp0")
@@ -15,7 +15,7 @@ pickup_scene = ExtResource("2_fgxaw")
 enemy_scenes = Array[PackedScene]([ExtResource("3_geb5j"), ExtResource("4_7pv1v"), ExtResource("5_dr4gn")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(330.5, 176)
+position = Vector2(435, 224.5)
 shape = SubResource("RectangleShape2D_4ocvq")
 
 [node name="PickupTimer" type="Timer" parent="."]

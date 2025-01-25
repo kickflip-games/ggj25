@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://barxobbhncyg4" path="res://Art/ring.png" id="1_lrnga"]
 
 [sub_resource type="Curve" id="Curve_5nlud"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.224679, 0.430676), -1.71376, -1.71376, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 1.4, 0.0, 0, 0]
+_data = [Vector2(0, 0.316781), 0.0, 0.0, 0, 0, Vector2(0.99998, 0.012867), 0.150051, 0.150051, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 1.4, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Gradient" id="Gradient_wfqb0"]
@@ -12,16 +12,16 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.983483, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="HurtFx" type="CPUParticles2D"]
 position = Vector2(0, -1)
-amount = 4
+speed_scale = 1.25
 explosiveness = 1.0
 randomness = 1.0
 texture = ExtResource("1_lrnga")
 emission_shape = 1
 emission_sphere_radius = 14.89
-spread = 117.89
+spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 71.87
-initial_velocity_max = 99.42
+initial_velocity_min = 74.17
+initial_velocity_max = 222.44
 scale_amount_curve = SubResource("Curve_5nlud")
 color = Color(1, 1, 0.4, 1)
 color_ramp = SubResource("Gradient_wfqb0")

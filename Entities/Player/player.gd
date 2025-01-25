@@ -16,6 +16,7 @@ const POWERUP_SPEED_FACTOR = 2
 
 
 signal player_died
+signal powerup_activated
 
 var Direction = {
 	0: Vector2.RIGHT, # Right
@@ -46,7 +47,7 @@ func _ready() -> void:
 	_init_sprite_scale = sprite.scale
 	
 func start(pos:Vector2, player_ui:PlayerUi):
-	_start_pos = pos
+	_start_pos = pos # cache the start position -- maybe we dont need this idk
 	position = _start_pos
 	collision_shape.disabled = false
 	set_process_input(true)
@@ -75,31 +76,17 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _get_new_dir(rand_dir:bool):
 	var new_dir:int 
-	if rand_dir:
-		var random_change = (randi() % 2) * 2 - 1  # Generates either -1 or +1
-		new_dir = (curr_dir + random_change) % 4
-		if new_dir < 0:
-			new_dir += 4  # Ensure the direction stays in the range 0 to 3	
-		
-	else:
-		var to_center = _start_pos - position
+	
+	rand_dir = true # TURNED OFF 
+	
 
-		# Find the closest direction based on the angle
-		var closest_dir = 0
-		var closest_dot = -INF  # Start with the smallest possible value
-
-		for dir_index in Direction.keys():
-			var dir_vector = Direction[dir_index].normalized()
-			var dot_product = to_center.normalized().dot(dir_vector)
-
-			# Find the direction with the maximum dot product
-			if dot_product > closest_dot:
-				closest_dot = dot_product
-				closest_dir = dir_index
-
-		# Update the current direction to the closest one
-		new_dir = closest_dir
-		print("Closest direction to center:", Direction[curr_dir])
+	#var random_change = (randi() % 2) * 2 - 1  # Generates either -1 or +1
+	var random_change = 1
+	new_dir = (curr_dir + random_change) % 4
+	if new_dir < 0:
+		new_dir += 4  # Ensure the direction stays in the range 0 to 3	
+	
+	
 	
 	return new_dir
 	
@@ -125,7 +112,8 @@ func _input(event: InputEvent) -> void:
 func kick_in_direction(dir:int):
 	linear_velocity = Vector2.ZERO
 	apply_central_impulse(Direction[dir] * _kick_force)  # Apply force at the center of the body
-
+	DampedOscillator.animate(sprite, "scale", 350.0, 30.0, 40.0, 0.2)
+	$DashFx.emitting = true # todo -- not pl;ayinng everytime... wtf? 
 
 
 func take_damage():
@@ -177,6 +165,8 @@ func increment_score():
 
 func _on_score_powerup_ready():
 	if not _in_power_up_mode:
+		print("Player went super sayin")
+		powerup_activated.emit()
 		_in_power_up_mode = true
 		powerup_timer.start(POWERUP_TIME)
 		_speed = BASE_SPEED * POWERUP_SPEED_FACTOR
@@ -197,10 +187,5 @@ func _on_powerup_timer_timeout():
 	score_manager.powerup_progress = 0 
 
 
-
-
 func _on_body_entered(body):
-	var spring = 200.0
-	var damp = 10.0
-	var velocity = 15.0
-	DampedOscillator.animate(sprite, "scale", spring, damp, velocity, 0.25)
+	DampedOscillator.animate(sprite, "scale", 200.0, 10.0, 15.0, 0.25)

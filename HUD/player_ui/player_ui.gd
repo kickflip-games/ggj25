@@ -22,7 +22,7 @@ func reset():
 func update_score(score:int):
 	$ScoreLabel.text = str(score)
 
-func update_health(health):
+func update_health(health:int):
 	var hearts_display = HEART_CHAR.repeat(health) + EMPTY_HEART_CHAR.repeat(Globals.MAX_HP - health)
 	$HealthLabel.text = hearts_display
 	play_hp_fx()

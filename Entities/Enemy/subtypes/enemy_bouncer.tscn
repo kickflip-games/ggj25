@@ -5,9 +5,6 @@
 
 [node name="Enemy" instance=ExtResource("1_4bw83")]
 enemy_type = 2
-speed = 250
-spawn_time = 2
-timeout_time = 10
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_rjmk1")
