@@ -31,9 +31,6 @@ func _on_start_game_button_pressed():
 	game_text.hide()
 	print_debug("Start game pressed")
 	start_game.emit()
-
-func _on_start_sequence_start_game() -> void:
-	start_game.emit()
 	time_label.show()
 
 

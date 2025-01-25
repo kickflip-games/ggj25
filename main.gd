@@ -17,8 +17,6 @@ var _current_players:Array[Player]
 
 
 
-
-
 func _ready():
 	_init_player_data()
 	
@@ -45,8 +43,6 @@ func _instantiate_player(player_data:PlayerData):
 	_current_players.append(player)
 	#player.player_died.connect(_on_player_died)
 	#%GameCam.append_follow_targets(player)
-
-
 
 func new_game(num_players:int):
 	TimeManager.reset()

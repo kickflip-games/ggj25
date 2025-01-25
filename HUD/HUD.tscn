@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="2_2cp7m"]
 [ext_resource type="PackedScene" uid="uid://bgo5kx0jbt04d" path="res://HUD/player_ui/player_ui.tscn" id="2_pcubi"]
-[ext_resource type="PackedScene" path="res://HUD/GameStart/start_sequence.tscn" id="4_0p38o"]
+[ext_resource type="PackedScene" uid="uid://by0n7vee6h5nx" path="res://HUD/GameStart/start_sequence.tscn" id="4_0p38o"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_h3xh4")
@@ -23,17 +23,21 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="P1Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+visible = false
 layout_mode = 2
 
 [node name="P2Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="P3Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
 [node name="P4Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
