@@ -26,8 +26,6 @@ func _show_message(text):
 func _on_start_game_button_pressed():
 	start_button.hide()
 	game_text.hide()
-	for pui in player_uis:
-		pui.reset()
 	print_debug("Start game pressed")
 	start_game.emit()
 	

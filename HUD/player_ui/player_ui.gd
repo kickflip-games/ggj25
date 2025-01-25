@@ -3,6 +3,10 @@ extends VBoxContainer
 
 
 @onready var _bar = $PowerupBar
+@onready var _scoreLbl = $PanelContainer/ScoreLabel
+@onready var _hpLbl = $HealthLabel
+@onready var _playerLbl = $PanelContainer/PlayerLabel
+
 
 const HEART_CHAR = '\u2764'
 const EMPTY_HEART_CHAR = '\u2661'
@@ -12,19 +16,20 @@ const EMPTY_HEART_CHAR = '\u2661'
 
 
 
-func reset():
+func reset(player_id:int):
 	update_score(0)
 	update_health(Globals.MAX_HP)
 	reset_bar()
+	_playerLbl.text = "P"+str(player_id+1)
 	
 
 
 func update_score(score:int):
-	$ScoreLabel.text = str(score)
+	_scoreLbl.text = str(score).pad_zeros(4)
 
 func update_health(health:int):
 	var hearts_display = HEART_CHAR.repeat(health) + EMPTY_HEART_CHAR.repeat(Globals.MAX_HP - health)
-	$HealthLabel.text = hearts_display
+	_hpLbl.text = hearts_display
 	play_hp_fx()
 
 

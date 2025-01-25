@@ -67,7 +67,7 @@ func start(player_data:PlayerData):
 	hp=Globals.MAX_HP
 	score_manager.reset(ui)
 	_can_take_damage=true
-	ui.reset()
+	ui.reset(player_data.id)
 	_speed = BASE_SPEED
 	_kick_force = KICK_FORCE
 	show()
