@@ -215,7 +215,11 @@ layer = 0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eum0w")
 
+[node name="GameTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="start_game" from="Hud" to="." method="_on_hud_start_game"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 
 [editable path="Background"]
 [editable path="Spawner"]

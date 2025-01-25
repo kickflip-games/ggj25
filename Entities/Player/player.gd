@@ -160,7 +160,7 @@ func die():
 
 	# Create a new Tween
 	var tween = Globals.create_flash_tween(sprite)
-	tween.tween_property(sprite, "modulate", 0.0, 0.5)
+	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(sprite, "rotation", PI/2, 0.5)
 	tween.parallel().tween_property(sprite, "scale", Vector2.ZERO, 0.5)
 
