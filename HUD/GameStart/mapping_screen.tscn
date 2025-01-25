@@ -33,7 +33,7 @@ offset_right = 1242.0
 offset_bottom = 616.0
 theme_override_fonts/font = ExtResource("3_miqk0")
 theme_override_font_sizes/font_size = 50
-text = "press any key to play..."
+text = "press any new key to play..."
 horizontal_alignment = 1
 vertical_alignment = 1
 

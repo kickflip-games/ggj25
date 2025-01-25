@@ -3,6 +3,8 @@ class_name HUD
 
 @onready var game_text:= $MarginContainer/GameText
 @onready var start_button:= $MarginContainer/MarginContainer/StartGameButton
+@onready var player_uis_container := $MarginContainer
+@onready var start_seq:=$StartSequence
 @onready var player_uis:=[
 	$MarginContainer/P1Ui,
 	$MarginContainer/P2Ui,
@@ -11,6 +13,9 @@ class_name HUD
 ]
 
 signal start_game
+
+func _ready():
+	player_uis_container.hide()
 
 func show_game_over():
 	_show_message("Game Over")
@@ -30,4 +35,5 @@ func _show_message(text):
 	#start_game.emit()
 	
 func _on_start_sequence_start_game() -> void:
-	start_game.emit()
+	player_uis_container.show()
+	start_game.emit(start_seq.mapping_screen.num_players)

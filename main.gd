@@ -49,8 +49,8 @@ func new_game(num_players:int):
 	 # not the best place... but whatever.. maybe (call_groups(player) for each player connect )...
 	spawner.start()
 
-func _on_hud_start_game():
-	new_game(2)
+func _on_hud_start_game(num_players: int):
+	new_game(num_players)
 
 
 func _on_player_died():

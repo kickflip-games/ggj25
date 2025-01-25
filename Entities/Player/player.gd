@@ -73,6 +73,7 @@ func start(player_data:PlayerData):
 	score_manager.reset(ui)
 	_can_take_damage=true
 	ui.reset(player_data.id)
+	ui.show()
 	_speed = BASE_SPEED
 	_kick_force = KICK_FORCE
 	_set_color()
