@@ -50,16 +50,16 @@ script = ExtResource("3_6j1i7")
 [node name="StartPositions" type="Node2D" parent="."]
 position = Vector2(497.592, 501.697)
 
-[node name="Marker2D" type="Marker2D" parent="StartPositions"]
+[node name="P1" type="Marker2D" parent="StartPositions"]
 position = Vector2(-286.104, -284.222)
 
-[node name="Marker2D2" type="Marker2D" parent="StartPositions"]
+[node name="P2" type="Marker2D" parent="StartPositions"]
 position = Vector2(282.34, -284.222)
 
-[node name="Marker2D3" type="Marker2D" parent="StartPositions"]
+[node name="P4" type="Marker2D" parent="StartPositions"]
 position = Vector2(293.634, 282.34)
 
-[node name="Marker2D4" type="Marker2D" parent="StartPositions"]
+[node name="P3" type="Marker2D" parent="StartPositions"]
 position = Vector2(-286.104, 282.34)
 
 [node name="Background" parent="." instance=ExtResource("2_4d8gk")]
