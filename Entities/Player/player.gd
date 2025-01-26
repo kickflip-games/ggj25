@@ -171,9 +171,11 @@ func die():
 	tween.finished.connect(
 		func(): 
 			player_died.emit()
+			ui.write_resapwning()
 			hide()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(3.0).timeout
 			respawn_player()
+			ui.write_bash_mode()
 	)
 	
 

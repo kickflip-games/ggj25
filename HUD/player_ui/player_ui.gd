@@ -15,6 +15,12 @@ var _col:Color
 
 
 
+func write_resapwning():
+	$Label.text = "Respawning..."
+	
+func write_bash_mode():
+	$Label.text = "BASH MODE"
+
 
 
 func reset(player_id:int):
@@ -24,7 +30,7 @@ func reset(player_id:int):
 	reset_bar()
 	_playerLbl.text = "P"+str(player_id+1)
 	set_colors()
-	
+	write_bash_mode()
 
 func set_colors():
 	_playerLbl.modulate = _col
