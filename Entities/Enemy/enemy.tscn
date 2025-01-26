@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqqaa3k8s5jx7"]
+[gd_scene load_steps=9 format=3 uid="uid://dqqaa3k8s5jx7"]
 
 [ext_resource type="Script" path="res://Entities/Enemy/enemy.gd" id="1_86qvl"]
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_ovdki"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://d3fhfnopkkd55" path="res://Art/enemy/spikes5.png" id="5_c3ut7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbef"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_41c8v"]
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
 
 [node name="Enemy" type="RigidBody2D" groups=["mobs"]]
 scale = Vector2(2, 2)
@@ -51,6 +54,9 @@ disabled = true
 [node name="TimeoutTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_41c8v")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

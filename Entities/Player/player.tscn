@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brqlxi1h6j658"]
+[gd_scene load_steps=16 format=3 uid="uid://brqlxi1h6j658"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_vr6v8"]
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="2_88hja"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cqyhnna5eula1" path="res://Art/ring2.png" id="10_ml5sc"]
 [ext_resource type="Texture2D" uid="uid://dyfoqxa5p7oox" path="res://Art/Kennny/face_a.png" id="11_41e4f"]
 [ext_resource type="Texture2D" uid="uid://bur6cbyglc2mc" path="res://Art/enemy/spikes4.png" id="12_jlfk4"]
+[ext_resource type="OccluderPolygon2D" uid="uid://bmtguwtudn7yv" path="res://Entities/Player/player_light_occ.tres" id="14_neut3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 radius = 4.04475
@@ -108,6 +109,9 @@ texture = ExtResource("11_41e4f")
 visible = false
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("12_jlfk4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = ExtResource("14_neut3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]

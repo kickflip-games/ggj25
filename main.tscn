@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=21 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_3tn8r"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c5t8b11rju3" path="res://Shockwave/shockwave.tscn" id="7_60swm"]
 [ext_resource type="Script" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="7_w42da"]
 [ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="8_p8pca"]
+[ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="14_pkx3m"]
 
 [sub_resource type="Resource" id="Resource_mwkiu"]
 script = ExtResource("6_4pd7b")
@@ -48,10 +49,11 @@ background_mode = 3
 background_energy_multiplier = 2.65
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 3.34
+tonemap_mode = 1
 glow_enabled = true
-glow_intensity = 0.67
-glow_bloom = 0.31
-glow_hdr_threshold = 2.0
+glow_intensity = 1.97
+glow_bloom = 0.41
+glow_hdr_threshold = 1.82
 glow_hdr_scale = 1.0
 fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
 
@@ -243,6 +245,44 @@ environment = SubResource("Environment_eum0w")
 
 [node name="GameTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(-280, 56)
+energy = 0.3
+range_z_min = -314
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("14_pkx3m")
+texture_scale = 3.32
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(-280, 940)
+energy = 0.3
+range_z_min = -314
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("14_pkx3m")
+texture_scale = 3.32
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+position = Vector2(1360, 940)
+energy = 0.3
+range_z_min = -314
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("14_pkx3m")
+texture_scale = 3.32
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+position = Vector2(1360, 60)
+energy = 0.3
+range_z_min = -314
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("14_pkx3m")
+texture_scale = 3.32
 
 [connection signal="start_game" from="Hud" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

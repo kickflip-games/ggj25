@@ -17,3 +17,6 @@ texture = ExtResource("3_2awl2")
 
 [node name="BackgroundSprite" parent="." index="2"]
 texture = ExtResource("3_bcjtr")
+
+[node name="LightOccluder2D" parent="." index="5"]
+position = Vector2(-4, -0.5)
