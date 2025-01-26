@@ -70,22 +70,10 @@ theme_override_font_sizes/font_size = 90
 text = "Start Game?"
 
 [node name="FinalScores" type="HBoxContainer" parent="StartMarginContainer"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
-
-[node name="FinalScores" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
-layout_mode = 2
-
-[node name="FinalScores2" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
-layout_mode = 2
-
-[node name="FinalScores3" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
-layout_mode = 2
-
-[node name="FinalScores4" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
-layout_mode = 2
 
 [node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
 visible = false
