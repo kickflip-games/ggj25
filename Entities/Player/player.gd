@@ -42,6 +42,7 @@ var _name:String
 
 var col:Color
 
+var pdata:PlayerData
 
 
 
@@ -49,28 +50,37 @@ func _ready() -> void:
 	curr_dir = 0
 	hide()
 	_init_sprite_scale = sprite.scale
-	
+
+
+func respawn_player():
+	# reset player to s	tarting state
+	_toggle_physics(true)
+	position = _start_pos
+	sprite.modulate.a = 1
+	sprite.scale = _init_sprite_scale
+	hp=Globals.MAX_HP
+	ui.update_health(hp)
+	_can_take_damage=true
+	_speed = BASE_SPEED
+	_kick_force = KICK_FORCE
+	show()
+	Globals.create_flash_tween(sprite)
+
 func start(player_data:PlayerData):
 	# Cache varibles into player
 	_start_pos = player_data.x0
 	_name = player_data.name
 	ui = player_data.ui
 	col = player_data.color
-	
-	# reset player to starting state
-	_toggle_physics(true)
-	position = _start_pos
-	sprite.modulate.a = 1
-	sprite.scale = _init_sprite_scale
-	hp=Globals.MAX_HP
-	score_manager.reset(ui)
-	_can_take_damage=true
+	pdata = player_data
 	ui.reset(player_data.id)
+	score_manager.reset(ui)
 	ui.show()
-	_speed = BASE_SPEED
-	_kick_force = KICK_FORCE
 	_set_color()
-	show()
+	
+	respawn_player()
+	
+
 	
 	
 func _toggle_physics(on:bool):
@@ -157,11 +167,13 @@ func die():
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(sprite, "rotation", PI/2, 0.5)
 	tween.parallel().tween_property(sprite, "scale", Vector2.ZERO, 0.5)
-
+	
 	tween.finished.connect(
 		func(): 
 			player_died.emit()
 			hide()
+			await get_tree().create_timer(1.0).timeout
+			respawn_player()
 	)
 	
 
@@ -190,6 +202,7 @@ func _on_score_powerup_ready():
 		$StarSprite.show()
 		$BackgroundSprite.show()
 		$PowerTrail.emitting = true
+		$PowerupFX.emitting = true
 
 
 
@@ -206,6 +219,7 @@ func _on_powerup_timer_timeout():
 	$StarSprite.hide()
 	$BackgroundSprite.hide()
 	$PowerTrail.emitting = false
+	$PowerupFX.emitting = false
 	
 
 func _on_body_entered(_body):
@@ -230,3 +244,4 @@ func _set_color():
 	$BackgroundSprite.modulate = col_low_alpha
 	$DirectionArrows/ActiveArrow.modulate = col_low_alpha
 	$PowerTrail.color = col
+	$PowerupFX.color = col

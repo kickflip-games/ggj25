@@ -27,9 +27,9 @@ func reset(player_id:int):
 	
 
 func set_colors():
-	_playerLbl.add_theme_color_override("font_color", _col)
-	_scoreLbl.add_theme_color_override("font_color", _col)
-	$Label.add_theme_color_override("font_color", _col)
+	_playerLbl.modulate = _col
+	_scoreLbl.modulate = _col
+	$Label.modulate = _col
 	update_health(Globals.MAX_HP)
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = _col
@@ -38,11 +38,19 @@ func set_colors():
 
 func update_score(score:int):
 	_scoreLbl.text = str(score).pad_zeros(4)
+	var t = create_tween().set_loops(5)
+	t.tween_property(_scoreLbl, "modulate", Color.WHITE, 0.2)
+	t.tween_property(_scoreLbl, "modulate", _col, 0.2)
+
+	
 
 func update_health(health:int):
 	var hearts_display = HEART_CHAR.repeat(health) + EMPTY_HEART_CHAR.repeat(Globals.MAX_HP - health)
 	var str = "[center][color=%s]%s[/color][/center]" % [_col.to_html(), hearts_display]
 	_hpLbl.bbcode_text = str
+	var t = create_tween().set_loops(5)
+	t.tween_property(_hpLbl, "modulate:a", 0, 0.2)
+	t.tween_property(_hpLbl, "modulate:a", 1, 0.2)
 	play_hp_fx()
 
 

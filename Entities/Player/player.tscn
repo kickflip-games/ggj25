@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brqlxi1h6j658"]
+[gd_scene load_steps=17 format=3 uid="uid://brqlxi1h6j658"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_vr6v8"]
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="2_88hja"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://072jlqrbatbk" path="res://Art/circle.png" id="7_1luu2"]
 [ext_resource type="PackedScene" uid="uid://bmmkhdnftp0hq" path="res://Entities/Player/fx/HurtFx.tscn" id="7_wmc2o"]
 [ext_resource type="PackedScene" uid="uid://is8lanqpy4w3" path="res://Entities/Player/fx/DashFx.tscn" id="8_7xrf5"]
+[ext_resource type="PackedScene" uid="uid://bbn84rm71wge0" path="res://Entities/Pickup/PickupFx.tscn" id="8_acva0"]
 [ext_resource type="PackedScene" uid="uid://basxc6kt5ohww" path="res://Entities/Player/PlayerScore/PlayerScore.tscn" id="9_eh0lp"]
 [ext_resource type="Texture2D" uid="uid://cqyhnna5eula1" path="res://Art/ring2.png" id="10_ml5sc"]
 [ext_resource type="Texture2D" uid="uid://dyfoqxa5p7oox" path="res://Art/Kennny/face_a.png" id="11_41e4f"]
@@ -80,6 +81,11 @@ emitting = false
 amount = 50
 texture = ExtResource("7_1luu2")
 emission_sphere_radius = 16.35
+
+[node name="PowerupFX" parent="." instance=ExtResource("8_acva0")]
+scale_amount_min = 0.0
+scale_amount_max = 10.0
+color = Color(1, 1, 1, 1)
 
 [node name="HurtFx" parent="." instance=ExtResource("7_wmc2o")]
 emitting = false

@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://barxobbhncyg4" path="res://Art/ring.png" id="1_tj12a"]
 
 [sub_resource type="Curve" id="Curve_ltp4k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.748217, 0.425429), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_kffll"]
 offsets = PackedFloat32Array(0, 0.415916, 1)
