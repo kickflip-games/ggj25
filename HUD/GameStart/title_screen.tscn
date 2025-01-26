@@ -5,6 +5,9 @@
 [ext_resource type="Shader" path="res://HUD/GameStart/scroll.gdshader" id="3_hlm5s"]
 [ext_resource type="Texture2D" uid="uid://evds26hwmitu" path="res://Art/title_background.png" id="4_jadis"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dne5b"]
+shader = ExtResource("3_hlm5s")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sbiwp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kowfx"]
@@ -93,9 +96,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85512"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dne5b"]
-shader = ExtResource("3_hlm5s")
-
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -114,8 +114,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.137255, 0.101961, 0.156863, 1)
 
+[node name="Pattern" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.356863)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dne5b")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1861.0
+texture = ExtResource("4_jadis")
+
 [node name="Title" type="Label" parent="."]
-z_index = 2
 layout_mode = 0
 offset_left = 3.0
 offset_top = 315.0
@@ -128,7 +136,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SinglePlayer" type="Button" parent="."]
-z_index = 2
 layout_mode = 0
 offset_left = 681.0
 offset_top = 567.0
@@ -153,7 +160,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_ak62o")
 text = "1P"
 
 [node name="TwoPlayer" type="Button" parent="."]
-z_index = 2
 layout_mode = 0
 offset_left = 820.0
 offset_top = 566.0
@@ -178,7 +184,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_q7nxf")
 text = "2P"
 
 [node name="ThreePlayer" type="Button" parent="."]
-z_index = 2
 layout_mode = 0
 offset_left = 969.0
 offset_top = 567.0
@@ -203,7 +208,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_amnuh")
 text = "3P"
 
 [node name="FourPlayer" type="Button" parent="."]
-z_index = 2
 layout_mode = 0
 offset_left = 1112.0
 offset_top = 567.0
@@ -226,16 +230,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_hcott")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7vl7n")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_85512")
 text = "4P"
-
-[node name="Pattern" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.356863)
-z_index = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_dne5b")
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("4_jadis")
 
 [connection signal="pressed" from="SinglePlayer" to="." method="_on_single_player_pressed"]
 [connection signal="pressed" from="TwoPlayer" to="." method="_on_two_player_pressed"]
