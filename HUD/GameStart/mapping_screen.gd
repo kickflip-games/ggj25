@@ -2,28 +2,35 @@ extends Control
 
 signal keys_mapped
 
-var num_players = 1
 var curr_player: int
-var player_text: Label
+@onready var player_text:= $PlayerText
+@onready var use_warning:= $AlreadyInUse
 
+var num_players = 1
+var used_keys = []
 
 func _ready() -> void:
-	player_text = get_node("PlayerText")
 	curr_player = 1
+	use_warning.modulate.a = 0.0
 
-
-var used_keys = []
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if curr_player <= num_players:
-			curr_player += 1
-			
-			if curr_player == (num_players + 1):
-				keys_mapped.emit()
+			if event.keycode in used_keys:
+				print("Key already used:", event.keycode)
+				var tween = create_tween()
+				tween.tween_property(use_warning, "modulate:a", 1.0, 0.1)
+			else:
+				use_warning.modulate.a = 0.0
+				curr_player += 1
 				
-			_update_player_label()
-			remap_key("player" + str(curr_player - 2), event)
+				if curr_player == (num_players + 1):
+					keys_mapped.emit()
+							
+				_update_player_label()
+				remap_key("player" + str(curr_player - 2), event)
+				used_keys.append(event.keycode)
 		
 				
 func remap_key(player_id:String, event:InputEvent):

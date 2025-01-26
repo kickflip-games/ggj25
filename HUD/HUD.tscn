@@ -76,7 +76,6 @@ size_flags_vertical = 8
 alignment = 1
 
 [node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
-visible = false
 
 [node name="BackButton" type="Button" parent="."]
 offset_left = 873.0

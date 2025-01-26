@@ -73,8 +73,8 @@ func new_game(num_players:int):
 	
 
 func _on_hud_start_game(num_players: int):
-	#new_game(num_players)
-	new_game(2)  # TMP HACK
+	new_game(num_players)
+	#new_game(2)  # TMP HACK
 	hud.update_timer(game_time)
 
 
