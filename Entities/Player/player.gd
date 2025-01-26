@@ -1,7 +1,7 @@
 class_name Player
 extends RigidBody2D
 
-const POWERUP_TIME = 8.0
+const POWERUP_TIME = 5.0
 const BASE_SPEED = 500.0
 const KICK_FORCE = 3000
 const POWERUP_SPEED_FACTOR = 2.0
