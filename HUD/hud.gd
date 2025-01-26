@@ -3,36 +3,39 @@ class_name HUD
 
 @onready var game_text:= $StartMarginContainer/GameText
 @onready var start_button:= $StartMarginContainer/StartGameButton
-@onready var player_uis_container := $MarginContainer
+
+
+@onready var back_button:= $BackButton
 @onready var start_seq:=$StartSequence
-@onready var time_label:= $MarginContainer/TimeLabel
+@onready var time_label:= $GameUi/TimeLabel
 @onready var player_uis:=[
-	$MarginContainer/P1Ui,
-	$MarginContainer/P2Ui,
-	$MarginContainer/P3Ui,
-	$MarginContainer/P4Ui
+	$GameUi/P1Ui,
+	$GameUi/P2Ui,
+	$GameUi/P3Ui,
+	$GameUi/P4Ui
 ]
 
 signal start_game
 
+
 func _ready():
-	player_uis_container.hide()
+	back_button.hide()
+
 
 func show_game_over():
 	_show_message("Game Over")
-	update_timer(0)
 	start_button.show()
 	time_label.hide()
+	back_button.hide()
+	
 
-#func show_start_game_txt():
-	#_show_message("Start game?")
+func show_start_game_txt():
+	_show_message("Start game?")
 
 func _show_message(text):
 	game_text.text = text
 	game_text.show()
 
-func _on_start_sequence_start_game() -> void:
-	player_uis_container.show()
 
 func _on_start_game_button_pressed():
 	start_button.hide()
@@ -40,9 +43,14 @@ func _on_start_game_button_pressed():
 	print_debug("Start game pressed")
 	start_game.emit(start_seq.mapping_screen.num_players)
 	time_label.show()
+	back_button.show()
 
 func update_timer(time_remaining:int):
 	# Convert time_remaining to MM:SS format and update the label
 	var minutes = int(time_remaining / 60)
 	var seconds = int(time_remaining % 60)
 	time_label.text = "%02d:%02d" % [minutes, seconds]
+
+
+func _on_back_button_pressed():
+	get_tree().reload_current_scene()

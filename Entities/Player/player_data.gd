@@ -9,12 +9,6 @@ var color: Color
 var id:int
 
 
-var COLORS = [
-	Color("fcfc6c"),
-	Color("#f88dc7"),
-	Color("70c98b"),
-	Color("8d5ddd"),
-]
 
 
 
@@ -24,4 +18,4 @@ func _init(id: int, x0: Vector2, ui:PlayerUi) -> void:
 	self.name = "player" + str(id)
 	self.x0 = x0
 	self.ui = ui
-	self.color = COLORS[id]
+	self.color = Globals.PLAYER_COLORS[id]

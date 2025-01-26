@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://7joo32ifr0u8"]
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
-[ext_resource type="Theme" path="res://HUD/theme.tres" id="2_2cp7m"]
+[ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="2_2cp7m"]
 [ext_resource type="PackedScene" uid="uid://bgo5kx0jbt04d" path="res://HUD/player_ui/player_ui.tscn" id="2_pcubi"]
-[ext_resource type="PackedScene" uid="uid://dps0o7113t4u" path="res://HUD/GameStart/start_sequence.tscn" id="4_0p38o"]
+[ext_resource type="PackedScene" uid="uid://by0n7vee6h5nx" path="res://HUD/GameStart/start_sequence.tscn" id="4_0p38o"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_h3xh4")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="GameUi" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,32 +17,31 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_2cp7m")
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="P1Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
-visible = false
+[node name="P1Ui" parent="GameUi" instance=ExtResource("2_pcubi")]
 layout_mode = 2
 
-[node name="P2Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+[node name="P2Ui" parent="GameUi" instance=ExtResource("2_pcubi")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="P3Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+[node name="P3Ui" parent="GameUi" instance=ExtResource("2_pcubi")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="P4Ui" parent="MarginContainer" instance=ExtResource("2_pcubi")]
+[node name="P4Ui" parent="GameUi" instance=ExtResource("2_pcubi")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="TimeLabel" type="Label" parent="MarginContainer"]
+[node name="TimeLabel" type="Label" parent="GameUi"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -69,5 +68,19 @@ theme_override_font_sizes/font_size = 90
 text = "Start Game?"
 
 [node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
+visible = false
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 873.0
+offset_top = 1001.0
+offset_right = 1047.0
+offset_bottom = 1060.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 4.75
+theme = ExtResource("2_2cp7m")
+theme_override_font_sizes/font_size = 50
+text = "Back?"
 
 [connection signal="pressed" from="StartMarginContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
