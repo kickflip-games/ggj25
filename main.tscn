@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=24 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_3tn8r"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c5t8b11rju3" path="res://Shockwave/shockwave.tscn" id="7_60swm"]
 [ext_resource type="Script" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="7_w42da"]
 [ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="8_p8pca"]
+[ext_resource type="Texture2D" uid="uid://bj2sae2n2tt3c" path="res://Art/FaddedBubble.png" id="10_rmweg"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="14_pkx3m"]
 
 [sub_resource type="Resource" id="Resource_mwkiu"]
@@ -36,6 +37,14 @@ RotationShake = Array[ExtResource("7_w42da")]([])
 ScaleShake = Array[ExtResource("5_exxlh")]([])
 bake_internal = 64
 __follow_timeline = false
+
+[sub_resource type="Curve" id="Curve_d3qv8"]
+_data = [Vector2(0, 1), 0.0, 0.0252378, 0, 0, Vector2(0.843173, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_wf80h"]
+offsets = PackedFloat32Array(0, 0.991736)
+colors = PackedColorArray(0.4958, 0.58534, 0.74, 0.54902, 0.4599, 0.563438, 0.73, 0.701961)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
 
@@ -109,6 +118,23 @@ offset_right = 103.0
 offset_bottom = 1127.0
 scale = Vector2(20, 1)
 color = Color(0.152941, 0.203922, 0.313726, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-160, 1160)
+amount = 30
+lifetime = 5.0
+speed_scale = 0.5
+randomness = 0.26
+texture = ExtResource("10_rmweg")
+emission_shape = 3
+emission_rect_extents = Vector2(2000, 1)
+spread = 52.8
+gravity = Vector2(0, -100)
+scale_amount_min = 0.01
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_d3qv8")
+color = Color(0.42041, 0.526367, 0.70459, 1)
+color_ramp = SubResource("Gradient_wf80h")
 
 [node name="GameBounds" type="Node2D" parent="."]
 
