@@ -16,10 +16,9 @@ func set_hp(val:int, color:Color):
 		else:
 			hearts[i].modulate = Color(0, 0, 0)  # Set to black
 			
-	var t = create_tween().set_loops(5)
-	for i in range(hearts.size()):
-		t.tween_property(hearts[i], "modulate:a", 0, 0.2)
-		t.tween_property(hearts[i], "modulate:a", 1, 0.2)
+	var t = create_tween().set_loops(3)
+	t.tween_property(self, "modulate:a", 0, 0.2)
+	t.tween_property(self, "modulate:a", 1, 0.2)
 	
 
 	

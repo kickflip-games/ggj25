@@ -17,7 +17,7 @@ alignment = 1
 script = ExtResource("1_istvb")
 
 [node name="PanelContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 56)
+custom_minimum_size = Vector2(50, 56)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -52,34 +52,42 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthLabel" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 script = ExtResource("4_3xfsx")
 
 [node name="ColorRect" type="TextureRect" parent="HealthLabel"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("5_raufu")
+expand_mode = 3
 
 [node name="ColorRect2" type="TextureRect" parent="HealthLabel"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("5_raufu")
+expand_mode = 3
 
 [node name="ColorRect3" type="TextureRect" parent="HealthLabel"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("5_raufu")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "BASH MODE"
 
 [node name="PowerupBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_v4tk5")
