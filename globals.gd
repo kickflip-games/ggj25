@@ -14,10 +14,12 @@ const COLOR4:Color = Color("#43785a")
 const COLOR5:Color = Color("#528b57")
 
 
-const PLAYER_COLORS = [
-	Color.GOLD,
-	Color.GREEN,
-	Color.BLUE,
+
+var PLAYER_COLORS = [
+	Color("fcfc6c"),
+	Color("#f88dc7"),
+	Color("70c98b"),
+	Color("8d5ddd"),
 ]
 
 func create_flash_tween(sprite:Sprite2D):

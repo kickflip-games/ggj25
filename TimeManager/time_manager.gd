@@ -36,5 +36,7 @@ func slow_to_pause():
 
 func reset():
 	print(">>>> RESET TIME <<<<")
+	if tween:
+		tween.kill()
 	_set_timescale(DEFAULT_TIME)
 	

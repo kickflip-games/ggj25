@@ -11,18 +11,29 @@ extends VBoxContainer
 const HEART_CHAR = '\u2764'
 const EMPTY_HEART_CHAR = '\u2661'
 
+var _col:Color
 
 
 
 
 
 func reset(player_id:int):
+	_col = Globals.PLAYER_COLORS[player_id]
 	update_score(0)
 	update_health(Globals.MAX_HP)
 	reset_bar()
 	_playerLbl.text = "P"+str(player_id+1)
+	set_colors()
 	
 
+func set_colors():
+	_hpLbl.add_theme_color_override("font_color", _col)
+	_playerLbl.add_theme_color_override("font_color", _col)
+	_scoreLbl.add_theme_color_override("font_color", _col)
+	var sb = StyleBoxFlat.new()
+	sb.bg_color = _col
+	_bar.add_theme_stylebox_override("fill", sb)
+	
 
 func update_score(score:int):
 	_scoreLbl.text = str(score).pad_zeros(4)

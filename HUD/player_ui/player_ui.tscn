@@ -1,40 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgo5kx0jbt04d"]
+[gd_scene load_steps=4 format=3 uid="uid://bgo5kx0jbt04d"]
 
 [ext_resource type="Script" path="res://HUD/player_ui/player_ui.gd" id="1_istvb"]
-[ext_resource type="LabelSettings" uid="uid://bha0we0d6smco" path="res://HUD/small_text.tres" id="1_shjn0"]
+[ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="1_v4tk5"]
+[ext_resource type="FontFile" uid="uid://cfssoiyyfs8r7" path="res://HUD/MPLUSRounded1c.ttf" id="3_255s1"]
 
 [node name="PlayerUi" type="VBoxContainer"]
-offset_right = 96.0
-offset_bottom = 113.0
+custom_minimum_size = Vector2(200, 150)
+offset_right = 150.0
+offset_bottom = 100.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme = ExtResource("1_v4tk5")
+alignment = 1
 script = ExtResource("1_istvb")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 56)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="PlayerLabel" type="Label" parent="PanelContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_255s1")
 text = "P1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Colon" type="Label" parent="PanelContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_255s1")
+text = ":"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="PanelContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_255s1")
 text = "0000"
-horizontal_alignment = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HealthLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_vertical = 3
 text = "♥♥♥"
-label_settings = ExtResource("1_shjn0")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PowerupBar" type="ProgressBar" parent="."]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_v4tk5")
+theme_override_font_sizes/font_size = 40

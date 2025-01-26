@@ -35,10 +35,8 @@ func game_over():
 	hud.show_game_over()
 	spawner.stop()
 	_game_playing = false
-	TimeManager.slow_to_pause()
 	for _p in _current_players:
 		_p.die()
-		_p.queue_free()
 	_current_players.clear()
 
 func _instantiate_player(player_data:PlayerData):
@@ -55,6 +53,11 @@ func new_game(num_players:int):
 	# clear any already present mobs / pickups 
 	get_tree().call_group("mobs", "queue_free")
 	
+	if len(_current_players)>0:
+		for _p in _current_players:
+			_p.queue_free()
+		_current_players.clear()
+	
 	
 	for i in range(num_players):
 		_instantiate_player(_player_data[i])
@@ -67,7 +70,8 @@ func new_game(num_players:int):
 	
 
 func _on_hud_start_game(num_players: int):
-	new_game(num_players)
+	#new_game(num_players)
+	new_game(2)  # TMP HACK
 	hud.update_timer(game_time)
 
 
