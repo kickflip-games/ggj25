@@ -8,9 +8,6 @@ extends VBoxContainer
 @onready var _playerLbl = $PanelContainer/PlayerLabel
 
 
-const HEART_CHAR = '\u2665'
-const EMPTY_HEART_CHAR = '\u2661'
-
 var _col:Color
 
 
@@ -51,14 +48,8 @@ func update_score(score:int):
 	
 
 func update_health(health:int):
-	var hearts_display = HEART_CHAR.repeat(health) + EMPTY_HEART_CHAR.repeat(Globals.MAX_HP - health)
-	var str = "[center][color=%s]%s[/color][/center]" % [_col.to_html(), hearts_display]
-	_hpLbl.bbcode_text = str
-	var t = create_tween().set_loops(5)
-	t.tween_property(_hpLbl, "modulate:a", 0, 0.2)
-	t.tween_property(_hpLbl, "modulate:a", 1, 0.2)
-	play_hp_fx()
-
+	$HealthLabel.set_hp(health, _col)
+	
 
 func reset_bar():
 	_bar.max_value = Globals.POWERUP_THRESHOLD

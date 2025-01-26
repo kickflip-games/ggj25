@@ -56,6 +56,7 @@ text = "00:00"
 horizontal_alignment = 1
 
 [node name="StartMarginContainer" type="MarginContainer" parent="."]
+visible = false
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 1910.0
