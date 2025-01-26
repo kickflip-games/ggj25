@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
 [ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="3_ivu4n"]
 [ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="3_m0nyd"]
-[ext_resource type="Theme" path="res://HUD/theme.tres" id="4_pg3lh"]
+[ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="4_pg3lh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cj0h2"]
 shader = ExtResource("2_ot8ng")
@@ -25,6 +25,12 @@ layout_mode = 0
 offset_right = 1925.0
 offset_bottom = 1079.0
 color = Color(0, 0.911256, 0.61929, 0.603922)
+
+[node name="Blur2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1925.0
+offset_bottom = 1079.0
+color = Color(0.1404, 0.104, 0.16, 0.478431)
 
 [node name="PromptText" type="Label" parent="."]
 layout_mode = 0

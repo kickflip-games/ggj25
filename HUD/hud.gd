@@ -24,7 +24,12 @@ signal start_game
 
 func _ready():
 	back_button.hide()
+	$StartMarginContainer.hide()
+	$StartSequence.mapping_screen.keys_mapped.connect(_on_all_keys_mapped)
 
+
+func _on_all_keys_mapped():
+	$StartMarginContainer.show()
 
 func show_game_over(player_scores:Array):
 	_show_message("Game Over")
