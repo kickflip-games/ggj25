@@ -8,7 +8,7 @@ extends VBoxContainer
 @onready var _playerLbl = $PanelContainer/PlayerLabel
 
 
-const HEART_CHAR = '\u2764'
+const HEART_CHAR = '\u2665'
 const EMPTY_HEART_CHAR = '\u2661'
 
 var _col:Color
@@ -27,9 +27,10 @@ func reset(player_id:int):
 	
 
 func set_colors():
-	_hpLbl.add_theme_color_override("font_color", _col)
 	_playerLbl.add_theme_color_override("font_color", _col)
 	_scoreLbl.add_theme_color_override("font_color", _col)
+	$Label.add_theme_color_override("font_color", _col)
+	update_health(Globals.MAX_HP)
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = _col
 	_bar.add_theme_stylebox_override("fill", sb)
@@ -40,7 +41,8 @@ func update_score(score:int):
 
 func update_health(health:int):
 	var hearts_display = HEART_CHAR.repeat(health) + EMPTY_HEART_CHAR.repeat(Globals.MAX_HP - health)
-	_hpLbl.text = hearts_display
+	var str = "[center][color=%s]%s[/color][/center]" % [_col.to_html(), hearts_display]
+	_hpLbl.bbcode_text = str
 	play_hp_fx()
 
 

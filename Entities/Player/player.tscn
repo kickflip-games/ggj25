@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brqlxi1h6j658"]
+[gd_scene load_steps=15 format=3 uid="uid://brqlxi1h6j658"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_vr6v8"]
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="2_88hja"]
@@ -6,12 +6,13 @@
 [ext_resource type="Script" path="res://Entities/Player/PlayerArrows.gd" id="4_enu5x"]
 [ext_resource type="Texture2D" uid="uid://c06iq18ldkxp2" path="res://Art/arrow2.png" id="5_4pbpr"]
 [ext_resource type="PackedScene" uid="uid://cme3w2rlx4n1p" path="res://Entities/Player/fx/BubbleTrail.tscn" id="6_oa2pj"]
+[ext_resource type="Texture2D" uid="uid://072jlqrbatbk" path="res://Art/circle.png" id="7_1luu2"]
 [ext_resource type="PackedScene" uid="uid://bmmkhdnftp0hq" path="res://Entities/Player/fx/HurtFx.tscn" id="7_wmc2o"]
 [ext_resource type="PackedScene" uid="uid://is8lanqpy4w3" path="res://Entities/Player/fx/DashFx.tscn" id="8_7xrf5"]
 [ext_resource type="PackedScene" uid="uid://basxc6kt5ohww" path="res://Entities/Player/PlayerScore/PlayerScore.tscn" id="9_eh0lp"]
 [ext_resource type="Texture2D" uid="uid://cqyhnna5eula1" path="res://Art/ring2.png" id="10_ml5sc"]
 [ext_resource type="Texture2D" uid="uid://dyfoqxa5p7oox" path="res://Art/Kennny/face_a.png" id="11_41e4f"]
-[ext_resource type="Texture2D" uid="uid://cbw5hjaae8nsw" path="res://Art/star.png" id="12_fvrs6"]
+[ext_resource type="Texture2D" uid="uid://bur6cbyglc2mc" path="res://Art/enemy/spikes4.png" id="12_jlfk4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 radius = 4.04475
@@ -73,6 +74,12 @@ texture = ExtResource("5_4pbpr")
 
 [node name="BubbleTrail" parent="." instance=ExtResource("6_oa2pj")]
 
+[node name="PowerTrail" parent="." instance=ExtResource("6_oa2pj")]
+emitting = false
+amount = 50
+texture = ExtResource("7_1luu2")
+emission_sphere_radius = 16.35
+
 [node name="HurtFx" parent="." instance=ExtResource("7_wmc2o")]
 emitting = false
 lifetime = 0.5
@@ -100,7 +107,7 @@ texture = ExtResource("11_41e4f")
 [node name="StarSprite" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.18, 0.18)
-texture = ExtResource("12_fvrs6")
+texture = ExtResource("12_jlfk4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]

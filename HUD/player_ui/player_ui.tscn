@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://HUD/player_ui/player_ui.gd" id="1_istvb"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="1_v4tk5"]
-[ext_resource type="FontFile" uid="uid://cfssoiyyfs8r7" path="res://HUD/MPLUSRounded1c.ttf" id="3_255s1"]
+[ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="3_d54fo"]
 
 [node name="PlayerUi" type="VBoxContainer"]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(200, 200)
 offset_right = 150.0
 offset_bottom = 100.0
 size_flags_horizontal = 0
@@ -24,7 +24,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_255s1")
+theme_override_fonts/font = ExtResource("3_d54fo")
 text = "P1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -34,7 +34,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_255s1")
+theme_override_fonts/font = ExtResource("3_d54fo")
 text = ":"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -44,18 +44,23 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_255s1")
+theme_override_fonts/font = ExtResource("3_d54fo")
 text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HealthLabel" type="Label" parent="."]
+[node name="HealthLabel" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 3
-text = "♥♥♥"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]♥♥♥"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "BASH MODE"
 
 [node name="PowerupBar" type="ProgressBar" parent="."]
 layout_mode = 2

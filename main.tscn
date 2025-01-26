@@ -1,12 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=20 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_3tn8r"]
 [ext_resource type="PackedScene" uid="uid://str7kpnq2oov" path="res://Background/Background.tscn" id="2_4d8gk"]
+[ext_resource type="Script" path="res://MainCamera.gd" id="3_2f4lq"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Spawner/spawner.tscn" id="3_a5gx5"]
+[ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="3_ro0sy"]
 [ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="4_ihst0"]
+[ext_resource type="Script" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="5_exxlh"]
+[ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="6_4pd7b"]
 [ext_resource type="PackedScene" uid="uid://c5t8b11rju3" path="res://Shockwave/shockwave.tscn" id="7_60swm"]
+[ext_resource type="Script" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="7_w42da"]
+[ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="8_p8pca"]
+
+[sub_resource type="Resource" id="Resource_mwkiu"]
+script = ExtResource("6_4pd7b")
+frequency = Vector2(5, 5)
+phase = Vector2(1, 1)
+amplitude = Vector2(30, 30)
+offset = Vector2(0, 0)
+BlendingMode = 0
+fade_in = 0.0
+fade_out = 0.0
+start_percent = 0.0
+end_percent = 1.0
+_temp_graph = false
+bake_internal = 64
+
+[sub_resource type="Resource" id="Resource_1qpjo"]
+script = ExtResource("8_p8pca")
+PositionShake = Array[ExtResource("5_exxlh")]([SubResource("Resource_mwkiu")])
+RotationShake = Array[ExtResource("7_w42da")]([])
+ScaleShake = Array[ExtResource("5_exxlh")]([])
+bake_internal = 64
+__follow_timeline = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
 
@@ -37,19 +65,23 @@ metadata/_edit_vertical_guides_ = [-340.0, -140.0]
 modulate = Color(0.262745, 0.470588, 0.352941, 1)
 show_behind_parent = true
 top_level = true
-position = Vector2(59.2852, 51.8722)
+position = Vector2(-440, -40)
 anchor_mode = 0
 zoom = Vector2(1.01, 1.01)
-limit_left = -573
-limit_top = -33
-limit_right = 1478
-limit_bottom = 1036
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource("3_2f4lq")
+
+[node name="ShakerComponent2D" type="Node2D" parent="Camera2D"]
+script = ExtResource("3_ro0sy")
+duration = 0.5
+fade_in = 0.0334929
+fade_out = 0.707107
+shakerPreset = SubResource("Resource_1qpjo")
 
 [node name="StartPositions" type="Node2D" parent="."]
 position = Vector2(497.592, 501.697)

@@ -178,6 +178,7 @@ func increment_health():
 func _on_score_powerup_ready():
 	if not _in_power_up_mode:
 		print("Player went super sayin")
+		Globals.MainCam.SHAKE() 
 		powerup_activated.emit()
 		_in_power_up_mode = true
 		powerup_timer.start(POWERUP_TIME)
@@ -188,6 +189,7 @@ func _on_score_powerup_ready():
 		sprite.hide()
 		$StarSprite.show()
 		$BackgroundSprite.show()
+		$PowerTrail.emitting = true
 
 
 
@@ -203,6 +205,7 @@ func _on_powerup_timer_timeout():
 	sprite.show()
 	$StarSprite.hide()
 	$BackgroundSprite.hide()
+	$PowerTrail.emitting = false
 	
 
 func _on_body_entered(_body):
@@ -226,3 +229,4 @@ func _set_color():
 	$DashFx.color = col_low_alpha 
 	$BackgroundSprite.modulate = col_low_alpha
 	$DirectionArrows/ActiveArrow.modulate = col_low_alpha
+	$PowerTrail.color = col

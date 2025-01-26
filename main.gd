@@ -7,7 +7,7 @@ extends Node2D
 @onready var spawner:=$Spawner
 @onready var hud:=$Hud
 @onready var game_timer:=$GameTimer
-@export var game_time:float = 4
+@export var game_time:float = 60 * 2 
 
 var _game_playing:bool= false
 var _player_data:Array[PlayerData]
@@ -19,6 +19,7 @@ var _current_players:Array[Player]
 
 func _ready():
 	_init_player_data()
+	Globals.MainCam = $Camera2D
 	
 func _init_player_data():
 	_player_data = [

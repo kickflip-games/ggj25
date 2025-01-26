@@ -17,7 +17,7 @@ class_name HUD
 ]
 
 @onready var final_score_box:= $StartMarginContainer/FinalScores
-
+@onready var instructions_box := $StartMarginContainer/Instructions
 
 signal start_game
 
@@ -31,6 +31,7 @@ func show_game_over(player_scores:Array):
 	start_button.show()
 	time_label.hide()
 	back_button.hide()
+	instructions_box.hide()
 	
 	for child in final_score_box.get_children():
 		child.queue_free() 
@@ -42,6 +43,7 @@ func show_game_over(player_scores:Array):
 
 func show_start_game_txt():
 	_show_message("Start game?")
+	instructions_box.show()
 
 func _show_message(text):
 	game_text.text = text
@@ -55,6 +57,7 @@ func _on_start_game_button_pressed():
 	start_game.emit(start_seq.mapping_screen.num_players)
 	time_label.show()
 	back_button.show()
+	instructions_box.hide()
 		
 	for child in final_score_box.get_children():
 		child.queue_free() 

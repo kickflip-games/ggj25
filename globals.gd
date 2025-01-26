@@ -3,7 +3,7 @@ extends Node
 
 
 const  MAX_HP:int = 3
-const POWERUP_THRESHOLD:int = 5
+const POWERUP_THRESHOLD:int = 1
 
 
 
@@ -13,6 +13,7 @@ const COLOR3:Color = Color("#305358")
 const COLOR4:Color = Color("#43785a")
 const COLOR5:Color = Color("#528b57")
 
+var MainCam:MainCamera
 
 
 var PLAYER_COLORS = [

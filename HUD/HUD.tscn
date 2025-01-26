@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://7joo32ifr0u8"]
+[gd_scene load_steps=7 format=3 uid="uid://7joo32ifr0u8"]
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="2_2cp7m"]
 [ext_resource type="PackedScene" uid="uid://bgo5kx0jbt04d" path="res://HUD/player_ui/player_ui.tscn" id="2_pcubi"]
 [ext_resource type="PackedScene" uid="uid://by0n7vee6h5nx" path="res://HUD/GameStart/start_sequence.tscn" id="4_0p38o"]
 [ext_resource type="PackedScene" uid="uid://b5yx8w3lhibvb" path="res://HUD/FinalScores/FinalScore.tscn" id="4_vhx22"]
+[ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="5_gjvq2"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_h3xh4")
@@ -25,6 +26,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="P1Ui" parent="GameUi" instance=ExtResource("2_pcubi")]
+visible = false
 layout_mode = 2
 
 [node name="P2Ui" parent="GameUi" instance=ExtResource("2_pcubi")]
@@ -44,6 +46,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="TimeLabel" type="Label" parent="GameUi"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -74,6 +77,35 @@ custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
+
+[node name="Instructions" type="MarginContainer" parent="StartMarginContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StartMarginContainer/Instructions"]
+layout_mode = 2
+theme = ExtResource("2_2cp7m")
+theme_override_fonts/normal_font = ExtResource("5_gjvq2")
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+bbcode_enabled = true
+text = "[center]
+Press your key to move
+
+Avoid the  [color=#af413c][b]Sharp bits[/b][/color]
+
+Collect [i]Bubbles[/i] to [b]BASH[/b] your enemies
+
+"
+fit_content = true
 
 [node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
 
