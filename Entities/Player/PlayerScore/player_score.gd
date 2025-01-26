@@ -20,14 +20,13 @@ func reset(ui:PlayerUi):
 	_ui=ui
 
 
-func increment():
-	powerup_progress += 1
-	_score += 1* _combo_multiplier
+func increment(in_powerup_mode:bool=false, additional_factor:int=1):
+
+		
+	var score_addition = 10 * _combo_multiplier * additional_factor
+	_score += score_addition
 	_ui.update_score(_score)
-	_ui.update_bar(powerup_progress)
 	_combo_timer.start(COMBO_COOLDOWN)  # Reset timer to 2 seconds for each pickup
-	
-	
 	
 	if _combo_active:
 			_combo_multiplier += 1
@@ -38,10 +37,15 @@ func increment():
 		_combo_active = true
 	print("Score: %d, Combo Multiplier: %d" % [_score, _combo_multiplier])
 
-	if powerup_progress % Globals.POWERUP_THRESHOLD == 0:
-		print("Powerup ready")
-		powerup_ready.emit()
-		_ui.play_powerup_mode_fx()
+	if not in_powerup_mode:
+		powerup_progress += 1
+		_ui.update_bar(powerup_progress)
+		if powerup_progress % Globals.POWERUP_THRESHOLD == 0:
+			print("Powerup ready")
+			powerup_ready.emit()
+			_ui.play_powerup_mode_fx()
+		
+	return score_addition
 
 func _on_combo_timer_timeout():
 	_combo_active = false

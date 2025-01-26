@@ -21,6 +21,7 @@ Globals="*res://globals.gd"
 DampedOscillator="*res://addons/DampedOscillator/scripts/damped_oscillator.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 TimeManager="*res://TimeManager/TimeManager.tscn"
+PopupFx="*res://PopupFx/popup_fx.gd"
 
 [display]
 

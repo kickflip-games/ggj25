@@ -95,9 +95,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if state.linear_velocity.length() > _speed:
 		state.linear_velocity = state.linear_velocity.normalized() * _speed
 		
-	if Direction[_next_dir].distance_to(state.linear_velocity.normalized()) < 0.1:
-		print("Manual change dir... TODO: make the new direction point INNWARDS TO CENTER")
-		_update_dir(false)
+	#if Direction[_next_dir].distance_to(state.linear_velocity.normalized()) < 0.1:
+		#print("Manual change dir... TODO: make the new direction point INNWARDS TO CENTER")
+		#_update_dir(false)
 
 
 func _get_new_dir(_rand_dir:bool):
@@ -147,7 +147,9 @@ func take_damage():
 		ui.update_health(hp)
 		if hp <= 0:
 			die()
+			PopupFx.display_popup("pop!", $MessagePoint.global_position, col )
 		else:
+			PopupFx.display_popup("ouch!", $MessagePoint.global_position, col )
 			var tween = Globals.create_flash_tween(sprite)
 			tween.finished.connect( 
 				func(): 
@@ -180,9 +182,11 @@ func die():
 	
 
 
-func increment_score():
-	score_manager.increment()
-	
+func increment_score(factor:int=1):
+	var increase = score_manager.increment(_in_power_up_mode, factor)
+	PopupFx.display_popup("+"+str(increase), $MessagePoint.global_position, col)
+
+
 func increment_health():
 	if hp < Globals.MAX_HP: 
 		hp += 1
@@ -225,12 +229,17 @@ func _on_powerup_timer_timeout():
 	
 
 func _on_body_entered(_body):
-	if not _in_power_up_mode:
+	
+	if _in_power_up_mode:
+		if _body is Player:
+			increment_score(4)
+			_body.take_damage()
+		elif _body is Enemy:
+			increment_score(2)
+	
+	else:
 		DampedOscillator.animate(sprite, "scale", 200.0, 10.0, 15.0, 0.25)
 	
-	elif _body is Player:
-		print(_name, "(powerup mode) has hit ", _body._name)	
-		_body.take_damage()
 
 
 

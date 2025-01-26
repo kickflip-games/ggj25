@@ -119,6 +119,9 @@ texture = ExtResource("12_jlfk4")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = ExtResource("14_neut3")
 
+[node name="MessagePoint" type="Marker2D" parent="."]
+position = Vector2(-2, -28)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]
 [connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_timer_timeout"]

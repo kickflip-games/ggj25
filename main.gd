@@ -7,7 +7,7 @@ extends Node2D
 @onready var spawner:=$Spawner
 @onready var hud:=$Hud
 @onready var game_timer:=$GameTimer
-@export var game_time:float = 60 * 2 
+@export var game_time:float = 2 * 60
 
 var _game_playing:bool= false
 var _player_data:Array[PlayerData]
@@ -37,7 +37,8 @@ func game_over():
 	_game_playing = false
 	for _p in _current_players:
 		player_scores.append(_p.score_manager._score )
-		_p.die()
+		_p._toggle_physics(false)
+		_p.queue_free()
 	
 	hud.show_game_over(player_scores)
 	
