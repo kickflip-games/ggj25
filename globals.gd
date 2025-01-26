@@ -3,7 +3,7 @@ extends Node
 
 
 const  MAX_HP:int = 3
-const POWERUP_THRESHOLD:int = 1
+const POWERUP_THRESHOLD:int = 3
 
 
 

@@ -3,8 +3,8 @@ extends Area2D
 @export var pickup_scenes: Array[PackedScene]
 @export var enemy_scenes: Array[PackedScene]
 @export var spawn_interval: float = 2.0
-@export var max_pickups: int = 5
-@export var max_enemies:int = 3
+@export var max_pickups: int = 1
+@export var max_enemies:int = 5
 
 @onready var collider := $CollisionShape2D
 @onready var pickup_timer := $PickupTimer
@@ -30,14 +30,14 @@ func _ready() -> void:
 
 func start():
 	_spawn_entity(pickup_scenes[0], _active_pickups, max_pickups)
-	pickup_timer.wait_time = spawn_interval
+	pickup_timer.wait_time = spawn_interval * 2
 	pickup_timer.start()
 	
 	powerup_timer.start()
-	powerup_timer.wait_time = spawn_interval * 2
+	powerup_timer.wait_time = spawn_interval * 3
 	
 	_spawn_enemy()
-	enemy_timer.wait_time = spawn_interval
+	enemy_timer.wait_time = spawn_interval * 0.5
 	enemy_timer.start()
 	
 
