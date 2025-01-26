@@ -1,10 +1,11 @@
 extends CanvasLayer
 class_name HUD
 
+@export var score_container_scene:PackedScene
+
+
 @onready var game_text:= $StartMarginContainer/GameText
 @onready var start_button:= $StartMarginContainer/StartGameButton
-
-
 @onready var back_button:= $BackButton
 @onready var start_seq:=$StartSequence
 @onready var time_label:= $GameUi/TimeLabel
@@ -15,6 +16,9 @@ class_name HUD
 	$GameUi/P4Ui
 ]
 
+@onready var final_score_box:= $StartMarginContainer/FinalScores
+
+
 signal start_game
 
 
@@ -22,12 +26,19 @@ func _ready():
 	back_button.hide()
 
 
-func show_game_over():
+func show_game_over(player_scores:Array):
 	_show_message("Game Over")
 	start_button.show()
 	time_label.hide()
 	back_button.hide()
 	
+	for child in final_score_box.get_children():
+		child.queue_free() 
+	
+	for i in range(len(player_scores)):
+		var score_display = score_container_scene.instantiate() 
+		final_score_box.add_child(score_display)
+		score_display.create(i, player_scores[i])
 
 func show_start_game_txt():
 	_show_message("Start game?")
@@ -44,6 +55,9 @@ func _on_start_game_button_pressed():
 	start_game.emit(start_seq.mapping_screen.num_players)
 	time_label.show()
 	back_button.show()
+		
+	for child in final_score_box.get_children():
+		child.queue_free() 
 
 func update_timer(time_remaining:int):
 	# Convert time_remaining to MM:SS format and update the label

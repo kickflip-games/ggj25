@@ -10,8 +10,6 @@ extends Node2D
 @export var game_time:float = 4
 
 var _game_playing:bool= false
-
-
 var _player_data:Array[PlayerData]
 var _current_players:Array[Player]
 
@@ -32,11 +30,16 @@ func _init_player_data():
 
 
 func game_over():
-	hud.show_game_over()
+	
+	var player_scores = []
 	spawner.stop()
 	_game_playing = false
 	for _p in _current_players:
+		player_scores.append(_p.score_manager._score )
 		_p.die()
+	
+	hud.show_game_over(player_scores)
+	
 	_current_players.clear()
 
 func _instantiate_player(player_data:PlayerData):

@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://7joo32ifr0u8"]
+[gd_scene load_steps=6 format=3 uid="uid://7joo32ifr0u8"]
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_h3xh4"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="2_2cp7m"]
 [ext_resource type="PackedScene" uid="uid://bgo5kx0jbt04d" path="res://HUD/player_ui/player_ui.tscn" id="2_pcubi"]
 [ext_resource type="PackedScene" uid="uid://by0n7vee6h5nx" path="res://HUD/GameStart/start_sequence.tscn" id="4_0p38o"]
+[ext_resource type="PackedScene" uid="uid://b5yx8w3lhibvb" path="res://HUD/FinalScores/FinalScore.tscn" id="4_vhx22"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_h3xh4")
+score_container_scene = ExtResource("4_vhx22")
 
 [node name="GameUi" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -66,6 +68,24 @@ theme = ExtResource("2_2cp7m")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 90
 text = "Start Game?"
+
+[node name="FinalScores" type="HBoxContainer" parent="StartMarginContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="FinalScores" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
+layout_mode = 2
+
+[node name="FinalScores2" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
+layout_mode = 2
+
+[node name="FinalScores3" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
+layout_mode = 2
+
+[node name="FinalScores4" parent="StartMarginContainer/FinalScores" instance=ExtResource("4_vhx22")]
+layout_mode = 2
 
 [node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
 visible = false
