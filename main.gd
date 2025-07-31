@@ -7,11 +7,14 @@ extends Node2D
 @onready var spawner:=$Spawner
 @onready var hud:=$Hud
 @onready var game_timer:=$GameTimer
+@onready var background:=$Background
 @export var game_time:float = 2 * 60
 
 var _game_playing:bool= false
 var _player_data:Array[PlayerData]
 var _current_players:Array[Player]
+
+
 
 
 
@@ -49,9 +52,17 @@ func _instantiate_player(player_data:PlayerData):
 	add_child(player)
 	player.name = player_data.name
 	player.start(player_data)
-	player.powerup_activated.connect($Shockwave.create_shock)
+	player.powerup_activated.connect(_on_powerup_activated)
+	player.powerup_deactivated.connect(_on_powerup_deactivated)
 	_current_players.append(player)
 	
+
+func _on_powerup_activated(p:Player):
+	$Shockwave.create_shock()
+	background.set_color(p.player_color)
+	
+func _on_powerup_deactivated():
+	background.reset()
 
 func new_game(num_players:int):
 	TimeManager.reset()

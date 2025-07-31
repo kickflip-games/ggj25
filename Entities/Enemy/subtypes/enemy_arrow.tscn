@@ -1,22 +1,31 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj356q6nq7ki5"]
 
 [ext_resource type="PackedScene" uid="uid://dqqaa3k8s5jx7" path="res://Entities/Enemy/enemy.tscn" id="1_4eqq6"]
-[ext_resource type="Texture2D" uid="uid://drxdyscgvwivp" path="res://Art/enemy/tri3.png" id="2_w1ib5"]
+[ext_resource type="Texture2D" uid="uid://bnn5t1b0puojo" path="res://Art/triangle 2.png" id="2_a4a8t"]
 [ext_resource type="Texture2D" uid="uid://cb85yjjr8e176" path="res://Art/Kennny/face_g.png" id="3_2awl2"]
 [ext_resource type="Texture2D" uid="uid://ckg5kexir485s" path="res://Art/enemy/tri5.png" id="3_bcjtr"]
 
 [node name="Enemy" instance=ExtResource("1_4eqq6")]
 enemy_type = 1
 
-[node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_w1ib5")
+[node name="Shadow" parent="." index="1"]
+position = Vector2(-1.0000001, -3.5)
+scale = Vector2(0.62, 0.43)
+texture = ExtResource("2_a4a8t")
+
+[node name="Sprite2D" parent="." index="2"]
+scale = Vector2(0.67, 0.45)
+texture = ExtResource("2_a4a8t")
 
 [node name="Sprite2D" parent="Sprite2D" index="0"]
-position = Vector2(-2.63154, 10.5263)
+position = Vector2(-0.040035248, 29.99936)
+rotation = 3.1415927
+scale = Vector2(1, 1)
 texture = ExtResource("3_2awl2")
 
-[node name="BackgroundSprite" parent="." index="2"]
+[node name="BackgroundSprite" parent="." index="3"]
+visible = false
 texture = ExtResource("3_bcjtr")
 
-[node name="LightOccluder2D" parent="." index="5"]
+[node name="LightOccluder2D" parent="." index="6"]
 position = Vector2(-4, -0.5)

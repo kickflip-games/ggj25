@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgo5kx0jbt04d"]
+[gd_scene load_steps=5 format=3 uid="uid://bgo5kx0jbt04d"]
 
-[ext_resource type="Script" path="res://HUD/player_ui/player_ui.gd" id="1_istvb"]
+[ext_resource type="Script" uid="uid://21enfbisruj7" path="res://HUD/player_ui/player_ui.gd" id="1_istvb"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="1_v4tk5"]
 [ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="3_d54fo"]
-[ext_resource type="Script" path="res://HUD/player_ui/hp_icons.gd" id="4_3xfsx"]
 [ext_resource type="Texture2D" uid="uid://cph7evo70ts78" path="res://Art/heart.png" id="5_raufu"]
 
 [node name="PlayerUi" type="VBoxContainer"]
@@ -54,7 +53,6 @@ vertical_alignment = 1
 [node name="HealthLabel" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
-script = ExtResource("4_3xfsx")
 
 [node name="ColorRect" type="TextureRect" parent="HealthLabel"]
 custom_minimum_size = Vector2(50, 50)

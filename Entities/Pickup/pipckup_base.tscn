@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://vadgf0jnph44"]
 
-[ext_resource type="Script" path="res://Entities/Pickup/pipckup.gd" id="1_j852t"]
+[ext_resource type="Script" uid="uid://dgmommrndhawo" path="res://Entities/Pickup/pipckup.gd" id="1_j852t"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="3_aysxq"]
 [ext_resource type="PackedScene" uid="uid://bbn84rm71wge0" path="res://Entities/Pickup/PickupFx.tscn" id="4_bvvfj"]
 

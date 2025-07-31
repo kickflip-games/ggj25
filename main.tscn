@@ -1,50 +1,40 @@
 [gd_scene load_steps=24 format=3 uid="uid://cwppfyu0kwj2h"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_lsa5w"]
+[ext_resource type="Script" uid="uid://b2tm0ktnm3jf0" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_3tn8r"]
 [ext_resource type="PackedScene" uid="uid://str7kpnq2oov" path="res://Background/Background.tscn" id="2_4d8gk"]
-[ext_resource type="Script" path="res://MainCamera.gd" id="3_2f4lq"]
+[ext_resource type="Script" uid="uid://cdm80q16tmeai" path="res://MainCamera.gd" id="3_2f4lq"]
 [ext_resource type="PackedScene" uid="uid://cc81r7ciyn7gv" path="res://Spawner/spawner.tscn" id="3_a5gx5"]
-[ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="3_ro0sy"]
+[ext_resource type="Script" uid="uid://c87u3r2jlu5h5" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="3_ro0sy"]
 [ext_resource type="PackedScene" uid="uid://7joo32ifr0u8" path="res://HUD/HUD.tscn" id="4_4td82"]
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="4_ihst0"]
-[ext_resource type="Script" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="5_exxlh"]
-[ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="6_4pd7b"]
+[ext_resource type="Script" uid="uid://dxuer3rtcc80m" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="5_exxlh"]
+[ext_resource type="Script" uid="uid://doi07i8cn2xbo" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="6_4pd7b"]
 [ext_resource type="PackedScene" uid="uid://c5t8b11rju3" path="res://Shockwave/shockwave.tscn" id="7_60swm"]
-[ext_resource type="Script" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="7_w42da"]
-[ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="8_p8pca"]
-[ext_resource type="Texture2D" uid="uid://bj2sae2n2tt3c" path="res://Art/FaddedBubble.png" id="10_rmweg"]
+[ext_resource type="Script" uid="uid://buctkheiqhmij" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="7_w42da"]
+[ext_resource type="Script" uid="uid://ba7bo8cni7n4o" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="8_p8pca"]
+[ext_resource type="Shader" uid="uid://d2qc3kxasqmgo" path="res://Background/shaders/scrolling_canvas.gdshader" id="10_vivmo"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="14_pkx3m"]
 
 [sub_resource type="Resource" id="Resource_mwkiu"]
 script = ExtResource("6_4pd7b")
 frequency = Vector2(5, 5)
-phase = Vector2(1, 1)
 amplitude = Vector2(30, 30)
-offset = Vector2(0, 0)
-BlendingMode = 0
-fade_in = 0.0
-fade_out = 0.0
-start_percent = 0.0
-end_percent = 1.0
-_temp_graph = false
-bake_internal = 64
 
 [sub_resource type="Resource" id="Resource_1qpjo"]
 script = ExtResource("8_p8pca")
 PositionShake = Array[ExtResource("5_exxlh")]([SubResource("Resource_mwkiu")])
-RotationShake = Array[ExtResource("7_w42da")]([])
-ScaleShake = Array[ExtResource("5_exxlh")]([])
-bake_internal = 64
-__follow_timeline = false
 
-[sub_resource type="Curve" id="Curve_d3qv8"]
-_data = [Vector2(0, 1), 0.0, 0.0252378, 0, 0, Vector2(0.843173, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]
+shader = ExtResource("10_vivmo")
+shader_parameter/color_one = Color(0.12156863, 0.12156863, 0.12156863, 1)
+shader_parameter/color_two = Color(0.09019608, 0.09019608, 0.09019608, 1)
+shader_parameter/angle = 39.69999999999709
+shader_parameter/line_count = 20.0
+shader_parameter/speed = 3.0
+shader_parameter/blur = 0.0
 
-[sub_resource type="Gradient" id="Gradient_wf80h"]
-offsets = PackedFloat32Array(0, 0.991736)
-colors = PackedColorArray(0.4958, 0.58534, 0.74, 0.54902, 0.4599, 0.563438, 0.73, 0.701961)
+[sub_resource type="GDScript" id="GDScript_vivmo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
 
@@ -59,7 +49,6 @@ background_energy_multiplier = 2.65
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 3.34
 tonemap_mode = 1
-glow_enabled = true
 glow_intensity = 1.97
 glow_bloom = 0.41
 glow_hdr_threshold = 1.82
@@ -113,28 +102,13 @@ position = Vector2(-286.104, 282.34)
 position = Vector2(-579.529, -78.5904)
 
 [node name="ColorRect" parent="Background" index="0"]
+material = SubResource("ShaderMaterial_w48qg")
 offset_top = 44.0
 offset_right = 103.0
 offset_bottom = 1127.0
 scale = Vector2(20, 1)
-color = Color(0.152941, 0.203922, 0.313726, 1)
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(-160, 1160)
-amount = 30
-lifetime = 5.0
-speed_scale = 0.5
-randomness = 0.26
-texture = ExtResource("10_rmweg")
-emission_shape = 3
-emission_rect_extents = Vector2(2000, 1)
-spread = 52.8
-gravity = Vector2(0, -100)
-scale_amount_min = 0.01
-scale_amount_max = 0.1
-scale_amount_curve = SubResource("Curve_d3qv8")
-color = Color(0.42041, 0.526367, 0.70459, 1)
-color_ramp = SubResource("Gradient_wf80h")
+color = Color(0.12998809, 0.13256034, 0.13110273, 1)
+script = SubResource("GDScript_vivmo")
 
 [node name="GameBounds" type="Node2D" parent="."]
 
@@ -145,7 +119,7 @@ collision_mask = 3
 physics_material_override = ExtResource("4_ihst0")
 
 [node name="Polygon2D" type="Polygon2D" parent="GameBounds/GameBoundsOctagon"]
-color = Color(0.109804, 0.0588235, 0.0941176, 1)
+color = Color(0, 0, 0, 1)
 antialiased = true
 texture = SubResource("ViewportTexture_seagh")
 invert_enabled = true
@@ -273,6 +247,7 @@ environment = SubResource("Environment_eum0w")
 one_shot = true
 
 [node name="Lights" type="Node2D" parent="."]
+visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="Lights"]
 position = Vector2(-280, 56)

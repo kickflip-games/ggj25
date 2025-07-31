@@ -59,7 +59,7 @@ func handle_base_pickup(body: Node2D):
 
 func init_health_pickup():
 	print("initialising health pickup")
-	sprite.modulate = Color(1, 0, 0)  # Red
+	#sprite.modulate = Color(1, 0, 0)  # Red
 
 func handle_health_pickup(body: Node2D):
 	body.increment_health()
