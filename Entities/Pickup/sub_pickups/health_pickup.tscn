@@ -4,10 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://cph7evo70ts78" path="res://Art/heart.png" id="2_gidao"]
 
 [node name="Pick-up" instance=ExtResource("1_xyxl8")]
+collision_layer = 8
 pickup_type = 1
 
+[node name="CollisionShape2D" parent="." index="0"]
+top_level = true
+
 [node name="Sprite2D" parent="." index="2"]
+scale = Vector2(0.07, 0.07)
 texture = ExtResource("2_gidao")
 
 [node name="PickupFx" parent="." index="3"]
-color = Color(1, 1, 1, 1)
+color = Color(0.9254902, 0.5686275, 0.53333336, 1)

@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgo5kx0jbt04d"]
+[gd_scene load_steps=7 format=3 uid="uid://bgo5kx0jbt04d"]
 
 [ext_resource type="Script" uid="uid://21enfbisruj7" path="res://HUD/player_ui/player_ui.gd" id="1_istvb"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="1_v4tk5"]
-[ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="3_d54fo"]
-[ext_resource type="Texture2D" uid="uid://cph7evo70ts78" path="res://Art/heart.png" id="5_raufu"]
+[ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="3_kfeji"]
+[ext_resource type="FontFile" uid="uid://cfssoiyyfs8r7" path="res://HUD/MPLUSRounded1c.ttf" id="4_fawbg"]
+[ext_resource type="Texture2D" uid="uid://caisr1e6surtu" path="res://Art/heart_white.png" id="5_fawbg"]
+[ext_resource type="Texture2D" uid="uid://072jlqrbatbk" path="res://Art/circle.png" id="5_kfeji"]
 
 [node name="PlayerUi" type="VBoxContainer"]
-clip_contents = true
 offset_right = 968.0
 offset_bottom = 413.0
 size_flags_horizontal = 0
@@ -18,14 +19,13 @@ script = ExtResource("1_istvb")
 [node name="PanelContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 56)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="PlayerLabel" type="Label" parent="PanelContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_d54fo")
+theme_override_fonts/font = ExtResource("3_kfeji")
 text = "P1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -35,7 +35,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_d54fo")
+theme_override_fonts/font = ExtResource("3_kfeji")
 text = ":"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -45,13 +45,19 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_d54fo")
+theme_override_fonts/font = ExtResource("3_kfeji")
 text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PlayerButton" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fawbg")
+theme_override_font_sizes/font_size = 28
+text = "Mouse 1 "
+
 [node name="HealthLabel" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(50, 100)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
 [node name="ColorRect" type="TextureRect" parent="HealthLabel"]
@@ -59,7 +65,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("5_raufu")
+texture = ExtResource("5_fawbg")
 expand_mode = 3
 
 [node name="ColorRect2" type="TextureRect" parent="HealthLabel"]
@@ -67,7 +73,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("5_raufu")
+texture = ExtResource("5_fawbg")
 expand_mode = 3
 
 [node name="ColorRect3" type="TextureRect" parent="HealthLabel"]
@@ -75,7 +81,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("5_raufu")
+texture = ExtResource("5_fawbg")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
@@ -90,3 +96,32 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_v4tk5")
 theme_override_font_sizes/font_size = 40
+
+[node name="ColorRect" type="ColorRect" parent="PowerupBar"]
+show_behind_parent = true
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+
+[node name="Sparks" type="CPUParticles2D" parent="PowerupBar/ColorRect"]
+position = Vector2(7, 69)
+amount = 20
+texture = ExtResource("5_kfeji")
+lifetime = 10.0
+randomness = 0.5
+lifetime_randomness = 0.56
+fixed_fps = 20
+emission_shape = 3
+emission_rect_extents = Vector2(5.48, -63.23)
+direction = Vector2(0, 0)
+spread = 6.0
+gravity = Vector2(20, 0)
+initial_velocity_min = 86.16
+initial_velocity_max = 86.16
+scale_amount_min = 0.01
+scale_amount_max = 0.05

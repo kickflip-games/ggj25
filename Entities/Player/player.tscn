@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://brqlxi1h6j658"]
+[gd_scene load_steps=18 format=3 uid="uid://brqlxi1h6j658"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dtmwo31sg5cv6" path="res://Entities/Enemy/bouncy.tres" id="1_vr6v8"]
 [ext_resource type="Script" uid="uid://45u25v1x5xfu" path="res://Entities/Player/player.gd" id="2_88hja"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="3_p4wlt"]
 [ext_resource type="Script" uid="uid://bupcgra2ur4s8" path="res://Entities/Player/PlayerArrows.gd" id="4_enu5x"]
-[ext_resource type="Texture2D" uid="uid://c06iq18ldkxp2" path="res://Art/arrow2.png" id="5_4pbpr"]
 [ext_resource type="Texture2D" uid="uid://ddyarln4bda8c" path="res://Art/arc.png" id="5_nhbkt"]
 [ext_resource type="PackedScene" uid="uid://cme3w2rlx4n1p" path="res://Entities/Player/fx/BubbleTrail.tscn" id="6_oa2pj"]
 [ext_resource type="Texture2D" uid="uid://072jlqrbatbk" path="res://Art/circle.png" id="7_1luu2"]
@@ -12,12 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://is8lanqpy4w3" path="res://Entities/Player/fx/DashFx.tscn" id="8_7xrf5"]
 [ext_resource type="PackedScene" uid="uid://bbn84rm71wge0" path="res://Entities/Pickup/PickupFx.tscn" id="8_acva0"]
 [ext_resource type="PackedScene" uid="uid://basxc6kt5ohww" path="res://Entities/Player/PlayerScore/PlayerScore.tscn" id="9_eh0lp"]
-[ext_resource type="Texture2D" uid="uid://dyfoqxa5p7oox" path="res://Art/Kennny/face_a.png" id="11_41e4f"]
-[ext_resource type="Texture2D" uid="uid://bur6cbyglc2mc" path="res://Art/enemy/spikes4.png" id="12_jlfk4"]
-[ext_resource type="OccluderPolygon2D" uid="uid://bmtguwtudn7yv" path="res://Entities/Player/player_light_occ.tres" id="14_neut3"]
+[ext_resource type="Texture2D" uid="uid://dv827hi7aldfu" path="res://Art/face.png" id="12_r8fok"]
+[ext_resource type="Texture2D" uid="uid://b225vpxswwbbp" path="res://Art/player.png" id="12_xr8lj"]
+[ext_resource type="Script" uid="uid://dmf1a8iht63t8" path="res://Entities/Player/player_face.gd" id="14_vskfa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
-radius = 4.04475
+radius = 3.7999997
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owvpp"]
+load_path = "res://.godot/imported/spikes4.png-e3c0cdf72de55bff59697f55f9327e4c.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r8fok"]
+radius = 40.311287
 
 [node name="Player" type="RigidBody2D"]
 collision_mask = 7
@@ -30,8 +35,10 @@ max_contacts_reported = 5
 script = ExtResource("2_88hja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+top_level = true
 scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_gb1tc")
+debug_color = Color(0.9928457, 0, 0.25279868, 0.41960785)
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 visible = false
@@ -43,37 +50,32 @@ texture = ExtResource("3_p4wlt")
 script = ExtResource("4_enu5x")
 
 [node name="ActiveArrow" type="Sprite2D" parent="DirectionArrows"]
-self_modulate = Color(1, 1, 0.4, 1)
 position = Vector2(0, 1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_nhbkt")
 
 [node name="Right" type="Sprite2D" parent="DirectionArrows"]
-self_modulate = Color(1, 1, 0.4, 1)
 position = Vector2(0, 1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_nhbkt")
 
 [node name="Left" type="Sprite2D" parent="DirectionArrows"]
 visible = false
-self_modulate = Color(1, 1, 0.4, 1)
 rotation = 3.14159
 scale = Vector2(0.44, 0.35)
-texture = ExtResource("5_4pbpr")
+texture = ExtResource("5_nhbkt")
 
 [node name="Up" type="Sprite2D" parent="DirectionArrows"]
 visible = false
-self_modulate = Color(1, 1, 0.4, 1)
 rotation = -1.5708
 scale = Vector2(0.44, 0.35)
-texture = ExtResource("5_4pbpr")
+texture = ExtResource("5_nhbkt")
 
 [node name="Down" type="Sprite2D" parent="DirectionArrows"]
 visible = false
-self_modulate = Color(1, 1, 0.4, 1)
 rotation = 1.5708
 scale = Vector2(0.44, 0.35)
-texture = ExtResource("5_4pbpr")
+texture = ExtResource("5_nhbkt")
 
 [node name="BubbleTrail" parent="." instance=ExtResource("6_oa2pj")]
 
@@ -109,25 +111,30 @@ scale = Vector2(0.21, 0.21)
 texture = ExtResource("7_1luu2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("7_1luu2")
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("12_xr8lj")
 
 [node name="Face" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(0, 3.53)
-scale = Vector2(5, 5)
-texture = ExtResource("11_41e4f")
+position = Vector2(11.11, 46.32)
+scale = Vector2(1.66, 1.66)
+texture = ExtResource("12_r8fok")
+script = ExtResource("14_vskfa")
 
 [node name="StarSprite" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.18, 0.18)
-texture = ExtResource("12_jlfk4")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = ExtResource("14_neut3")
+texture = SubResource("CompressedTexture2D_owvpp")
 
 [node name="MessagePoint" type="Marker2D" parent="."]
 position = Vector2(-2, -28)
 
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_r8fok")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="powerup_ready" from="Score" to="." method="_on_score_powerup_ready"]
 [connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_timer_timeout"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_entered"]

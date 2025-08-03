@@ -22,6 +22,7 @@ DampedOscillator="*res://addons/DampedOscillator/scripts/damped_oscillator.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 TimeManager="*res://TimeManager/TimeManager.tscn"
 PopupFx="*res://PopupFx/popup_fx.gd"
+MusicManager="*res://Music/MusicManager.tscn"
 
 [display]
 
@@ -67,6 +68,7 @@ player3={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Walls"
+2d_physics/layer_4="Pickup"
 
 [physics]
 

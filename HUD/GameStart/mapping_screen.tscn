@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dojiuhnlpuv4h"]
 
-[ext_resource type="Script" path="res://HUD/GameStart/mapping_screen.gd" id="1_uw4tk"]
-[ext_resource type="Shader" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
+[ext_resource type="Script" uid="uid://c55r2g6oqnhl1" path="res://HUD/GameStart/mapping_screen.gd" id="1_uw4tk"]
+[ext_resource type="Shader" uid="uid://bx43wnjhgamlw" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
 [ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="3_ivu4n"]
 [ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="3_m0nyd"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="4_pg3lh"]
@@ -40,7 +40,7 @@ offset_right = 1919.0
 offset_bottom = 572.0
 theme_override_fonts/font = ExtResource("3_ivu4n")
 theme_override_font_sizes/font_size = 50
-text = "press any key to play..."
+text = "press any key/button to play..."
 horizontal_alignment = 1
 vertical_alignment = 1
 

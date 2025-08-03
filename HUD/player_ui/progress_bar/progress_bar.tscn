@@ -1,0 +1,153 @@
+[gd_scene load_steps=19 format=3 uid="uid://d1uyrcwt1q4ew"]
+
+[ext_resource type="Texture2D" uid="uid://dawsab5objsh2" path="res://HUD/player_ui/progress_bar/assets/bar_background.png" id="1_7xnxg"]
+[ext_resource type="Script" uid="uid://bvdvwstgfal2h" path="res://HUD/player_ui/progress_bar/custom_progress_bar.gd" id="1_08p5v"]
+[ext_resource type="Texture2D" uid="uid://b27ye5v0n3tub" path="res://HUD/player_ui/progress_bar/assets/bar_fill.png" id="2_p46gt"]
+[ext_resource type="Texture2D" uid="uid://b01mnp8qxfbh7" path="res://HUD/player_ui/progress_bar/assets/small_circle.png" id="3_3i5ib"]
+[ext_resource type="Shader" uid="uid://nfwkrcbtls48" path="res://HUD/player_ui/progress_bar/assets/flame_shape.gdshader" id="4_xffoe"]
+[ext_resource type="Texture2D" uid="uid://88m347xt4ima" path="res://HUD/player_ui/progress_bar/assets/flame_shape.png" id="5_5bw2v"]
+
+[sub_resource type="Curve" id="Curve_o2trs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.766062, 0.758273), -0.89666, -0.89666, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0slke"]
+curve = SubResource("Curve_o2trs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cf5ao"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 37.23
+spread = 28.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, -40, 0)
+damping_min = 10.0
+damping_max = 20.0
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_0slke")
+color = Color(1, 0.842143, 0.265389, 1)
+
+[sub_resource type="Gradient" id="Gradient_tnvw3"]
+offsets = PackedFloat32Array(0, 0.205326, 0.456186, 1)
+colors = PackedColorArray(1, 0.0125973, 0, 1, 1, 0.4, 0, 1, 1, 0.716667, 0, 1, 1, 0.835294, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_od6wt"]
+gradient = SubResource("Gradient_tnvw3")
+
+[sub_resource type="Gradient" id="Gradient_0uux0"]
+offsets = PackedFloat32Array(0, 0.136598, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.392361, 0.392361, 0.392361, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e0pic"]
+noise_type = 2
+frequency = 0.0105
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 2.745
+fractal_gain = 0.315
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fd618"]
+noise = SubResource("FastNoiseLite_e0pic")
+color_ramp = SubResource("Gradient_0uux0")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bmip"]
+resource_local_to_scene = true
+shader = ExtResource("4_xffoe")
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_fd618")
+shader_parameter/flame_gradient = SubResource("GradientTexture1D_od6wt")
+shader_parameter/time_scale = 1.0
+shader_parameter/offset = Vector2(0.715, 0.295)
+
+[sub_resource type="Gradient" id="Gradient_t7585"]
+offsets = PackedFloat32Array(0, 0.164089, 0.469931, 1)
+colors = PackedColorArray(1, 0.0125973, 0, 1, 1, 0.4, 0, 1, 1, 0.716667, 0, 1, 1, 0.835294, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5nngw"]
+gradient = SubResource("Gradient_t7585")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gtfv"]
+resource_local_to_scene = true
+shader = ExtResource("4_xffoe")
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_fd618")
+shader_parameter/flame_gradient = SubResource("GradientTexture1D_5nngw")
+shader_parameter/time_scale = 0.7
+shader_parameter/offset = Vector2(0, 0)
+
+[node name="CustomProgressBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_08p5v")
+debugging = true
+debug_step_size = 10.0
+
+[node name="progress_bar" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 625.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7xnxg")
+
+[node name="barFill" type="TextureRect" parent="progress_bar"]
+self_modulate = Color(1, 0.317647, 0.027451, 1)
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = -14.859985
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p46gt")
+expand_mode = 1
+
+[node name="Sparks" type="GPUParticles2D" parent="progress_bar/barFill"]
+position = Vector2(29, 32)
+amount = 20
+texture = ExtResource("3_3i5ib")
+lifetime = 3.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_cf5ao")
+
+[node name="Sparks2" type="GPUParticles2D" parent="progress_bar/barFill"]
+position = Vector2(344, 49)
+amount = 20
+texture = ExtResource("3_3i5ib")
+lifetime = 3.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_cf5ao")
+
+[node name="Flame2" type="Sprite2D" parent="progress_bar/barFill"]
+material = SubResource("ShaderMaterial_2bmip")
+position = Vector2(429, 107)
+rotation = 1.33626
+scale = Vector2(1.11954, 2.21433)
+texture = ExtResource("5_5bw2v")
+
+[node name="Flame3" type="Sprite2D" parent="progress_bar/barFill"]
+material = SubResource("ShaderMaterial_2bmip")
+position = Vector2(536, -35)
+rotation = 1.72083
+scale = Vector2(1.05216, 2.29799)
+texture = ExtResource("5_5bw2v")
+
+[node name="Flame" type="Sprite2D" parent="progress_bar/barFill"]
+material = SubResource("ShaderMaterial_3gtfv")
+position = Vector2(182, 42)
+rotation = 1.50106
+scale = Vector2(0.734281, 3.38555)
+texture = ExtResource("5_5bw2v")

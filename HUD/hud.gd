@@ -67,12 +67,33 @@ func _on_start_game_button_pressed():
 	for child in final_score_box.get_children():
 		child.queue_free() 
 
-func update_timer(time_remaining:int):
-	# Convert time_remaining to MM:SS format and update the label
+
+var flashing := false
+var flash_tween: Tween = null
+
+func update_timer(time_remaining: int):
 	var minutes = int(time_remaining / 60)
 	var seconds = int(time_remaining % 60)
 	time_label.text = "%02d:%02d" % [minutes, seconds]
 
+	if time_remaining < 10 and not flashing:
+		_start_flashing()
+	elif time_remaining >= 10 and flashing:
+		_stop_flashing()
+
+
+func _start_flashing():
+	flashing = true
+	flash_tween = create_tween()
+	flash_tween.set_loops()  # loop forever
+	flash_tween.tween_property(time_label, "modulate", Color.RED, 0.3).set_trans(Tween.TRANS_SINE)
+	flash_tween.tween_property(time_label, "modulate", Color.WHITE, 0.3).set_trans(Tween.TRANS_SINE)
+
+func _stop_flashing():
+	if flash_tween:
+		flash_tween.kill()
+	time_label.modulate = Color.WHITE
+	flashing = false
 
 func _on_back_button_pressed():
 	get_tree().reload_current_scene()

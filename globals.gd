@@ -17,8 +17,8 @@ var MainCam:MainCamera
 
 
 var PLAYER_COLORS = [
-	Color("fcfc6c"),
-	Color("#f88dc7"),
+	Color("bae1e6"),
+	Color("#d7eaa3"),
 	Color("70c98b"),
 	Color("8d5ddd"),
 ]

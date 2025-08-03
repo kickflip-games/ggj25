@@ -1,19 +1,25 @@
 class_name PlayerUi
 extends VBoxContainer
 
-@onready var _bar = $PowerupBar
-@onready var _scoreLbl = $PanelContainer/ScoreLabel
-@onready var _playerLbl = $PanelContainer/PlayerLabel
-@onready var hearts := [ # 3 rects with the heart texture
+@onready var _bar:ProgressBar = $PowerupBar
+@onready var _scoreLbl:Label = $PanelContainer/ScoreLabel
+@onready var _playerLbl:Label = $PanelContainer/PlayerLabel
+@onready var hearts:Array[TextureRect] = [ # 3 rects with the heart texture
 	$HealthLabel/ColorRect,
 	$HealthLabel/ColorRect2,
 	$HealthLabel/ColorRect3
 ]
+@onready var _sparks:Array[CPUParticles2D] = [
+	$PowerupBar/ColorRect/Sparks,
+]
+@onready var _playerButtonLabel = $PlayerButton
 
 var _col: Color
 var _current_score: int = 0
+var _player_id: int = -1  # Store the player ID
 
-func write_respawning():
+func write_resapwning():
+	$Label.modulate = _col
 	$Label.text = "Respawning..."
 	# Add a gentle pulse to respawning text
 	var tween = create_tween().set_loops()
@@ -21,7 +27,8 @@ func write_respawning():
 	tween.tween_property($Label, "modulate:a", 1.0, 1.0)
 	
 func write_bash_mode():
-	$Label.text = "BASH MODE"
+	$Label.modulate = _col
+	$Label.text = "STAR POWER"
 	# Make BASH MODE feel energetic
 	var tween = create_tween()
 	tween.parallel().tween_property($Label, "scale", Vector2(1.2, 1.2), 0.1)
@@ -31,6 +38,7 @@ func write_bash_mode():
 	tween.parallel().tween_property($Label, "rotation", 0, 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 
 func reset(player_id: int):
+	_player_id = player_id  # Store the player ID
 	_col = Globals.PLAYER_COLORS[player_id]
 	update_score(0)
 	update_health(Globals.MAX_HP)
@@ -38,6 +46,67 @@ func reset(player_id: int):
 	_playerLbl.text = "P" + str(player_id + 1)
 	set_colors()
 	write_bash_mode()
+	update_player_button_display()  # Update the button display
+	print("player colors reset")
+
+func update_player_button_display():
+	if _player_id == -1:
+		_playerButtonLabel.text = ""
+		return
+	
+	var player_action_name = "player" + str(_player_id)
+	
+	# Check if this player has a mapped input
+	if InputMap.has_action(player_action_name):
+		var events = InputMap.action_get_events(player_action_name)
+		if events.size() > 0:
+			var input_text = get_input_description(events[0])
+			_playerButtonLabel.text = input_text
+			_playerButtonLabel.modulate = _col
+		else:
+			_playerButtonLabel.text = "No Input"
+			_playerButtonLabel.modulate = Color.GRAY
+	else:
+		_playerButtonLabel.text = "Not Mapped"
+		_playerButtonLabel.modulate = Color.GRAY
+
+func get_input_description(event: InputEvent) -> String:
+	if event is InputEventKey:
+		var key_string = OS.get_keycode_string(event.keycode)
+		# You can customize the display format here
+		match key_string:
+			"Space":
+				return "SPACE"
+			"Enter":
+				return "ENTER"
+			"Shift":
+				return "SHIFT"
+			"Control":
+				return "CTRL"
+			_:
+				return key_string.to_upper()
+	elif event is InputEventMouseButton:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				return "LEFT CLICK"
+			MOUSE_BUTTON_RIGHT:
+				return "RIGHT CLICK"
+			MOUSE_BUTTON_MIDDLE:
+				return "MIDDLE CLICK"
+			MOUSE_BUTTON_WHEEL_UP:
+				return "WHEEL UP"
+			MOUSE_BUTTON_WHEEL_DOWN:
+				return "WHEEL DOWN"
+			_:
+				return "MOUSE " + str(event.button_index)
+	elif event is InputEventScreenTouch:
+		return "TOUCH " + str(event.index)
+	else:
+		return "UNKNOWN"
+
+# Call this if you want to refresh the button display (e.g., if controls change mid-game)
+func refresh_button_display():
+	update_player_button_display()
 
 func set_colors():
 	_playerLbl.modulate = _col
@@ -47,6 +116,12 @@ func set_colors():
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = _col
 	_bar.add_theme_stylebox_override("fill", sb)
+	for fx in _sparks:
+		fx.color = _col
+	# Update button label color too
+	if _playerButtonLabel:
+		_playerButtonLabel.modulate = _col
+	#_set_flame_col()
 
 func update_score(score: int):
 	var old_score = _current_score
@@ -67,20 +142,26 @@ func update_score(score: int):
 func _animate_score_count(value: int):
 	_scoreLbl.text = str(value).pad_zeros(4)
 
+
 func update_health(health: int):
+	print("HEALTH update ", health)
 	# Color the first "health" hearts by color, others are set to black
 	for i in range(hearts.size()):
 		var heart = hearts[i]
 		if i < health:
+			# Check if heart was previously black/transparent
+			var was_black = heart.modulate.is_equal_approx(Color.BLACK) or heart.modulate.a < 0.1
 			heart.modulate = _col
+			
 			# Heart pop animation when gaining health
-			if heart.modulate == Color.BLACK:
+			if was_black:
 				var tween = create_tween()
 				tween.tween_property(heart, "scale", Vector2(1.4, 1.4), 0.15).set_ease(Tween.EASE_OUT)
 				tween.tween_property(heart, "scale", Vector2(1.0, 1.0), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 		else:
 			# Animate hearts losing health with a shrink effect
-			if heart.modulate != Color.BLACK:
+			var was_colored = !heart.modulate.is_equal_approx(Color.BLACK) and heart.modulate.a > 0.1
+			if was_colored:
 				var tween = create_tween()
 				tween.parallel().tween_property(heart, "scale", Vector2(0.8, 0.8), 0.1)
 				tween.parallel().tween_property(heart, "modulate", Color.BLACK, 0.1)
@@ -155,31 +236,6 @@ func _play_full_bar_effect(drama_level := 3.0):
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 
 
-func play_combo_fx(combo_multiplier: int):
-	# Create a combo feedback effect
-	var combo_label = $Label
-	var original_text = combo_label.text
-	combo_label.text = "COMBO x" + str(combo_multiplier) + "!"
-	
-	var tween = create_tween()
-	# Rainbow color cycle for high combos
-	if combo_multiplier > 3:
-		for i in range(combo_multiplier):
-			var hue = float(i) / float(combo_multiplier)
-			var rainbow_color = Color.from_hsv(hue, 0.8, 1.0)
-			tween.tween_property(combo_label, "modulate", rainbow_color, 0.1)
-	else:
-		# Simple flash for low combos
-		tween.tween_property(combo_label, "modulate", Color.YELLOW, 0.1)
-		tween.tween_property(combo_label, "modulate", _col, 0.1)
-	
-	# Scale bounce
-	tween.parallel().tween_property(combo_label, "scale", Vector2(1.5, 1.5), 0.2)
-	tween.tween_property(combo_label, "scale", Vector2(1.0, 1.0), 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	
-	# Return to original text after delay
-	tween.tween_interval(1.0)
-	tween.tween_callback(func(): combo_label.text = original_text)
 
 func play_hp_fx():
 	# Screen shake effect for damage
@@ -258,8 +314,3 @@ func _stop_full_bar_pulse():
 	# Return bar to normal color
 	var tween = create_tween()
 	tween.tween_property(_bar, "modulate", Color.WHITE, 0.2)
-
-
-func write_resapwning():
-	# change text to saw "RESPAWNING"
-	pass

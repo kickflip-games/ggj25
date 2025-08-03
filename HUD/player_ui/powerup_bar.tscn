@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq2a4fmlk07m6"]
+
+[ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="2_1xik2"]
+
+[sub_resource type="GDScript" id="GDScript_ed0ew"]
+script/source = "# FireProgressBar.gd
+# Attach this script to a ProgressBar node
+extends ProgressBar
+
+@export var inner_fire_color: Color = Color(1.0, 0.5, 0.0, 1.0)  # Bright orange core
+@export var outer_fire_color: Color = Color(1.0, 0.2, 0.0, 1.0)  # Reddish outer glow
+@export var border_color: Color = Color.WHITE
+@export var border_width: float = 2.0
+@export var animated: bool = true
+
+# Fire effect parameters
+@export var inner_threshold: float = 0.4
+@export var outer_threshold: float = 0.15
+@export var soft_edge: float = 0.04
+
+# Debug parameters
+@export var debug: bool = false
+@export var debug_step_size: float = 10.0  # Progress bar uses 0-100 by default
+
+var shader_material: ShaderMaterial
+
+func _ready():
+	# Set up progress bar properties
+	min_value = 0.0
+	max_value = 100.0
+	step = 1.0
+	value = 50.0  # Start at 50%
+	
+	# Create and assign the shader material
+	shader_material = ShaderMaterial.new()
+	# Load your shader file - make sure the path is correct!
+	var shader = load(\"res://FireShaders/fire.tres\") as Shader
+	if shader:
+		shader_material.shader = shader
+		material = shader_material
+		# Set initial shader parameters
+		update_shader_params()
+		# Connect to value changes
+		value_changed.connect(_on_value_changed)
+	else: 
+		print(\"Error: Could not load shader file!\")
+
+func _on_value_changed(new_value: float):
+	update_shader_params()
+
+func update_shader_params():
+	if shader_material:
+		# Convert progress bar value (0-100) to shader progress (0-1)
+		var progress_normalized = value / max_value
+		shader_material.set_shader_parameter(\"progress\", progress_normalized)
+		shader_material.set_shader_parameter(\"inner\", inner_fire_color)
+		shader_material.set_shader_parameter(\"outer\", outer_fire_color)
+		shader_material.set_shader_parameter(\"border_color\", border_color)
+		shader_material.set_shader_parameter(\"border_width\", border_width)
+		shader_material.set_shader_parameter(\"inner_threshold\", inner_threshold)
+		shader_material.set_shader_parameter(\"outer_threshold\", outer_threshold)
+		shader_material.set_shader_parameter(\"soft_edge\", soft_edge)
+
+func _process(delta):
+	if animated and shader_material:
+		shader_material.set_shader_parameter(\"time\", Time.get_ticks_msec() / 1000.0)
+	
+	# Debug input handling
+	if debug:
+		handle_debug_input()
+
+func handle_debug_input():
+	if Input.is_action_just_pressed(\"ui_up\"):
+		value = min(value + debug_step_size, max_value)
+		print(\"Progress increased to: \", value, \"%\")
+	elif Input.is_action_just_pressed(\"ui_down\"):
+		value = max(value - debug_step_size, min_value)
+		print(\"Progress decreased to: \", value, \"%\")
+	
+	# Fine control
+	if Input.is_action_just_pressed(\"ui_right\"):
+		value = min(value + 1.0, max_value)
+		print(\"Progress fine-tuned to: \", value, \"%\")
+	elif Input.is_action_just_pressed(\"ui_left\"):
+		value = max(value - 1.0, min_value)
+		print(\"Progress fine-tuned to: \", value, \"%\")
+	
+	# Reset to 0 or set to 100%
+	if Input.is_action_just_pressed(\"ui_home\"):
+		value = min_value
+		print(\"Progress reset to \", value, \"%\")
+	elif Input.is_action_just_pressed(\"ui_end\"):
+		value = max_value
+		print(\"Progress set to \", value, \"%\")
+
+# Convenient wrapper functions
+func animate_to_progress(target_percent: float, duration: float = 1.0):
+	var tween = create_tween()
+	tween.tween_property(self, \"value\", target_percent, duration)
+
+func set_fire_colors(inner: Color, outer: Color, border: Color = Color.WHITE):
+	inner_fire_color = inner
+	outer_fire_color = outer
+	border_color = border
+	update_shader_params()
+
+func set_fire_intensity(inner_thresh: float, outer_thresh: float, soft: float = 0.04):
+	inner_threshold = inner_thresh
+	outer_threshold = outer_thresh
+	soft_edge = soft
+	update_shader_params()
+
+# Example usage functions
+func set_progress_percent(percent: float):
+	value = clamp(percent, min_value, max_value)
+
+func get_progress_percent() -> float:
+	return value
+"
+
+[node name="PowerupBar" type="ProgressBar"]
+custom_minimum_size = Vector2(50, 0)
+offset_right = 188.0
+offset_bottom = 29.0
+size_flags_vertical = 3
+theme = ExtResource("2_1xik2")
+script = SubResource("GDScript_ed0ew")
+debug = true

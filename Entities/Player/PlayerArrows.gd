@@ -3,14 +3,7 @@ extends Node2D
 var _tween:Tween
 @onready var active_arrow:=$ActiveArrow
 
-#func _start_tween(arrow:Sprite2D):
-	#if _tween and _tween.is_running():
-		#_tween.kill()
-	#_tween = create_tween().set_loops()
-	#_tween.tween_property(arrow, "modulate:a", 0.5, 0.3)
-	#_tween.tween_property(arrow, "modulate:a", 0.3, 0.3)
-	#
-	
+
 	
 func _start_tween(arrow:Sprite2D) -> void:
 	var new_rotation = arrow.rotation_degrees

@@ -48,14 +48,15 @@ func stop():
 
 func _spawn_enemy():
 	var enemy_scene = enemy_scenes[randi()%len(enemy_scenes)]
-	_spawn_entity(enemy_scene, _active_enemies, max_enemies)
+	var e = _spawn_entity(enemy_scene, _active_enemies, max_enemies) as Enemy
+	
 	
 func _spawn_powerup():
 	var powerup_scene = pickup_scenes[1 + randi() % (len(pickup_scenes) - 1)] # Takes a random pickup excluding the first element (base pickup)
 	_spawn_entity(powerup_scene, _active_powerups, 1)
 
 
-func _spawn_entity(packed_scene:PackedScene, current_list:Array[Node2D], max_amount:int) -> void:
+func _spawn_entity(packed_scene:PackedScene, current_list:Array[Node2D], max_amount:int) -> Node2D:
 	if packed_scene and current_list.size() < max_amount:
 		var _instance = packed_scene.instantiate()
 		add_child(_instance)
@@ -84,6 +85,29 @@ func _spawn_entity(packed_scene:PackedScene, current_list:Array[Node2D], max_amo
 		_instance.tree_exiting.connect(_on_instance_removed.bind(_instance, current_list))
 		
 		#print("Pickup spawned! Total: ", _active_pickups.size(), " Position: ", pickup_instance.position)
+		return _instance
+	return null
 
 func _on_instance_removed(instance: Node2D,scene_list:Array[Node2D]) -> void:
 	scene_list.erase(instance)
+
+
+
+
+func freeze():
+	for enemy in _active_enemies:
+		if is_instance_valid(enemy):
+			enemy.freeze()
+	
+	pickup_timer.paused = true
+	enemy_timer.paused = true
+	powerup_timer.paused = true
+
+func resume():
+	for enemy in _active_enemies:
+		if is_instance_valid(enemy):
+			enemy.resume()
+	
+	pickup_timer.paused = false
+	enemy_timer.paused = false
+	powerup_timer.paused = false

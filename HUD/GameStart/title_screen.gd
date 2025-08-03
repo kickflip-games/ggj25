@@ -1,3 +1,4 @@
+"""TitleScreen"""
 extends Control
 
 signal button_pressed(num_players: int)

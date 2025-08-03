@@ -1,0 +1,23 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://b3a58iq1txu3d"]
+
+[sub_resource type="Curve" id="Curve_7tbis"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.766062, 0.758273), -0.89666, -0.89666, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0slke"]
+curve = SubResource("Curve_7tbis")
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 37.23
+spread = 28.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, -40, 0)
+damping_min = 10.0
+damping_max = 20.0
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_0slke")

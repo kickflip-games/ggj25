@@ -7,7 +7,11 @@ const   SPEED:float = 3.0
 const   LINES:int = 20
 
 func _ready():
-	shader_mat = $ColorRect.material
+	var mat = $ColorRect.material
+	if mat is ShaderMaterial:
+		shader_mat = mat
+	else:
+		push_error("Material is not a ShaderMaterial!")
 	reset()
 	
 	
@@ -17,10 +21,13 @@ func reset():
 	_set_shader(SPEED, LINES, C1, C2)
 	
 func set_color(c:Color):
-	_set_shader(SPEED*2, LINES*2, c, C2)
+	print("Set background color based on player")
+	var c1 = c.darkened(0.8)  # 80% darker
+	var c2 = c.darkened(0.6)  # 50% darker
+	_set_shader(SPEED*2, LINES*2, c1, c2)
 
 func _set_shader(_speed:float, _lines:int, _c1:Color, _c2:Color):
-	shader_mat.set_shader_parameter("Speed", _speed)
-	shader_mat.set_shader_parameter("Line Count", _lines)
-	shader_mat.set_shader_parameter("Color 1", _c1)
-	shader_mat.set_shader_parameter("Color 2", _c2)
+	shader_mat.set_shader_parameter("speed", _speed)
+	shader_mat.set_shader_parameter("line_count", float(_lines))  # cast to float
+	shader_mat.set_shader_parameter("color_one", _c1)
+	shader_mat.set_shader_parameter("color_two", _c2)

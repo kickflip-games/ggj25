@@ -24,6 +24,7 @@ func _ready():
 	_init_player_data()
 	Globals.MainCam = $Camera2D
 	
+	
 func _init_player_data():
 	_player_data = [
 		PlayerData.new(0, $StartPositions/P1.global_position, hud.player_uis[0]),
@@ -60,9 +61,20 @@ func _instantiate_player(player_data:PlayerData):
 func _on_powerup_activated(p:Player):
 	$Shockwave.create_shock()
 	background.set_color(p.player_color)
+	spawner.freeze()
 	
-func _on_powerup_deactivated():
+	for _p in _current_players:
+		if _p != p:
+			_p._speed = Player.BASE_SPEED / 2.0
+	
+func _on_powerup_deactivated(p:Player):
 	background.reset()
+	spawner.resume()
+	for _p in _current_players:
+		if _p != p:
+			_p._speed = Player.BASE_SPEED 
+	
+	#Engine.time_scale = 1
 
 func new_game(num_players:int):
 	TimeManager.reset()
