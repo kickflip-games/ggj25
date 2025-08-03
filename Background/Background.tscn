@@ -1,11 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://str7kpnq2oov"]
+[gd_scene load_steps=5 format=3 uid="uid://str7kpnq2oov"]
 
-[ext_resource type="Script" path="res://Background/background.gd" id="1_xo0pc"]
+[ext_resource type="Script" uid="uid://cwg4lfb4fvt8r" path="res://Background/background.gd" id="1_xo0pc"]
+[ext_resource type="Texture2D" uid="uid://bje6nages4ngn" path="res://Art/background.png" id="2_tvlqp"]
+[ext_resource type="Shader" uid="uid://d2qc3kxasqmgo" path="res://Background/shaders/scrolling_canvas.gdshader" id="3_2t0lo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxy3p"]
+shader = ExtResource("3_2t0lo")
+shader_parameter/color_one = Color(0.78039217, 0.78039217, 0.78039217, 1)
+shader_parameter/color_two = Color(0.8117647, 0.8117647, 0.8117647, 1)
+shader_parameter/angle = 39.69999999999709
+shader_parameter/line_count = 20.0
+shader_parameter/speed = 3.0
+shader_parameter/blur = 0.0
+shader_parameter/alpha = 0.64166665
 
 [node name="Background" type="Node2D"]
 script = ExtResource("1_xo0pc")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 2623.0
-offset_bottom = 2392.0
-color = Color(1, 0.48, 0.48, 1)
+[node name="StaticBackground" type="TextureRect" parent="."]
+offset_left = -22.471008
+offset_top = -213.4096
+offset_right = 2365.529
+offset_bottom = 1454.5903
+texture = ExtResource("2_tvlqp")
+
+[node name="MovingBars" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_hxy3p")
+offset_left = -326.00003
+offset_top = -259.0
+offset_right = -172.35002
+offset_bottom = 1546.0
+scale = Vector2(20, 1)
+color = Color(0.12998809, 0.13256034, 0.13110273, 1)

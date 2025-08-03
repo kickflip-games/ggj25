@@ -2,11 +2,11 @@ shader_type canvas_item;
 
 uniform vec3 color_one : source_color; 
 uniform vec3 color_two : source_color;  
-
 uniform float angle = 20.0;
 uniform float line_count = 20.0; 
 uniform float speed = 10.0; 
-uniform float blur : hint_range(0.0, 2.0, 0); 
+uniform float blur : hint_range(0.0, 2.0, 0.0); 
+uniform float alpha : hint_range(0.0, 1.0, 0.0) = 1.0;
 
 vec2 rotate(vec2 uv, float rotation_angle) {
 	float radians_angle = radians(rotation_angle);
@@ -28,5 +28,5 @@ void fragment() {
 	uv = rotate(uv, angle);
 	float g = stripe(uv);
 	vec3 col = mix(color_one, color_two, smoothstep(0.0, blur, g));
-	COLOR = vec4(col, 1.0);
+	COLOR = vec4(col, alpha);
 }

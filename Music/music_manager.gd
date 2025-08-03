@@ -17,7 +17,7 @@ var normal_music: AudioStream = preload("res://Music/normal.mp3")
 var powerup_music: AudioStream= preload("res://Music/superstar.mp3")
 
 # Transition settings
-var crossfade_duration: float = 0.75  # seconds
+var crossfade_duration: float = 0.1  # seconds
 var normal_volume: float = 0.0  # dB
 var powerup_volume: float = 0.0  # dB
 

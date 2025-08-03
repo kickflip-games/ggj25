@@ -41,10 +41,15 @@ func show_game_over(player_scores:Array):
 	for child in final_score_box.get_children():
 		child.queue_free() 
 	
+	var max_score = player_scores.max()
+
+	
 	for i in range(len(player_scores)):
 		var score_display = score_container_scene.instantiate() 
 		final_score_box.add_child(score_display)
-		score_display.create(i, player_scores[i])
+		var is_winner = (player_scores[i] == max_score)
+		score_display.create(i, player_scores[i], is_winner)  # Pass winner status
+		
 
 func show_start_game_txt():
 	_show_message("Start game?")

@@ -7,7 +7,7 @@ const POWERUP_THRESHOLD:int = 3
 
 
 
-const COLOR1:Color = Color("#231a28")
+const COLOR1:Color = Color("383d69ff")
 const COLOR2:Color = Color("#273450")
 const COLOR3:Color = Color("#305358")
 const COLOR4:Color = Color("#43785a")
@@ -17,10 +17,10 @@ var MainCam:MainCamera
 
 
 var PLAYER_COLORS = [
+	Color("f8e688ff"),
+	Color("dceba6ff"),
+	Color("e1bfecff"),
 	Color("bae1e6"),
-	Color("#d7eaa3"),
-	Color("70c98b"),
-	Color("8d5ddd"),
 ]
 
 func create_flash_tween(sprite:Sprite2D):

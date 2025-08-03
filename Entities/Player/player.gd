@@ -171,7 +171,7 @@ func kick_in_direction(dir: int):
 		
 	linear_velocity = Vector2.ZERO
 	apply_central_impulse(DIRECTION_VECTORS[dir] * _kick_force)
-	DampedOscillator.animate(sprite, "scale", 350.0, 30.0, 40.0, 0.2)
+	DampedOscillator.animate(sprite, "scale", 350.0, 30.0, 40.0, 0.05)
 	dash_fx.emitting = true
 
 func create_squish_effect(collision_normal: Vector2):
@@ -312,8 +312,6 @@ func _on_score_powerup_ready():
 	"""Activate powerup mode"""
 	if not _in_power_up_mode:
 		print("Player went super saiyan")
-		Globals.MainCam.SHAKE() 
-		MusicManager.enter_powerup_mode()
 		powerup_activated.emit(self)
 		_in_power_up_mode = true
 		powerup_timer.start(POWERUP_TIME)
@@ -348,7 +346,6 @@ func _on_score_powerup_ready():
 
 func _on_powerup_timer_timeout():
 	"""Deactivate powerup mode"""
-	MusicManager.exit_powerup_mode()
 	_in_power_up_mode = false
 	_speed = BASE_SPEED
 	_kick_force = KICK_FORCE

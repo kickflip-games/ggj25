@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene load_steps=21 format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" uid="uid://b2tm0ktnm3jf0" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_3tn8r"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://c5t8b11rju3" path="res://Shockwave/shockwave.tscn" id="7_60swm"]
 [ext_resource type="Script" uid="uid://buctkheiqhmij" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="7_vivmo"]
 [ext_resource type="Script" uid="uid://ba7bo8cni7n4o" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="8_p8pca"]
-[ext_resource type="Shader" uid="uid://d2qc3kxasqmgo" path="res://Background/shaders/scrolling_canvas.gdshader" id="10_vivmo"]
 [ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="14_pkx3m"]
 
 [sub_resource type="Resource" id="Resource_mwkiu"]
@@ -24,15 +23,6 @@ amplitude = Vector2(30, 30)
 [sub_resource type="Resource" id="Resource_1qpjo"]
 script = ExtResource("8_p8pca")
 PositionShake = Array[ExtResource("5_exxlh")]([SubResource("Resource_mwkiu")])
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]
-shader = ExtResource("10_vivmo")
-shader_parameter/color_one = Color(0.78039217, 0.78039217, 0.78039217, 1)
-shader_parameter/color_two = Color(0.8117647, 0.8117647, 0.8117647, 1)
-shader_parameter/angle = 39.69999999999709
-shader_parameter/line_count = 20.0
-shader_parameter/speed = 3.0
-shader_parameter/blur = 0.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
 
@@ -99,14 +89,6 @@ position = Vector2(-286.104, 282.34)
 [node name="Background" parent="." instance=ExtResource("2_4d8gk")]
 position = Vector2(-579.529, -78.5904)
 
-[node name="ColorRect" parent="Background" index="0"]
-material = SubResource("ShaderMaterial_w48qg")
-offset_top = 44.0
-offset_right = 103.0
-offset_bottom = 1127.0
-scale = Vector2(20, 1)
-color = Color(0.12998809, 0.13256034, 0.13110273, 1)
-
 [node name="GameBounds" type="Node2D" parent="."]
 
 [node name="GameBoundsOctagon" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
@@ -116,7 +98,7 @@ collision_mask = 3
 physics_material_override = ExtResource("4_ihst0")
 
 [node name="Polygon2D" type="Polygon2D" parent="GameBounds/GameBoundsOctagon"]
-color = Color(0, 0, 0, 1)
+modulate = Color(0, 0.062499993, 0.24999999, 1)
 antialiased = true
 texture = SubResource("ViewportTexture_seagh")
 invert_enabled = true
@@ -285,6 +267,5 @@ texture_scale = 3.32
 [connection signal="start_game" from="Hud" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 
-[editable path="Background"]
 [editable path="Spawner"]
 [editable path="Shockwave"]

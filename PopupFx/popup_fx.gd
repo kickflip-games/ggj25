@@ -1,7 +1,11 @@
 extends Node
 
+const CUSTOM_FONT = preload("res://HUD/Sniglet.ttf")
+
 func display_popup(msg: String, position: Vector2, color: Color = Color.WHITE):
 	var label = Label.new()
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font = CUSTOM_FONT
 	label.global_position = position
 	label.text = msg
 	label.z_index = 5 
@@ -52,10 +56,10 @@ func display_combo_popup(combo_count: int, position: Vector2, color: Color = Col
 	var t = get_tree().create_tween().set_parallel()
 	
 	# Different effects based on combo level
-	if combo_count >= 3:
+	if combo_count >= 7:
 		# Epic combo (10+): Rainbow cycle + dramatic movement
 		_create_epic_combo_effect(label, t, position)
-	elif combo_count >= 2:
+	elif combo_count >= 4:
 		# Big combo (5-9): Color cycle + big scale
 		_create_big_combo_effect(label, t, position, color)
 	else:

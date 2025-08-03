@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5yx8w3lhibvb"]
+[gd_scene load_steps=4 format=3 uid="uid://b5yx8w3lhibvb"]
 
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="1_jktpm"]
-[ext_resource type="Script" path="res://HUD/FinalScores/final_score.gd" id="2_6qwf4"]
+[ext_resource type="Script" uid="uid://cinyjsboo35ho" path="res://HUD/FinalScores/final_score.gd" id="2_6qwf4"]
+[ext_resource type="Texture2D" uid="uid://d2yq4puk55gxb" path="res://Art/particle.png" id="3_7kko1"]
 
 [node name="FinalScores" type="VBoxContainer"]
 custom_minimum_size = Vector2(300, 250)
@@ -12,9 +13,16 @@ size_flags_vertical = 4
 theme = ExtResource("1_jktpm")
 script = ExtResource("2_6qwf4")
 
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(205.5, 55)
+scale = Vector2(0.8154426, 0.3917138)
+texture = ExtResource("3_7kko1")
+
 [node name="Name" type="Label" parent="."]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
 theme_override_font_sizes/font_size = 60
 text = "Player 1"
 horizontal_alignment = 1
@@ -22,6 +30,8 @@ horizontal_alignment = 1
 [node name="Score" type="Label" parent="."]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
 theme_override_font_sizes/font_size = 60
 text = "2000"
 horizontal_alignment = 1

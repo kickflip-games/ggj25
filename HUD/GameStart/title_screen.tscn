@@ -1,9 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://bkmv2huakex1t"]
+[gd_scene load_steps=48 format=3 uid="uid://bkmv2huakex1t"]
 
 [ext_resource type="Script" uid="uid://bxbbiip61nuou" path="res://HUD/GameStart/title_screen.gd" id="1_jdsd0"]
+[ext_resource type="Texture2D" uid="uid://bje6nages4ngn" path="res://Art/background.png" id="2_0x0oo"]
 [ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="2_fltkk"]
 [ext_resource type="Shader" uid="uid://bvluootiexorm" path="res://HUD/GameStart/scroll.gdshader" id="3_hlm5s"]
-[ext_resource type="Texture2D" uid="uid://evds26hwmitu" path="res://Art/title_background.png" id="4_jadis"]
+[ext_resource type="Texture2D" uid="uid://bniigtb3mp3tw" path="res://Art/banner.png" id="4_0x0oo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dne5b"]
 shader = ExtResource("3_hlm5s")
@@ -16,7 +17,7 @@ shader = ExtResource("3_hlm5s")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4asa"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8d8n"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0x0oo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ld8dt"]
 
@@ -38,8 +39,6 @@ shader = ExtResource("3_hlm5s")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kjstp"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cx51r"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2q58"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s12m4"]
@@ -60,8 +59,6 @@ shader = ExtResource("3_hlm5s")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qtxl"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g1l8k"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qo4p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wmltf"]
@@ -81,8 +78,6 @@ shader = ExtResource("3_hlm5s")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcott"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbxxp"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q22lo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbwai"]
 
@@ -105,53 +100,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jdsd0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.137255, 0.101961, 0.156863, 1)
-
 [node name="Pattern" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.356863)
 texture_repeat = 2
 material = SubResource("ShaderMaterial_dne5b")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1861.0
-texture = ExtResource("4_jadis")
+texture = ExtResource("2_0x0oo")
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 315.0
-offset_right = 1919.0
-offset_bottom = 588.0
-theme_override_fonts/font = ExtResource("2_fltkk")
-theme_override_font_sizes/font_size = 150
-text = "BUBBLE BASH"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -545.0
+offset_top = 66.0
+offset_right = 536.0
+offset_bottom = 1147.0
+grow_horizontal = 2
+texture = ExtResource("4_0x0oo")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="SinglePlayer" type="Button" parent="."]
 layout_mode = 0
 offset_left = 681.0
-offset_top = 567.0
+offset_top = 858.0
 offset_right = 779.0
-offset_bottom = 647.0
-theme_override_colors/font_color = Color(0.321569, 0.545098, 0.341176, 1)
-theme_override_colors/font_pressed_color = Color(0.188235, 0.32549, 0.345098, 1)
-theme_override_colors/font_hover_color = Color(0.262745, 0.470588, 0.352941, 1)
+offset_bottom = 938.0
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.6509804, 1)
+theme_override_colors/font_pressed_color = Color(0.12941177, 0.14509805, 0.09019608, 1)
+theme_override_colors/font_hover_color = Color(0.29411766, 0.3137255, 0.21568628, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
 theme_override_fonts/font = ExtResource("2_fltkk")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 91
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ak62o")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_c5550")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gxaiy")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c4asa")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_m8d8n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0x0oo")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ld8dt")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_s1hci")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_c6ldu")
@@ -163,19 +151,21 @@ text = "1P"
 [node name="TwoPlayer" type="Button" parent="."]
 layout_mode = 0
 offset_left = 820.0
-offset_top = 566.0
+offset_top = 857.0
 offset_right = 926.0
-offset_bottom = 646.0
-theme_override_colors/font_color = Color(0.321569, 0.545098, 0.341176, 1)
-theme_override_colors/font_pressed_color = Color(0.188235, 0.32549, 0.345098, 1)
-theme_override_colors/font_hover_color = Color(0.262745, 0.470588, 0.352941, 1)
+offset_bottom = 937.0
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.6509804, 1)
+theme_override_colors/font_pressed_color = Color(0.12941177, 0.14509805, 0.09019608, 1)
+theme_override_colors/font_hover_color = Color(0.29411766, 0.3137255, 0.21568628, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
 theme_override_fonts/font = ExtResource("2_fltkk")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 91
 theme_override_styles/normal = SubResource("StyleBoxEmpty_q7nxf")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_c6npt")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_fb44e")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kjstp")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_cx51r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0x0oo")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_t2q58")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_s12m4")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8dh2f")
@@ -187,19 +177,21 @@ text = "2P"
 [node name="ThreePlayer" type="Button" parent="."]
 layout_mode = 0
 offset_left = 969.0
-offset_top = 567.0
+offset_top = 858.0
 offset_right = 1077.0
-offset_bottom = 647.0
-theme_override_colors/font_color = Color(0.321569, 0.545098, 0.341176, 1)
-theme_override_colors/font_pressed_color = Color(0.188235, 0.32549, 0.345098, 1)
-theme_override_colors/font_hover_color = Color(0.262745, 0.470588, 0.352941, 1)
+offset_bottom = 938.0
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.6509804, 1)
+theme_override_colors/font_pressed_color = Color(0.12941177, 0.14509805, 0.09019608, 1)
+theme_override_colors/font_hover_color = Color(0.29411766, 0.3137255, 0.21568628, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
 theme_override_fonts/font = ExtResource("2_fltkk")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 91
 theme_override_styles/normal = SubResource("StyleBoxEmpty_amnuh")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8vxbh")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_twyd4")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8qtxl")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_g1l8k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0x0oo")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5qo4p")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_wmltf")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_y524l")
@@ -211,19 +203,21 @@ text = "3P"
 [node name="FourPlayer" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1112.0
-offset_top = 567.0
+offset_top = 858.0
 offset_right = 1223.0
-offset_bottom = 647.0
-theme_override_colors/font_color = Color(0.321569, 0.545098, 0.341176, 1)
-theme_override_colors/font_pressed_color = Color(0.188235, 0.32549, 0.345098, 1)
-theme_override_colors/font_hover_color = Color(0.262745, 0.470588, 0.352941, 1)
+offset_bottom = 938.0
+theme_override_colors/font_color = Color(0.8627451, 0.92156863, 0.6509804, 1)
+theme_override_colors/font_pressed_color = Color(0.12941177, 0.14509805, 0.09019608, 1)
+theme_override_colors/font_hover_color = Color(0.29411766, 0.3137255, 0.21568628, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
 theme_override_fonts/font = ExtResource("2_fltkk")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 91
 theme_override_styles/normal = SubResource("StyleBoxEmpty_85512")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7vl7n")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hcott")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lbxxp")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_q22lo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0x0oo")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_nbwai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_n8qre")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_xbaw6")

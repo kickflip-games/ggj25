@@ -38,8 +38,6 @@ func increment(in_powerup_mode: bool = false, additional_factor: int = 1):
 		combo_multiplier = 1
 		combo_active = true
 	
-	print("Score: %d, Combo Multiplier: %d" % [_score, combo_multiplier])
-	
 	if not in_powerup_mode:
 		powerup_progress += 1
 		_ui.update_bar(powerup_progress)

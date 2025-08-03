@@ -10,6 +10,11 @@ pickup_type = 1
 [node name="CollisionShape2D" parent="." index="0"]
 top_level = true
 
+[node name="Background" parent="." index="1"]
+self_modulate = Color(0.9254902, 0.5686275, 0.53333336, 1)
+position = Vector2(-3.8146973e-06, 7.6293945e-06)
+scale = Vector2(0.21468924, 0.21468924)
+
 [node name="Sprite2D" parent="." index="2"]
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("2_gidao")

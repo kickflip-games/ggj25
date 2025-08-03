@@ -60,19 +60,26 @@ func _instantiate_player(player_data:PlayerData):
 
 func _on_powerup_activated(p:Player):
 	$Shockwave.create_shock()
+	Globals.MainCam.SHAKE() 
+	MusicManager.enter_powerup_mode()
+		
 	background.set_color(p.player_color)
 	spawner.freeze()
 	
 	for _p in _current_players:
 		if _p != p:
 			_p._speed = Player.BASE_SPEED / 2.0
+			
+	background.start_powerup()
 	
 func _on_powerup_deactivated(p:Player):
+	MusicManager.exit_powerup_mode()
 	background.reset()
 	spawner.resume()
 	for _p in _current_players:
 		if _p != p:
 			_p._speed = Player.BASE_SPEED 
+	background.end_powerup()
 	
 	#Engine.time_scale = 1
 

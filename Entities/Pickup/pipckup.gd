@@ -14,7 +14,6 @@ enum PickupType {
 signal collected
  
 func _ready():
-	custom_start_based_on_type()
 	var tween = create_tween().set_loops()
 	tween.tween_property($Background, "modulate:a", 0.1, 1)
 	tween.tween_property($Background, "modulate:a", 1, 1)
@@ -24,12 +23,7 @@ func _ready():
 	tween2.tween_property(self, "position:y", -20, 2).as_relative()
 	tween2.tween_property(self, "position:y", 20, 2).as_relative()
 
-func custom_start_based_on_type():
-	match pickup_type:
-		PickupType.BASE:
-			init_base_pickup()
-		PickupType.HEALTH:
-			init_health_pickup()
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -49,17 +43,11 @@ func _on_body_entered(body: Node2D) -> void:
 		tween.finished.connect(queue_free)
 		
 
-func init_base_pickup():
-	print("initialising base pickup")
-	sprite.modulate = Color(1, 1, 1)  # Default
-
 
 func handle_base_pickup(body: Node2D):
 	body.increment_score()
 
-func init_health_pickup():
-	print("initialising health pickup")
-	#sprite.modulate = Color(1, 0, 0)  # Red
+
 
 func handle_health_pickup(body: Node2D):
 	body.increment_health()

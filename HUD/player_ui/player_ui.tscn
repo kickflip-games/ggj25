@@ -25,6 +25,8 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_kfeji")
 text = "P1"
 horizontal_alignment = 1
@@ -35,6 +37,8 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_kfeji")
 text = ":"
 horizontal_alignment = 1
@@ -45,6 +49,8 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_kfeji")
 text = "0000"
 horizontal_alignment = 1
@@ -87,6 +93,7 @@ expand_mode = 3
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 30
 text = "BASH MODE"
 
@@ -95,6 +102,7 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_v4tk5")
+theme_override_constants/outline_size = 13
 theme_override_font_sizes/font_size = 40
 
 [node name="ColorRect" type="ColorRect" parent="PowerupBar"]

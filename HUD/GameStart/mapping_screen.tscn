@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dojiuhnlpuv4h"]
+[gd_scene load_steps=6 format=3 uid="uid://dojiuhnlpuv4h"]
 
 [ext_resource type="Script" uid="uid://c55r2g6oqnhl1" path="res://HUD/GameStart/mapping_screen.gd" id="1_uw4tk"]
 [ext_resource type="Shader" uid="uid://bx43wnjhgamlw" path="res://HUD/GameStart/blur.gdshader" id="2_ot8ng"]
-[ext_resource type="FontFile" uid="uid://ctq7gwtb0jyce" path="res://HUD/Terminal.ttf" id="3_ivu4n"]
 [ext_resource type="FontFile" uid="uid://b5ifogfkp4eo5" path="res://HUD/Sniglet.ttf" id="3_m0nyd"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="4_pg3lh"]
 
@@ -38,7 +37,9 @@ offset_left = 1.0
 offset_top = 503.0
 offset_right = 1919.0
 offset_bottom = 572.0
-theme_override_fonts/font = ExtResource("3_ivu4n")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("3_m0nyd")
 theme_override_font_sizes/font_size = 50
 text = "press any key/button to play..."
 horizontal_alignment = 1
@@ -52,6 +53,8 @@ offset_right = 1920.0
 offset_bottom = 499.0
 theme = ExtResource("4_pg3lh")
 theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
 theme_override_fonts/font = ExtResource("3_m0nyd")
 theme_override_font_sizes/font_size = 100
 text = "Player 1"
@@ -72,7 +75,9 @@ offset_top = 647.0
 offset_right = 1918.0
 offset_bottom = 690.0
 theme_override_colors/font_color = Color(0.686275, 0.254902, 0.235294, 1)
-theme_override_fonts/font = ExtResource("3_ivu4n")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("3_m0nyd")
 theme_override_font_sizes/font_size = 30
 text = "key is already in use :("
 horizontal_alignment = 1

@@ -100,7 +100,7 @@ func freeze():
 			enemy.freeze()
 	
 	pickup_timer.paused = true
-	enemy_timer.paused = true
+	#enemy_timer.paused = true
 	powerup_timer.paused = true
 
 func resume():
@@ -109,5 +109,5 @@ func resume():
 			enemy.resume()
 	
 	pickup_timer.paused = false
-	enemy_timer.paused = false
+	#enemy_timer.paused = false
 	powerup_timer.paused = false

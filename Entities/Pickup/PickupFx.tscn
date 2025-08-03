@@ -13,9 +13,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.328829, 1, 1, 1, 0)
 [node name="PickupFx" type="CPUParticles2D"]
 emitting = false
 amount = 1
+texture = ExtResource("1_tj12a")
 lifetime = 0.3
 one_shot = true
-texture = ExtResource("1_tj12a")
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_ltp4k")
 color = Color(0.2, 1, 1, 1)

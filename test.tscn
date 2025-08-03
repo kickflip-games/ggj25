@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://dvt5aovblf86t"]
+[gd_scene load_steps=2 format=3 uid="uid://dvt5aovblf86t"]
+
+[ext_resource type="PackedScene" uid="uid://cxx86i3b6gf17" path="res://Entities/Pickup/sub_pickups/score_itm.tscn" id="1_37kl0"]
 
 [node name="Test" type="Node2D"]
+
+[node name="score_item" parent="." instance=ExtResource("1_37kl0")]

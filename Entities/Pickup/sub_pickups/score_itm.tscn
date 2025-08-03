@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxx86i3b6gf17"]
+[gd_scene load_steps=5 format=3 uid="uid://cxx86i3b6gf17"]
 
 [ext_resource type="PackedScene" uid="uid://vadgf0jnph44" path="res://Entities/Pickup/pipckup_base.tscn" id="1_ycf8x"]
 [ext_resource type="Texture2D" uid="uid://cbw5hjaae8nsw" path="res://Art/star.png" id="2_5c764"]
@@ -8,10 +8,6 @@
 _data = [Vector2(0.007255137, 0.17246282), 0.0, -0.0433327, 0, 0, Vector2(0.40991536, 0.47122228), -0.547075, -0.547075, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_yr7if"]
-offsets = PackedFloat32Array(0, 0.605697, 1)
-colors = PackedColorArray(1, 1, 1, 0.243137, 1, 1, 1, 0.179369, 1, 1, 1, 0)
-
 [node name="score_item" instance=ExtResource("1_ycf8x")]
 collision_layer = 8
 
@@ -19,7 +15,9 @@ collision_layer = 8
 top_level = true
 
 [node name="Background" parent="." index="1"]
-visible = false
+self_modulate = Color(1, 0.85882354, 0.31764707, 1)
+position = Vector2(-2.3841858e-06, -6.198883e-06)
+scale = Vector2(0.21845573, 0.21845573)
 
 [node name="Sprite2D" parent="." index="2"]
 position = Vector2(3.8147e-06, 3.33786e-06)
@@ -30,7 +28,8 @@ texture = ExtResource("2_5c764")
 color = Color(1, 0.85882354, 0.31764707, 1)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4"]
-position = Vector2(0, -23)
+show_behind_parent = true
+position = Vector2(0, -14)
 amount = 20
 texture = ExtResource("3_5c764")
 lifetime = 0.4
@@ -40,7 +39,7 @@ explosiveness = 0.16
 randomness = 0.7
 lifetime_randomness = 1.0
 emission_shape = 3
-emission_rect_extents = Vector2(24.08, 1)
+emission_rect_extents = Vector2(33, 1)
 spread = 53.05
 gravity = Vector2(0, -980)
 damping_min = 0.06
@@ -49,4 +48,3 @@ scale_amount_min = 0.0
 scale_amount_max = 0.4
 scale_amount_curve = SubResource("Curve_6gfb4")
 color = Color(1, 0.85882354, 0.31764707, 1)
-color_ramp = SubResource("Gradient_yr7if")

@@ -14,6 +14,7 @@ config/name="ggj25"
 config/version="4.3"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/image="uid://ba6y3ex8k00r6"
 
 [autoload]
 
