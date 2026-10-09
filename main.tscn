@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cwppfyu0kwj2h"]
+[gd_scene format=3 uid="uid://cwppfyu0kwj2h"]
 
 [ext_resource type="Script" uid="uid://b2tm0ktnm3jf0" path="res://main.gd" id="1_lsa5w"]
 [ext_resource type="PackedScene" uid="uid://brqlxi1h6j658" path="res://Entities/Player/player.tscn" id="2_3tn8r"]
@@ -43,13 +43,13 @@ glow_hdr_threshold = 1.82
 glow_hdr_scale = 1.0
 fog_light_color = Color(0.362644, 0.552011, 0.840387, 1)
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=99790041]
 script = ExtResource("1_lsa5w")
 player_scene = ExtResource("2_3tn8r")
 metadata/_edit_horizontal_guides_ = [-74.7253, 1074.86]
 metadata/_edit_vertical_guides_ = [-340.0, -140.0]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1595048607]
 modulate = Color(0.262745, 0.470588, 0.352941, 1)
 show_behind_parent = true
 top_level = true
@@ -64,40 +64,40 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("3_2f4lq")
 
-[node name="ShakerComponent2D" type="Node2D" parent="Camera2D"]
+[node name="ShakerComponent2D" type="Node2D" parent="Camera2D" unique_id=2007539529]
 script = ExtResource("3_ro0sy")
 duration = 0.5
 fade_in = 0.0334929
 fade_out = 0.707107
 shakerPreset = SubResource("Resource_1qpjo")
 
-[node name="StartPositions" type="Node2D" parent="."]
+[node name="StartPositions" type="Node2D" parent="." unique_id=391835581]
 position = Vector2(497.592, 501.697)
 
-[node name="P1" type="Marker2D" parent="StartPositions"]
+[node name="P1" type="Marker2D" parent="StartPositions" unique_id=1696114073]
 position = Vector2(-286.104, -284.222)
 
-[node name="P2" type="Marker2D" parent="StartPositions"]
+[node name="P2" type="Marker2D" parent="StartPositions" unique_id=350684388]
 position = Vector2(282.34, -284.222)
 
-[node name="P4" type="Marker2D" parent="StartPositions"]
+[node name="P4" type="Marker2D" parent="StartPositions" unique_id=1200486640]
 position = Vector2(293.634, 282.34)
 
-[node name="P3" type="Marker2D" parent="StartPositions"]
+[node name="P3" type="Marker2D" parent="StartPositions" unique_id=2035685627]
 position = Vector2(-286.104, 282.34)
 
-[node name="Background" parent="." instance=ExtResource("2_4d8gk")]
+[node name="Background" parent="." unique_id=1985756415 instance=ExtResource("2_4d8gk")]
 position = Vector2(-579.529, -78.5904)
 
-[node name="GameBounds" type="Node2D" parent="."]
+[node name="GameBounds" type="Node2D" parent="." unique_id=746324467]
 
-[node name="GameBoundsOctagon" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="GameBoundsOctagon" type="StaticBody2D" parent="GameBounds" unique_id=1904681311 groups=["WALLS"]]
 position = Vector2(-1, 2)
 collision_layer = 4
 collision_mask = 3
 physics_material_override = ExtResource("4_ihst0")
 
-[node name="Polygon2D" type="Polygon2D" parent="GameBounds/GameBoundsOctagon"]
+[node name="Polygon2D" type="Polygon2D" parent="GameBounds/GameBoundsOctagon" unique_id=17194629]
 modulate = Color(0, 0.062499993, 0.24999999, 1)
 antialiased = true
 texture = SubResource("ViewportTexture_seagh")
@@ -105,106 +105,106 @@ invert_enabled = true
 invert_border = 110.0
 polygon = PackedVector2Array(-339, 198, -339, 798, -139, 998, 1201, 998, 1401, 798, 1401, 198, 1201, -2, -139, -2)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameBounds/GameBoundsOctagon"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameBounds/GameBoundsOctagon" unique_id=1200731895]
 position = Vector2(120, 40)
 build_mode = 1
 polygon = PackedVector2Array(-259, -42, 1081, -42, 1281, 158, 1281, 758, 1081, 958, -259, 958, -459, 758, -459, 158)
 
-[node name="North" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="North" type="StaticBody2D" parent="GameBounds" unique_id=1889569719 groups=["WALLS"]]
 position = Vector2(480, 0)
 rotation = 3.14159
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/North"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/North" unique_id=438822873]
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="NE" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="NE" type="StaticBody2D" parent="GameBounds" unique_id=1908919442 groups=["WALLS"]]
 position = Vector2(920, 120)
 rotation = 3.92699
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/NE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/NE" unique_id=1456175485]
 position = Vector2(-254.559, 282.843)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="SE" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="SE" type="StaticBody2D" parent="GameBounds" unique_id=847755800 groups=["WALLS"]]
 position = Vector2(900, 900)
 rotation = 5.49779
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/SE"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/SE" unique_id=787749410]
 position = Vector2(282.843, 282.842)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="SW" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="SW" type="StaticBody2D" parent="GameBounds" unique_id=626554163 groups=["WALLS"]]
 position = Vector2(100, 900)
 rotation = 7.06858
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/SW"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/SW" unique_id=1455879640]
 position = Vector2(-240.417, 240.416)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="NW" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="NW" type="StaticBody2D" parent="GameBounds" unique_id=349710064 groups=["WALLS"]]
 position = Vector2(120, 80.0001)
 rotation = 8.63938
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/NW"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/NW" unique_id=1814439024]
 position = Vector2(268.701, 240.416)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="South" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="South" type="StaticBody2D" parent="GameBounds" unique_id=766384505 groups=["WALLS"]]
 position = Vector2(480, 1000)
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/South"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/South" unique_id=1027001318]
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="West" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="West" type="StaticBody2D" parent="GameBounds" unique_id=1899017785 groups=["WALLS"]]
 position = Vector2(0, 500)
 rotation = 1.5708
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/West"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/West" unique_id=1181138616]
 position = Vector2(1.69822, 340)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="East" type="StaticBody2D" parent="GameBounds" groups=["WALLS"]]
+[node name="East" type="StaticBody2D" parent="GameBounds" unique_id=993438615 groups=["WALLS"]]
 position = Vector2(1000, 500)
 rotation = -1.5708
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/East"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/East" unique_id=330065579]
 position = Vector2(-1.69844, 400)
 shape = SubResource("WorldBoundaryShape2D_apr01")
 debug_color = Color(1, 0, 0.0166664, 1)
 
-[node name="VISUALBOUNDS" type="StaticBody2D" parent="GameBounds"]
+[node name="VISUALBOUNDS" type="StaticBody2D" parent="GameBounds" unique_id=384159476]
 collision_layer = 524288
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/VISUALBOUNDS"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBounds/VISUALBOUNDS" unique_id=1710100295]
 position = Vector2(492.61, 501.558)
 shape = SubResource("RectangleShape2D_ch7fi")
 debug_color = Color(0, 0.6, 0.701961, 0.172549)
 
-[node name="Spawner" parent="." instance=ExtResource("3_a5gx5")]
+[node name="Spawner" parent="." unique_id=1326472764 instance=ExtResource("3_a5gx5")]
 show_behind_parent = true
 top_level = true
 collision_layer = 2048
@@ -214,21 +214,21 @@ collision_mask = 2048
 position = Vector2(530, 500)
 debug_color = Color(0.89, 0.2581, 0.458202, 0.12549)
 
-[node name="Hud" parent="." instance=ExtResource("4_4td82")]
+[node name="Hud" parent="." unique_id=128411594 instance=ExtResource("4_4td82")]
 
-[node name="Shockwave" parent="." instance=ExtResource("7_60swm")]
+[node name="Shockwave" parent="." unique_id=494782532 instance=ExtResource("7_60swm")]
 layer = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=771948056]
 environment = SubResource("Environment_eum0w")
 
-[node name="GameTimer" type="Timer" parent="."]
+[node name="GameTimer" type="Timer" parent="." unique_id=1278089573]
 one_shot = true
 
-[node name="Lights" type="Node2D" parent="."]
+[node name="Lights" type="Node2D" parent="." unique_id=1444656726]
 visible = false
 
-[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+[node name="PointLight2D" type="PointLight2D" parent="Lights" unique_id=366611430]
 position = Vector2(-280, 56)
 energy = 0.3
 range_z_min = -314
@@ -237,7 +237,7 @@ shadow_filter = 1
 texture = ExtResource("14_pkx3m")
 texture_scale = 3.32
 
-[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+[node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=281697695]
 position = Vector2(-280, 940)
 energy = 0.3
 range_z_min = -314
@@ -246,7 +246,7 @@ shadow_filter = 1
 texture = ExtResource("14_pkx3m")
 texture_scale = 3.32
 
-[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+[node name="PointLight2D3" type="PointLight2D" parent="Lights" unique_id=1259149321]
 position = Vector2(1360, 940)
 energy = 0.3
 range_z_min = -314
@@ -255,7 +255,7 @@ shadow_filter = 1
 texture = ExtResource("14_pkx3m")
 texture_scale = 3.32
 
-[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+[node name="PointLight2D4" type="PointLight2D" parent="Lights" unique_id=191408403]
 position = Vector2(1360, 60)
 energy = 0.3
 range_z_min = -314
