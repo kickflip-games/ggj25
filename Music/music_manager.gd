@@ -37,8 +37,6 @@ func _ready():
 	normal_player.volume_db = normal_volume
 	powerup_player.volume_db = -80  # Start silent
 	
-	# Create tween for smooth transitions
-	tween = create_tween()
 	
 	# Connect finished signals for looping management
 	normal_player.finished.connect(_on_normal_finished)
@@ -89,7 +87,8 @@ func exit_powerup_mode():
 		return
 	
 	if is_transitioning:
-		print("Already transitioning!")
+		await tween.finished
+		exit_powerup_mode()
 		return
 	
 	

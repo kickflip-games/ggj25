@@ -11,6 +11,8 @@ enum PickupType {
 @onready var sprite = $Sprite2D
 @onready var fx = $PickupFx
 
+var is_collected: bool = false
+
 signal collected
  
 func _ready():
@@ -27,6 +29,7 @@ func _ready():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
+		is_collected = true
 		fx.emitting = true
 		collected.emit()
 	

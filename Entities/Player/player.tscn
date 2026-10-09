@@ -14,12 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://dv827hi7aldfu" path="res://Art/face.png" id="12_r8fok"]
 [ext_resource type="Texture2D" uid="uid://b225vpxswwbbp" path="res://Art/player.png" id="12_xr8lj"]
 [ext_resource type="Script" uid="uid://dmf1a8iht63t8" path="res://Entities/Player/player_face.gd" id="14_vskfa"]
+[ext_resource type="Texture2D" uid="uid://o7dwam5pwimr" path="res://Art/spikes.png" id="15_spikes"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb1tc"]
 radius = 3.7999997
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owvpp"]
-load_path = "res://.godot/imported/spikes4.png-e3c0cdf72de55bff59697f55f9327e4c.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8fok"]
 radius = 40.311287
@@ -124,7 +122,7 @@ script = ExtResource("14_vskfa")
 [node name="StarSprite" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.18, 0.18)
-texture = SubResource("CompressedTexture2D_owvpp")
+texture = ExtResource("15_spikes")
 
 [node name="MessagePoint" type="Marker2D" parent="."]
 position = Vector2(-2, -28)

@@ -1,0 +1,44 @@
+{
+  "before/01_normal.png": {
+    "sha256": "ccbb838af5b0051c0546cffec29d382723ec64f68c2e5162f14fba69a87e728f",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/01_normal.png": {
+    "sha256": "c23aa7a6b65a429867126fd07bcd1a944b9f9da7c3c98325ab39e7d434e98087",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/02_star_power.png": {
+    "sha256": "fed0d27957e90fdc30095039e1a2de51576b7175269697b450be07aa3a53e397",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/02_star_power.png": {
+    "sha256": "b4c877521c67a366f621c6b5b0f9334c0548260000d0d56110e73eedd3368c33",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/03_hud.png": {
+    "sha256": "ccbb838af5b0051c0546cffec29d382723ec64f68c2e5162f14fba69a87e728f",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/03_hud.png": {
+    "sha256": "c23aa7a6b65a429867126fd07bcd1a944b9f9da7c3c98325ab39e7d434e98087",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+}

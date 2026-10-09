@@ -111,3 +111,10 @@ func resume():
 	pickup_timer.paused = false
 	#enemy_timer.paused = false
 	powerup_timer.paused = false
+
+# Snapshots of the existing spawn lists, used only at CPU decision intervals.
+func get_cpu_pickups() -> Array:
+	return (_active_pickups + _active_powerups).filter(func(p): return is_instance_valid(p) and not p.is_queued_for_deletion() and not p.is_collected)
+
+func get_cpu_enemies() -> Array:
+	return _active_enemies.filter(func(e): return is_instance_valid(e) and not e.is_queued_for_deletion() and not e.is_dead and e.hurt_area.enabled)

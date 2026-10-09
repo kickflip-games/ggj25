@@ -1,0 +1,129 @@
+Godot Engine v4.8.dev6.official.8898c2b3d - https://godotengine.org
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+Music playing: true
+PASS: launch shows title before selection
+PASS: Play opens selection screen
+PASS: P1 starts human without a binding
+PASS: P2 starts off without old bindings
+PASS: P3 starts off without old bindings
+PASS: P4 starts off without old bindings
+PASS: Start disabled until all active humans have bindings
+PASS: invalid Start explains missing input
+PASS: binding button opens P1 capture without binding its opening click
+PASS: Tab remains reserved
+PASS: keyboard assignment through actual input events
+PASS: one valid human can start
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: one-player match starts through lobby button
+Already in normal mode!
+>>>> RESET TIME <<<<
+PASS: return retains configuration
+PASS: P3 independently enables and captures
+PASS: Enable click is not assigned as a mouse input
+PASS: duplicate key warns and preserves capture
+PASS: clicking underlying UI cannot bind or switch capture
+PASS: mouse assignment from empty paper
+PASS: Escape cancels remap and preserves previous input
+PASS: Cancel button never becomes a mouse binding
+PASS: successful remap replaces old action event
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: P1 plus P3 spawn without P2 or P4
+PASS: HUD visibility matches slot 0
+PASS: HUD visibility matches slot 1
+PASS: HUD visibility matches slot 2
+PASS: HUD visibility matches slot 3
+PASS: original spawn position preserved
+PASS: original slot color preserved
+PASS: original spawn position preserved
+PASS: original slot color preserved
+PASS: HUD input labels match assigned controls
+PASS: both non-contiguous players move using selected inputs
+HEALTH update 2
+PASS: scores and health work for original IDs
+Player went super saiyan
+Cam shake
+Set background color based on player
+background entere power mode
+Powerup transition complete!
+PASS: P3 Star Power still activates
+PASS: results retain original non-contiguous player IDs
+PASS: results retain scores
+Already in normal mode!
+>>>> RESET TIME <<<<
+PASS: results return to editable lobby
+PASS: duplicate mouse binding is rejected
+PASS: Off clears slot and its old action binding
+PASS: all-off configuration cannot start
+PASS: only chosen slot 0 captures
+PASS: CPU option 0 remains disabled
+PASS: only chosen slot 1 captures
+PASS: CPU option 1 remains disabled
+PASS: only chosen slot 2 captures
+PASS: CPU option 2 remains disabled
+PASS: only chosen slot 3 captures
+PASS: CPU option 3 remains disabled
+PASS: four humans with distinct inputs can start
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: four-player match starts
+PASS: Escape pause integration remains functional
+Already in normal mode!
+>>>> RESET TIME <<<<
+PASS: pause Back returns to same editable lobby
+PASS: CPU configuration cannot start even through direct API
+PASS: empty key cannot bypass validation
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: another match starts after pause return
+RESULT: 56 checks, 0 failures
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2604)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

@@ -1,0 +1,65 @@
+{
+  "before/01_selection.png": {
+    "sha256": "870430ad5286787796557fc15aa0ace500197c6a4329e5f47b1017dc87e55081",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/02_mapping.png": {
+    "sha256": "5aeb260fdcd034868759f5b10353490719c7fb51c042c015a8de4d4e6d6f5a62",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/00_title.png": {
+    "sha256": "b966011f018fae9beddf6e78c663afaea57644278e6c3df31a096ec89c4547d2",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/04_input_mapping.png": {
+    "sha256": "710a302fc834e180f299d148cfaf92fdacb932d74efcc14587560fa8bb7619c0",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/05_gameplay.png": {
+    "sha256": "7cfb3bd04018e784469fa30747e35ebcf3a25ed92fdf5686aade833a5a252e07",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/02_two_players.png": {
+    "sha256": "12c6cd15b4aac392165df1624b51579111074cc546ec3d2938d48c2d33d07721",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/03_four_players.png": {
+    "sha256": "8c3c55a84201c3b3096bacbffb6b57e92fe4d5b46daad97d046bbd878a57a0b6",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/01_default.png": {
+    "sha256": "daecfd830dce905df7f6fa0b486da458c02050187a94121962a3b2667124c6b8",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/06_results.png": {
+    "sha256": "5fdd16731daf57a513a3e9580bd72c8d550135d5563b6f93ab7bca985a8e75f3",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+}

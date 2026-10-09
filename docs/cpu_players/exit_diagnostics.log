@@ -1,0 +1,363 @@
+WorkerThreadPool: 12 threads, 3 max low-priority.
+Godot Engine v4.8.dev6.official.8898c2b3d - https://godotengine.org
+TextServer: Added interface "Dummy" (dummy)
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)" (advanced)
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)" (advanced).
+TextureStreaming settings: enabled=0, budget_mb=512, min_lod=0, max_lod=3
+CORE API HASH: 544956808
+EDITOR API HASH: 4217188331
+Loading resource: res://docs/cpu_players/tools/validate.gd remapped: res://docs/cpu_players/tools/validate.gd
+Completed load for: 'res://docs/cpu_players/tools/validate.gd' remapped 'res://docs/cpu_players/tools/validate.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://HUD/GameStart/player_slot_config.gd remapped: res://HUD/GameStart/player_slot_config.gd
+Completed load for: 'res://HUD/GameStart/player_slot_config.gd' remapped 'res://HUD/GameStart/player_slot_config.gd' at thread -1
+Loading resource: res://globals.gd remapped: res://globals.gd
+Completed load for: 'res://globals.gd' remapped 'res://globals.gd' at thread -1
+Loading resource: res://addons/DampedOscillator/scripts/damped_oscillator.tscn remapped: res://addons/DampedOscillator/scripts/damped_oscillator.tscn
+Loading resource: res://addons/DampedOscillator/scripts/DampedOscillator.gd remapped: res://addons/DampedOscillator/scripts/DampedOscillator.gd
+Loading resource: res://addons/DampedOscillator/scripts/animation_instance.tscn remapped: res://addons/DampedOscillator/scripts/animation_instance.tscn
+Loading resource: res://addons/DampedOscillator/scripts/AnimationInstance.gd remapped: res://addons/DampedOscillator/scripts/AnimationInstance.gd
+Completed load for: 'res://addons/DampedOscillator/scripts/AnimationInstance.gd' remapped 'res://addons/DampedOscillator/scripts/AnimationInstance.gd' at thread -1
+Completed load for: 'res://addons/DampedOscillator/scripts/animation_instance.tscn' remapped 'res://addons/DampedOscillator/scripts/animation_instance.tscn' at thread -1
+Completed load for: 'res://addons/DampedOscillator/scripts/DampedOscillator.gd' remapped 'res://addons/DampedOscillator/scripts/DampedOscillator.gd' at thread -1
+Completed load for: 'res://addons/DampedOscillator/scripts/damped_oscillator.tscn' remapped 'res://addons/DampedOscillator/scripts/damped_oscillator.tscn' at thread -1
+Loading resource: res://addons/shaker/src/Shaker.gd remapped: res://addons/shaker/src/Shaker.gd
+Completed load for: 'res://addons/shaker/src/Shaker.gd' remapped 'res://addons/shaker/src/Shaker.gd' at thread -1
+Loading resource: res://TimeManager/TimeManager.tscn remapped: res://TimeManager/TimeManager.tscn
+Loading resource: res://TimeManager/time_manager.gd remapped: res://TimeManager/time_manager.gd
+Completed load for: 'res://TimeManager/time_manager.gd' remapped 'res://TimeManager/time_manager.gd' at thread -1
+Completed load for: 'res://TimeManager/TimeManager.tscn' remapped 'res://TimeManager/TimeManager.tscn' at thread -1
+Loading resource: res://PopupFx/popup_fx.gd remapped: res://PopupFx/popup_fx.gd
+Loading resource: res://HUD/Sniglet.ttf remapped: res://HUD/Sniglet.ttf
+Loading resource: res://.godot/imported/Sniglet.ttf-a622ea83f665f1413bcc09c83f91661d.fontdata remapped: res://.godot/imported/Sniglet.ttf-a622ea83f665f1413bcc09c83f91661d.fontdata
+Completed load for: 'res://HUD/Sniglet.ttf' remapped 'res://HUD/Sniglet.ttf' at thread -1
+Completed load for: 'res://PopupFx/popup_fx.gd' remapped 'res://PopupFx/popup_fx.gd' at thread -1
+Loading resource: res://Music/MusicManager.tscn remapped: res://Music/MusicManager.tscn
+Loading resource: res://Music/music_manager.gd remapped: res://Music/music_manager.gd
+Loading resource: res://Music/normal.mp3 remapped: res://Music/normal.mp3
+Loading resource: res://.godot/imported/normal.mp3-9b8067b9b76cb81d102afa0ee5dfb859.mp3str remapped: res://.godot/imported/normal.mp3-9b8067b9b76cb81d102afa0ee5dfb859.mp3str
+Completed load for: 'res://Music/normal.mp3' remapped 'res://Music/normal.mp3' at thread -1
+Loading resource: res://Music/superstar.mp3 remapped: res://Music/superstar.mp3
+Loading resource: res://.godot/imported/superstar.mp3-dacc73e1c50fb0eafde68a28a4c555b9.mp3str remapped: res://.godot/imported/superstar.mp3-dacc73e1c50fb0eafde68a28a4c555b9.mp3str
+Completed load for: 'res://Music/superstar.mp3' remapped 'res://Music/superstar.mp3' at thread -1
+Completed load for: 'res://Music/music_manager.gd' remapped 'res://Music/music_manager.gd' at thread -1
+Completed load for: 'res://Music/MusicManager.tscn' remapped 'res://Music/MusicManager.tscn' at thread -1
+Loading resource: res://addons/godot_ai/runtime/game_helper.gd remapped: res://addons/godot_ai/runtime/game_helper.gd
+Completed load for: 'res://addons/godot_ai/runtime/game_helper.gd' remapped 'res://addons/godot_ai/runtime/game_helper.gd' at thread -1
+Loaded system CA certificates
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+Loading resource: res://main.tscn remapped: res://main.tscn
+Loading resource: res://main.gd remapped: res://main.gd
+Completed load for: 'res://main.gd' remapped 'res://main.gd' at thread -1
+Loading resource: res://Entities/Player/player.tscn remapped: res://Entities/Player/player.tscn
+Loading resource: res://Entities/Enemy/bouncy.tres remapped: res://Entities/Enemy/bouncy.tres
+Completed load for: 'res://Entities/Enemy/bouncy.tres' remapped 'res://Entities/Enemy/bouncy.tres' at thread -1
+Loading resource: res://Art/particle.png remapped: res://Art/particle.png
+Loading resource: res://.godot/imported/particle.png-a58db4de32efef599e9d5e4f88685a5e.ctex remapped: res://.godot/imported/particle.png-a58db4de32efef599e9d5e4f88685a5e.ctex
+Completed load for: 'res://Art/particle.png' remapped 'res://Art/particle.png' at thread -1
+Loading resource: res://Entities/Player/PlayerArrows.gd remapped: res://Entities/Player/PlayerArrows.gd
+Completed load for: 'res://Entities/Player/PlayerArrows.gd' remapped 'res://Entities/Player/PlayerArrows.gd' at thread -1
+Loading resource: res://Art/arc.png remapped: res://Art/arc.png
+Loading resource: res://.godot/imported/arc.png-aec5a532594dd855a7ad512401767388.ctex remapped: res://.godot/imported/arc.png-aec5a532594dd855a7ad512401767388.ctex
+Completed load for: 'res://Art/arc.png' remapped 'res://Art/arc.png' at thread -1
+Loading resource: res://Entities/Player/fx/BubbleTrail.tscn remapped: res://Entities/Player/fx/BubbleTrail.tscn
+Loading resource: res://Art/ring2.png remapped: res://Art/ring2.png
+Loading resource: res://.godot/imported/ring2.png-a125095e3a23c7fdbd69124955d3982b.ctex remapped: res://.godot/imported/ring2.png-a125095e3a23c7fdbd69124955d3982b.ctex
+Completed load for: 'res://Art/ring2.png' remapped 'res://Art/ring2.png' at thread -1
+Completed load for: 'res://Entities/Player/fx/BubbleTrail.tscn' remapped 'res://Entities/Player/fx/BubbleTrail.tscn' at thread -1
+Loading resource: res://Art/circle.png remapped: res://Art/circle.png
+Loading resource: res://.godot/imported/circle.png-75aa8a8ef0a36174638fd55423573a40.ctex remapped: res://.godot/imported/circle.png-75aa8a8ef0a36174638fd55423573a40.ctex
+Completed load for: 'res://Art/circle.png' remapped 'res://Art/circle.png' at thread -1
+Loading resource: res://Entities/Player/fx/HurtFx.tscn remapped: res://Entities/Player/fx/HurtFx.tscn
+Loading resource: res://Art/ring.png remapped: res://Art/ring.png
+Loading resource: res://.godot/imported/ring.png-015814646c9e6d3ec500cbd601c6b89d.ctex remapped: res://.godot/imported/ring.png-015814646c9e6d3ec500cbd601c6b89d.ctex
+Completed load for: 'res://Art/ring.png' remapped 'res://Art/ring.png' at thread -1
+Completed load for: 'res://Entities/Player/fx/HurtFx.tscn' remapped 'res://Entities/Player/fx/HurtFx.tscn' at thread -1
+Loading resource: res://Entities/Player/fx/DashFx.tscn remapped: res://Entities/Player/fx/DashFx.tscn
+Completed load for: 'res://Entities/Player/fx/DashFx.tscn' remapped 'res://Entities/Player/fx/DashFx.tscn' at thread -1
+Loading resource: res://Entities/Pickup/PickupFx.tscn remapped: res://Entities/Pickup/PickupFx.tscn
+Completed load for: 'res://Entities/Pickup/PickupFx.tscn' remapped 'res://Entities/Pickup/PickupFx.tscn' at thread -1
+Loading resource: res://Entities/Player/PlayerScore/PlayerScore.tscn remapped: res://Entities/Player/PlayerScore/PlayerScore.tscn
+Loading resource: res://Entities/Player/PlayerScore/player_score.gd remapped: res://Entities/Player/PlayerScore/player_score.gd
+Completed load for: 'res://Entities/Player/PlayerScore/player_score.gd' remapped 'res://Entities/Player/PlayerScore/player_score.gd' at thread -1
+Completed load for: 'res://Entities/Player/PlayerScore/PlayerScore.tscn' remapped 'res://Entities/Player/PlayerScore/PlayerScore.tscn' at thread -1
+Loading resource: res://Art/face.png remapped: res://Art/face.png
+Loading resource: res://.godot/imported/face.png-0b3fbeae839df7099d40b407606ea8f2.ctex remapped: res://.godot/imported/face.png-0b3fbeae839df7099d40b407606ea8f2.ctex
+Completed load for: 'res://Art/face.png' remapped 'res://Art/face.png' at thread -1
+Loading resource: res://Art/player.png remapped: res://Art/player.png
+Loading resource: res://.godot/imported/player.png-f312c2b20749097671415ace428193ae.ctex remapped: res://.godot/imported/player.png-f312c2b20749097671415ace428193ae.ctex
+Completed load for: 'res://Art/player.png' remapped 'res://Art/player.png' at thread -1
+Loading resource: res://Entities/Player/player_face.gd remapped: res://Entities/Player/player_face.gd
+Completed load for: 'res://Entities/Player/player_face.gd' remapped 'res://Entities/Player/player_face.gd' at thread -1
+Loading resource: res://Art/spikes.png remapped: res://Art/spikes.png
+Loading resource: res://.godot/imported/spikes.png-11aa660f40de06321fc995f085b399c9.ctex remapped: res://.godot/imported/spikes.png-11aa660f40de06321fc995f085b399c9.ctex
+Completed load for: 'res://Art/spikes.png' remapped 'res://Art/spikes.png' at thread -1
+Completed load for: 'res://Entities/Player/player.tscn' remapped 'res://Entities/Player/player.tscn' at thread -1
+Loading resource: res://Background/Background.tscn remapped: res://Background/Background.tscn
+Loading resource: res://Background/background.gd remapped: res://Background/background.gd
+Completed load for: 'res://Background/background.gd' remapped 'res://Background/background.gd' at thread -1
+Loading resource: res://Art/background.png remapped: res://Art/background.png
+Loading resource: res://.godot/imported/background.png-a03655cdb9c7980d756b35ecf60c4ef1.ctex remapped: res://.godot/imported/background.png-a03655cdb9c7980d756b35ecf60c4ef1.ctex
+Completed load for: 'res://Art/background.png' remapped 'res://Art/background.png' at thread -1
+Loading resource: res://Background/shaders/scrolling_canvas.gdshader remapped: res://Background/shaders/scrolling_canvas.gdshader
+Completed load for: 'res://Background/shaders/scrolling_canvas.gdshader' remapped 'res://Background/shaders/scrolling_canvas.gdshader' at thread -1
+Completed load for: 'res://Background/Background.tscn' remapped 'res://Background/Background.tscn' at thread -1
+Loading resource: res://Spawner/spawner.tscn remapped: res://Spawner/spawner.tscn
+Loading resource: res://Spawner/spawner.gd remapped: res://Spawner/spawner.gd
+Completed load for: 'res://Spawner/spawner.gd' remapped 'res://Spawner/spawner.gd' at thread -1
+Loading resource: res://Entities/Pickup/sub_pickups/score_itm.tscn remapped: res://Entities/Pickup/sub_pickups/score_itm.tscn
+Loading resource: res://Entities/Pickup/pipckup_base.tscn remapped: res://Entities/Pickup/pipckup_base.tscn
+Completed load for: 'res://Entities/Pickup/pipckup_base.tscn' remapped 'res://Entities/Pickup/pipckup_base.tscn' at thread -1
+Loading resource: res://Art/star.png remapped: res://Art/star.png
+Loading resource: res://.godot/imported/star.png-7953868fbd7392e6e06ff69587708912.ctex remapped: res://.godot/imported/star.png-7953868fbd7392e6e06ff69587708912.ctex
+Completed load for: 'res://Art/star.png' remapped 'res://Art/star.png' at thread -1
+Loading resource: res://HUD/player_ui/progress_bar/assets/small_circle.png remapped: res://HUD/player_ui/progress_bar/assets/small_circle.png
+Loading resource: res://.godot/imported/small_circle.png-4d2c0abe26d2667bc58f0890426a167c.ctex remapped: res://.godot/imported/small_circle.png-4d2c0abe26d2667bc58f0890426a167c.ctex
+Completed load for: 'res://HUD/player_ui/progress_bar/assets/small_circle.png' remapped 'res://HUD/player_ui/progress_bar/assets/small_circle.png' at thread -1
+Completed load for: 'res://Entities/Pickup/sub_pickups/score_itm.tscn' remapped 'res://Entities/Pickup/sub_pickups/score_itm.tscn' at thread -1
+Loading resource: res://Entities/Enemy/enemy.tscn remapped: res://Entities/Enemy/enemy.tscn
+Loading resource: res://Entities/Enemy/hurt_area/HurtArea.tscn remapped: res://Entities/Enemy/hurt_area/HurtArea.tscn
+Loading resource: res://Entities/Enemy/hurt_area/hurt_area.gd remapped: res://Entities/Enemy/hurt_area/hurt_area.gd
+Completed load for: 'res://Entities/Enemy/hurt_area/hurt_area.gd' remapped 'res://Entities/Enemy/hurt_area/hurt_area.gd' at thread -1
+Completed load for: 'res://Entities/Enemy/hurt_area/HurtArea.tscn' remapped 'res://Entities/Enemy/hurt_area/HurtArea.tscn' at thread -1
+Loading resource: res://Art/skull.png remapped: res://Art/skull.png
+Loading resource: res://.godot/imported/skull.png-7e2f37b5384d04c1146c8c9fcc859fc1.ctex remapped: res://.godot/imported/skull.png-7e2f37b5384d04c1146c8c9fcc859fc1.ctex
+Completed load for: 'res://Art/skull.png' remapped 'res://Art/skull.png' at thread -1
+Completed load for: 'res://Entities/Enemy/enemy.tscn' remapped 'res://Entities/Enemy/enemy.tscn' at thread -1
+Loading resource: res://Entities/Pickup/sub_pickups/health_pickup.tscn remapped: res://Entities/Pickup/sub_pickups/health_pickup.tscn
+Loading resource: res://Art/heart.png remapped: res://Art/heart.png
+Loading resource: res://.godot/imported/heart.png-367e559109126dc405d99e8c80fac5a2.ctex remapped: res://.godot/imported/heart.png-367e559109126dc405d99e8c80fac5a2.ctex
+Completed load for: 'res://Art/heart.png' remapped 'res://Art/heart.png' at thread -1
+Completed load for: 'res://Entities/Pickup/sub_pickups/health_pickup.tscn' remapped 'res://Entities/Pickup/sub_pickups/health_pickup.tscn' at thread -1
+Completed load for: 'res://Spawner/spawner.tscn' remapped 'res://Spawner/spawner.tscn' at thread -1
+Loading resource: res://HUD/HUD.tscn remapped: res://HUD/HUD.tscn
+Loading resource: res://HUD/hud.gd remapped: res://HUD/hud.gd
+Completed load for: 'res://HUD/hud.gd' remapped 'res://HUD/hud.gd' at thread -1
+Loading resource: res://HUD/theme.tres remapped: res://HUD/theme.tres
+Completed load for: 'res://HUD/theme.tres' remapped 'res://HUD/theme.tres' at thread -1
+Loading resource: res://HUD/player_ui/player_ui.tscn remapped: res://HUD/player_ui/player_ui.tscn
+Loading resource: res://HUD/MPLUSRounded1c.ttf remapped: res://HUD/MPLUSRounded1c.ttf
+Loading resource: res://.godot/imported/MPLUSRounded1c.ttf-19bee61202bbf75aba58f1287aeea209.fontdata remapped: res://.godot/imported/MPLUSRounded1c.ttf-19bee61202bbf75aba58f1287aeea209.fontdata
+Completed load for: 'res://HUD/MPLUSRounded1c.ttf' remapped 'res://HUD/MPLUSRounded1c.ttf' at thread -1
+Loading resource: res://Art/heart_white.png remapped: res://Art/heart_white.png
+Loading resource: res://.godot/imported/heart_white.png-6a706da820429171d35b1cfc27bc9e52.ctex remapped: res://.godot/imported/heart_white.png-6a706da820429171d35b1cfc27bc9e52.ctex
+Completed load for: 'res://Art/heart_white.png' remapped 'res://Art/heart_white.png' at thread -1
+Completed load for: 'res://HUD/player_ui/player_ui.tscn' remapped 'res://HUD/player_ui/player_ui.tscn' at thread -1
+Loading resource: res://HUD/GameStart/start_sequence.tscn remapped: res://HUD/GameStart/start_sequence.tscn
+Loading resource: res://HUD/GameStart/start_sequence.gd remapped: res://HUD/GameStart/start_sequence.gd
+Completed load for: 'res://HUD/GameStart/start_sequence.gd' remapped 'res://HUD/GameStart/start_sequence.gd' at thread -1
+Loading resource: res://HUD/GameStart/title_screen.tscn remapped: res://HUD/GameStart/title_screen.tscn
+Loading resource: res://HUD/GameStart/title_screen.gd remapped: res://HUD/GameStart/title_screen.gd
+Completed load for: 'res://HUD/GameStart/title_screen.gd' remapped 'res://HUD/GameStart/title_screen.gd' at thread -1
+Loading resource: res://HUD/GameStart/scroll.gdshader remapped: res://HUD/GameStart/scroll.gdshader
+Completed load for: 'res://HUD/GameStart/scroll.gdshader' remapped 'res://HUD/GameStart/scroll.gdshader' at thread -1
+Loading resource: res://Art/banner.png remapped: res://Art/banner.png
+Loading resource: res://.godot/imported/banner.png-5da1bdc9a3680644adda1ef019f5f5cf.ctex remapped: res://.godot/imported/banner.png-5da1bdc9a3680644adda1ef019f5f5cf.ctex
+Completed load for: 'res://Art/banner.png' remapped 'res://Art/banner.png' at thread -1
+Completed load for: 'res://HUD/GameStart/title_screen.tscn' remapped 'res://HUD/GameStart/title_screen.tscn' at thread -1
+Loading resource: res://HUD/GameStart/mapping_screen.tscn remapped: res://HUD/GameStart/mapping_screen.tscn
+Loading resource: res://HUD/GameStart/mapping_screen.gd remapped: res://HUD/GameStart/mapping_screen.gd
+Completed load for: 'res://HUD/GameStart/mapping_screen.gd' remapped 'res://HUD/GameStart/mapping_screen.gd' at thread -1
+Completed load for: 'res://HUD/GameStart/mapping_screen.tscn' remapped 'res://HUD/GameStart/mapping_screen.tscn' at thread -1
+Loading resource: res://HUD/GameStart/lobby.tscn remapped: res://HUD/GameStart/lobby.tscn
+Loading resource: res://HUD/GameStart/lobby.gd remapped: res://HUD/GameStart/lobby.gd
+Completed load for: 'res://HUD/GameStart/lobby.gd' remapped 'res://HUD/GameStart/lobby.gd' at thread -1
+Loading resource: res://HUD/GameStart/player_slot/player_slot.tscn remapped: res://HUD/GameStart/player_slot/player_slot.tscn
+Loading resource: res://HUD/GameStart/player_slot/player_slot.gd remapped: res://HUD/GameStart/player_slot/player_slot.gd
+Completed load for: 'res://HUD/GameStart/player_slot/player_slot.gd' remapped 'res://HUD/GameStart/player_slot/player_slot.gd' at thread -1
+Completed load for: 'res://HUD/GameStart/player_slot/player_slot.tscn' remapped 'res://HUD/GameStart/player_slot/player_slot.tscn' at thread -1
+Completed load for: 'res://HUD/GameStart/lobby.tscn' remapped 'res://HUD/GameStart/lobby.tscn' at thread -1
+Completed load for: 'res://HUD/GameStart/start_sequence.tscn' remapped 'res://HUD/GameStart/start_sequence.tscn' at thread -1
+Loading resource: res://HUD/FinalScores/FinalScore.tscn remapped: res://HUD/FinalScores/FinalScore.tscn
+Loading resource: res://HUD/FinalScores/final_score.gd remapped: res://HUD/FinalScores/final_score.gd
+Completed load for: 'res://HUD/FinalScores/final_score.gd' remapped 'res://HUD/FinalScores/final_score.gd' at thread -1
+Completed load for: 'res://HUD/FinalScores/FinalScore.tscn' remapped 'res://HUD/FinalScores/FinalScore.tscn' at thread -1
+Completed load for: 'res://HUD/HUD.tscn' remapped 'res://HUD/HUD.tscn' at thread -1
+Loading resource: res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd remapped: res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd
+Completed load for: 'res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd' remapped 'res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd' at thread -1
+Loading resource: res://Shockwave/shockwave.tscn remapped: res://Shockwave/shockwave.tscn
+Loading resource: res://Shockwave/shockwave.gd remapped: res://Shockwave/shockwave.gd
+Completed load for: 'res://Shockwave/shockwave.gd' remapped 'res://Shockwave/shockwave.gd' at thread -1
+Loading resource: res://Shockwave/shockwave.tres remapped: res://Shockwave/shockwave.tres
+Loading resource: res://Shockwave/shockwave.gdshader remapped: res://Shockwave/shockwave.gdshader
+Completed load for: 'res://Shockwave/shockwave.gdshader' remapped 'res://Shockwave/shockwave.gdshader' at thread -1
+Completed load for: 'res://Shockwave/shockwave.tres' remapped 'res://Shockwave/shockwave.tres' at thread -1
+Completed load for: 'res://Shockwave/shockwave.tscn' remapped 'res://Shockwave/shockwave.tscn' at thread -1
+Completed load for: 'res://main.tscn' remapped 'res://main.tscn' at thread -1
+Music playing: true
+PASS: default human still requires binding
+PASS: CPU button enables a playable slot without a key
+PASS: CPU lobby label
+PASS: CPU can switch back to a capturing human
+PASS: switching to CPU clears human binding
+PASS: OFF slot can become CPU directly
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: non-contiguous CPU-only lobby match starts
+PASS: controller exists only for CPU; human input is disabled
+PASS: CPU HUD label in original corner
+PASS: original CPU identity and spawn position
+PASS: controller exists only for CPU; human input is disabled
+PASS: CPU HUD label in original corner
+PASS: original CPU identity and spawn position
+PASS: inactive corners hidden
+Already in normal mode!
+PASS: results preserve original IDs and small CPU label
+Already in normal mode!
+>>>> RESET TIME <<<<
+PASS: return preserves editable CPU configuration
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: human plus non-contiguous CPU starts
+PASS: human retains original input processing
+PASS: human HUD still displays mapped key
+PASS: real human key still moves and cycles in a mixed match
+PASS: human key does not steer the CPU
+PASS: debug disabled by default and real arena boundaries read
+PASS: direct CPU direction 0 is selected coherently
+PASS: direct kick 0 uses capped real physics
+PASS: direct CPU direction 1 is selected coherently
+PASS: direct kick 1 uses capped real physics
+PASS: direct CPU direction 2 is selected coherently
+PASS: direct kick 2 uses capped real physics
+PASS: direct CPU direction 3 is selected coherently
+PASS: direct kick 3 uses capped real physics
+PASS: coast wins when momentum already reaches the pickup
+PASS: kick cooldown forbids an immediate direction change
+PASS: trajectory detects pickup passage between samples
+PASS: trajectory reflects from actual south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: real CPU player bounces off wall
+PASS: full-health CPU seeks stars and ignores hearts
+PASS: one HP makes nearby heart strongly valuable
+PASS: minor injury does not abandon nearby scoring for a distant heart
+PASS: brief commitment resists marginally closer target
+PASS: collected target is promptly discarded
+PASS: world observations omit fading collected pickups
+PASS: imminent skull danger causes evasion away from threat
+PASS: escape planning avoids kicking into nearby skull
+Player went super saiyan
+Cam shake
+Set background color based on player
+background entere power mode
+PASS: Star Power selects an enemy or vulnerable opponent to hunt
+PASS: powered CPU is not scared of harmless targets
+PASS: existing powered force and speed preserved
+Player went super saiyan
+Cam shake
+Already in powerup mode!
+Set background color based on player
+Set background color based on player
+PASS: CPU ending does not clear overlapping human power
+PASS: overlap retains powered and slowed speeds
+PASS: powered opponent is a normal-mode danger
+PASS: last expiry restores shared environment
+Powerup transition complete!
+PASS: empty arena produces an interior roaming waypoint
+PASS: stationary anti-stuck chooses a fresh waypoint without teleporting
+HEALTH update 0
+PASS: dead CPU stops deciding and clears target
+HEALTH update 3
+PASS: existing respawn restores CPU decisions without human input
+PASS: kick frequency remains limited over one second
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: mixed or CPU-only configuration starts after restart: [[0], [1]]
+PASS: correct active player count
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: mixed or CPU-only configuration starts after restart: [[0], [1, 2, 3]]
+PASS: correct active player count
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: mixed or CPU-only configuration starts after restart: [[], [0, 1, 2, 3]]
+PASS: correct active player count
+Already in normal mode!
+>>>> RESET TIME <<<<
+RESULT: 70 checks, 0 failures
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2604)
+ERROR: 1 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamMP3:9223372071969490447 - Reference count: 1
+Leaked instance: AudioStreamPlaybackMP3:9223372120052992120 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://Music/normal.mp3 (AudioStreamMP3)
+Orphan StringName: Master (static: 0, total: 2)
+StringName: 1 unclaimed string names at exit.

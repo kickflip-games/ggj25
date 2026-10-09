@@ -1,0 +1,169 @@
+Godot Engine v4.8.dev6.official.8898c2b3d - https://godotengine.org
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+Music playing: true
+PASS: default human still requires binding
+PASS: CPU button enables a playable slot without a key
+PASS: CPU lobby label
+PASS: CPU can switch back to a capturing human
+PASS: switching to CPU clears human binding
+PASS: OFF slot can become CPU directly
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: non-contiguous CPU-only lobby match starts
+PASS: controller exists only for CPU; human input is disabled
+PASS: CPU HUD label in original corner
+PASS: original CPU identity and spawn position
+PASS: controller exists only for CPU; human input is disabled
+PASS: CPU HUD label in original corner
+PASS: original CPU identity and spawn position
+PASS: inactive corners hidden
+Already in normal mode!
+PASS: results preserve original IDs and small CPU label
+PASS: CPU result label contrasts with graph paper
+Already in normal mode!
+>>>> RESET TIME <<<<
+PASS: return preserves editable CPU configuration
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: human plus non-contiguous CPU starts
+PASS: human retains original input processing
+PASS: human HUD still displays mapped key
+PASS: real human key still moves and cycles in a mixed match
+PASS: human key does not steer the CPU
+PASS: debug disabled by default and real arena boundaries read
+PASS: direct CPU direction 0 is selected coherently
+PASS: direct kick 0 uses capped real physics
+PASS: direct CPU direction 1 is selected coherently
+PASS: direct kick 1 uses capped real physics
+PASS: direct CPU direction 2 is selected coherently
+PASS: direct kick 2 uses capped real physics
+PASS: direct CPU direction 3 is selected coherently
+PASS: direct kick 3 uses capped real physics
+PASS: coast wins when momentum already reaches the pickup
+PASS: kick cooldown forbids an immediate direction change
+PASS: trajectory detects pickup passage between samples
+PASS: trajectory reflects from actual south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: predicted sample stays within south boundary
+PASS: real CPU player bounces off wall
+PASS: full-health CPU seeks stars and ignores hearts
+PASS: one HP makes nearby heart strongly valuable
+PASS: minor injury does not abandon nearby scoring for a distant heart
+PASS: brief commitment resists marginally closer target
+PASS: collected target is promptly discarded
+PASS: world observations omit fading collected pickups
+PASS: imminent skull danger causes evasion away from threat
+PASS: escape planning avoids kicking into nearby skull
+Player went super saiyan
+Cam shake
+Set background color based on player
+background entere power mode
+PASS: Star Power selects an enemy or vulnerable opponent to hunt
+PASS: powered CPU is not scared of harmless targets
+PASS: existing powered force and speed preserved
+Player went super saiyan
+Cam shake
+Already in powerup mode!
+Set background color based on player
+Set background color based on player
+PASS: CPU ending does not clear overlapping human power
+PASS: overlap retains powered and slowed speeds
+PASS: powered opponent is a normal-mode danger
+PASS: last expiry restores shared environment
+Powerup transition complete!
+PASS: empty arena produces an interior roaming waypoint
+PASS: stationary anti-stuck chooses a fresh waypoint without teleporting
+HEALTH update 0
+PASS: dead CPU stops deciding and clears target
+HEALTH update 3
+PASS: existing respawn restores CPU decisions without human input
+PASS: kick frequency remains limited over one second
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: mixed or CPU-only configuration starts after restart: [[0], [1]]
+PASS: correct active player count
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: mixed or CPU-only configuration starts after restart: [[0], [1, 2, 3]]
+PASS: correct active player count
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: mixed or CPU-only configuration starts after restart: [[], [0, 1, 2, 3]]
+PASS: correct active player count
+Already in normal mode!
+>>>> RESET TIME <<<<
+RESULT: 71 checks, 0 failures
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2604)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

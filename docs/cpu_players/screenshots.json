@@ -1,0 +1,58 @@
+{
+  "before/01_lobby.png": {
+    "sha256": "daecfd830dce905df7f6fa0b486da458c02050187a94121962a3b2667124c6b8",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/00_lobby_default.png": {
+    "sha256": "57d3f8184e9fa4d393e55d2ae22a7d7318784944f1255b29c465e083484aaeb3",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/00_lobby_mixed.png": {
+    "sha256": "3deeaa58b627b3d1569aab7effa129eb739013f200a9c341b2ab7c05d3926ead",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/01_human_cpu.png": {
+    "sha256": "d62fada365588063a13604d872f252aa4f1040e2e41d8c5e24858608876a8f12",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/02_human_three_cpus.png": {
+    "sha256": "0f91adc66574851c6084414b363ef253843e2987dad3d7d33934b43b4578da6d",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/03_cpu_star_power.png": {
+    "sha256": "416cf0856a691034cba082593f7c3486a4a2bc950660864ad466f331eaf06de9",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/04_cpu_debug.png": {
+    "sha256": "d02ed73818f8a9c7e4cc7072147773adf82c1c3f7ddc74bf1e40edece0fad545",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/05_four_cpus.png": {
+    "sha256": "5282d5b90ce700e611fbe10d37e8df795ae0a9457866725fcbaa60c6d2f50177",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+}

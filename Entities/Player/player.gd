@@ -40,6 +40,8 @@ const PLAYER_COLLISION_LAYER = 0
 var scalable_nodes: Array[Node2D]
 
 # Signals
+signal score_earned(amount: int, factor: int)
+signal health_collected
 signal player_died
 signal powerup_activated(player: Player)
 signal powerup_deactivated(player: Player)
@@ -125,7 +127,7 @@ func start(data: PlayerData):
 	ui = data.ui
 	player_color = data.color
 	player_data = data
-	ui.reset(data.id)
+	ui.reset(data.id, data.is_cpu)
 	score_manager.reset(ui, self)
 	ui.show()
 	_set_color()
@@ -136,7 +138,7 @@ func _toggle_physics(on: bool):
 	"""Enable or disable physics processing"""
 	linear_velocity = Vector2.ZERO
 	collision_shape.call_deferred("set_disabled", !on)
-	set_process_input(on)
+	set_process_input(on and (not player_data or not player_data.is_cpu))
 	set_physics_process(on)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -162,6 +164,15 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(_player_name):
 		_update_direction(true)
 		kick_in_direction(current_direction)
+
+func cpu_kick(dir: int):
+	# Direct choice; the ordinary impulse, caps and collision behavior still apply.
+	if dir < 0 or dir >= MAX_DIRECTIONS or not player_data or not player_data.is_cpu or hp <= 0 or not is_physics_processing():
+		return
+	current_direction = dir
+	_next_direction = (dir + 1) % MAX_DIRECTIONS
+	direction_arrows.show_arrow(dir)
+	kick_in_direction(dir)
 
 func kick_in_direction(dir: int):
 	"""Apply kick force in specified direction"""
@@ -293,10 +304,12 @@ func die():
 func increment_score(factor: int = 1):
 	"""Increase player score"""
 	var increase = score_manager.increment(_in_power_up_mode, factor)
+	score_earned.emit(increase, factor)
 	PopupFx.display_popup("+" + str(increase), message_point.global_position, player_color)
 
 func increment_health():
 	"""Increase player health if not at maximum"""
+	health_collected.emit()
 	if hp < Globals.MAX_HP: 
 		hp += 1
 	ui.update_health(hp)
@@ -402,7 +415,7 @@ func _set_color():
 	hurt_fx.color = color_low_alpha
 	dash_fx.color = color_low_alpha 
 	background_sprite.self_modulate = color_low_alpha
-	$DirectionArrows/ActiveArrow.modulate = color_low_alpha
+	$DirectionArrows/ActiveArrow.modulate = Color(1, 1, 1, 0.75)
 	$DirectionArrows.modulate = player_color
 	power_trail.color = player_color
 	powerup_fx.color = player_color

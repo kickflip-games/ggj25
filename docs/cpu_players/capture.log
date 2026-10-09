@@ -1,0 +1,214 @@
+Godot Engine v4.8.dev6.official.8898c2b3d - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+Music playing: true
+CAPTURE 00_lobby_default.png
+CAPTURE 00_lobby_mixed.png
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+Combo ended
+CAPTURE 01_human_cpu.png
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+Combo ended
+enemy body collison with North
+enemy body collison with GameBoundsOctagon
+enemy hurt the player
+HEALTH update 2
+Combo ended
+enemy hurt the player
+HEALTH update 2
+enemy hurt the player
+HEALTH update 2
+HEALTH update 3
+enemy body collison with East
+enemy body collison with GameBoundsOctagon
+CAPTURE 02_human_three_cpus.png
+Combo ended
+enemy hurt the player
+HEALTH update 1
+enemy body collison with GameBoundsOctagon
+enemy body collison with South
+enemy body collison with GameBoundsOctagon
+enemy body collison with East
+enemy hurt the player
+HEALTH update 2
+enemy body collison with GameBoundsOctagon
+enemy body collison with South
+HEALTH update 2
+Combo ended
+enemy body collison with GameBoundsOctagon
+enemy body collison with North
+enemy body collison with North
+enemy body collison with GameBoundsOctagon
+enemy hurt the player
+HEALTH update 1
+enemy body collison with South
+enemy body collison with GameBoundsOctagon
+enemy hurt the player
+Combo ended
+enemy body collison with GameBoundsOctagon
+enemy body collison with SW
+enemy hurt the player
+HEALTH update 1
+HEALTH update 3
+Powerup ready
+Player went super saiyan
+Cam shake
+Set background color based on player
+background entere power mode
+Powerup transition complete!
+CAPTURE 03_cpu_star_power.png
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+enemy hurt the player
+HEALTH update 2
+Combo ended
+CAPTURE 04_cpu_debug.png
+Already in normal mode!
+>>>> RESET TIME <<<<
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+enemy hurt the player
+HEALTH update 2
+Combo ended
+CAPTURE 05_four_cpus.png
+HEALTH update 3
+enemy body collison with GameBoundsOctagon
+enemy body collison with North
+enemy hurt the player
+HEALTH update 2
+Combo ended
+enemy body collison with GameBoundsOctagon
+enemy body collison with South
+enemy hurt the player
+HEALTH update 1
+enemy body collison with GameBoundsOctagon
+enemy body collison with East
+enemy hurt the player
+Combo ended
+enemy body collison with South
+enemy body collison with GameBoundsOctagon
+VIDEO_FRAME 0
+enemy hurt the player
+HEALTH update 2
+HEALTH update 2
+enemy hurt the player
+HEALTH update 1
+enemy body collison with GameBoundsOctagon
+enemy body collison with North
+Combo ended
+VIDEO_FRAME 100
+Powerup ready
+Player went super saiyan
+Cam shake
+Set background color based on player
+background entere power mode
+Powerup transition complete!
+enemy hurt the player
+HEALTH update 2
+HEALTH update 0
+enemy hurt the player
+HEALTH update 1
+HEALTH update 1
+enemy hurt the player
+enemy hurt the player
+enemy hurt the player
+HEALTH update 0
+HEALTH update 0
+VIDEO_FRAME 200
+enemy hurt the player
+HEALTH update 1
+HEALTH update 3
+HEALTH update 3
+Combo ended
+enemy body collison with player1
+HEALTH update 3
+HEALTH update 3
+enemy body collison with GameBoundsOctagon
+enemy body collison with North
+VIDEO_FRAME 300
+enemy hurt the player
+HEALTH update 2
+enemy hurt the player
+enemy hurt the player
+enemy body collison with North
+enemy body collison with GameBoundsOctagon
+HEALTH update 3
+Combo ended
+VIDEO_FRAME 400
+Combo ended
+Powerup ready
+Player went super saiyan
+Cam shake
+Set background color based on player
+background entere power mode
+Powerup transition complete!
+enemy hurt the player
+HEALTH update 2
+enemy body collison with South
+enemy body collison with GameBoundsOctagon
+HEALTH update 2
+>>>> RESET TIME <<<<

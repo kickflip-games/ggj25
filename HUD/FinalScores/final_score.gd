@@ -5,8 +5,10 @@ extends VBoxContainer
 @onready var scoreLbl:=$Score
 @onready var background:=$background
 
-func create(pid:int, score:int, is_winner:bool):
+func create(pid:int, score:int, is_winner:bool, is_cpu:bool = false):
+	$Controller.visible = is_cpu
 	var c = Globals.PLAYER_COLORS[pid]
+	$Controller.add_theme_color_override("font_color", c)
 	nameLbl.text = "Player " + str(pid+1)
 	scoreLbl.text = str(score).pad_zeros(4)
 	nameLbl.add_theme_color_override("font_color", c)

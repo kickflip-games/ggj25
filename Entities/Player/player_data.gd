@@ -7,6 +7,7 @@ var x0: Vector2 # start pos
 var ui: PlayerUi
 var color: Color
 var id:int
+var is_cpu: bool = false
 
 
 

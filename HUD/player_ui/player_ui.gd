@@ -14,6 +14,11 @@ extends VBoxContainer
 ]
 @onready var _playerButtonLabel = $PlayerButton
 
+var _score_tween: Tween
+var _bar_tween: Tween
+var _status_tween: Tween
+var _heart_tweens: Dictionary = {}
+
 var _col: Color
 var _current_score: int = 0
 var _player_id: int = -1  # Store the player ID
@@ -22,22 +27,26 @@ func write_resapwning():
 	$Label.modulate = _col
 	$Label.text = "Respawning..."
 	# Add a gentle pulse to respawning text
+	if _status_tween:
+		_status_tween.kill()
 	var tween = create_tween().set_loops()
+	_status_tween = tween
 	tween.tween_property($Label, "modulate:a", 0.5, 1.0)
 	tween.tween_property($Label, "modulate:a", 1.0, 1.0)
 	
 func write_bash_mode():
 	$Label.modulate = _col
 	$Label.text = "STAR POWER"
-	# Make BASH MODE feel energetic
-	var tween = create_tween()
-	tween.parallel().tween_property($Label, "scale", Vector2(1.2, 1.2), 0.1)
-	tween.parallel().tween_property($Label, "rotation", deg_to_rad(2), 0.1)
-	tween.tween_interval(0.1)
-	tween.parallel().tween_property($Label, "scale", Vector2(1.0, 1.0), 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween.parallel().tween_property($Label, "rotation", 0, 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	if _status_tween:
+		_status_tween.kill()
+	$Label.scale = Vector2.ONE
+	$Label.rotation = 0.0
+	_stop_full_bar_pulse()
 
-func reset(player_id: int):
+var _is_cpu: bool = false
+
+func reset(player_id: int, is_cpu: bool = false):
+	_is_cpu = is_cpu
 	_player_id = player_id  # Store the player ID
 	_col = Globals.PLAYER_COLORS[player_id]
 	update_score(0)
@@ -50,6 +59,10 @@ func reset(player_id: int):
 	print("player colors reset")
 
 func update_player_button_display():
+	if _is_cpu:
+		_playerButtonLabel.text = "CPU"
+		_playerButtonLabel.modulate = _col
+		return
 	if _player_id == -1:
 		_playerButtonLabel.text = ""
 		return
@@ -72,7 +85,7 @@ func update_player_button_display():
 
 func get_input_description(event: InputEvent) -> String:
 	if event is InputEventKey:
-		var key_string = OS.get_keycode_string(event.keycode)
+		var key_string = OS.get_keycode_string(event.keycode if event.keycode != 0 else event.physical_keycode)
 		# You can customize the display format here
 		match key_string:
 			"Space":
@@ -124,15 +137,18 @@ func set_colors():
 	#_set_flame_col()
 
 func update_score(score: int):
-	var old_score = _current_score
+	var old_score = int(_scoreLbl.text)
+	if _score_tween:
+		_score_tween.kill()
 	_current_score = score
 	
-	# Animate the score change with a counting effect
+	# Animate from the currently displayed value, cancelling the previous count.
 	var tween = create_tween()
+	_score_tween = tween
 	tween.parallel().tween_method(_animate_score_count, old_score, score, 0.5).set_ease(Tween.EASE_OUT)
 	
 	# Scale pop effect
-	tween.parallel().tween_property(_scoreLbl, "scale", Vector2(1.3, 1.3), 0.1)
+	tween.parallel().tween_property(_scoreLbl, "scale", Vector2(1.08, 1.08), 0.1)
 	tween.parallel().tween_property(_scoreLbl, "modulate", Color.WHITE, 0.1)
 	
 	tween.tween_interval(0.1)	
@@ -148,6 +164,9 @@ func update_health(health: int):
 	# Color the first "health" hearts by color, others are set to black
 	for i in range(hearts.size()):
 		var heart = hearts[i]
+		if _heart_tweens.has(i):
+			_heart_tweens[i].kill()
+		heart.scale = Vector2.ONE
 		if i < health:
 			# Check if heart was previously black/transparent
 			var was_black = heart.modulate.is_equal_approx(Color.BLACK) or heart.modulate.a < 0.1
@@ -156,13 +175,15 @@ func update_health(health: int):
 			# Heart pop animation when gaining health
 			if was_black:
 				var tween = create_tween()
-				tween.tween_property(heart, "scale", Vector2(1.4, 1.4), 0.15).set_ease(Tween.EASE_OUT)
+				_heart_tweens[i] = tween
+				tween.tween_property(heart, "scale", Vector2(1.2, 1.2), 0.15).set_ease(Tween.EASE_OUT)
 				tween.tween_property(heart, "scale", Vector2(1.0, 1.0), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 		else:
 			# Animate hearts losing health with a shrink effect
 			var was_colored = !heart.modulate.is_equal_approx(Color.BLACK) and heart.modulate.a > 0.1
 			if was_colored:
 				var tween = create_tween()
+				_heart_tweens[i] = tween
 				tween.parallel().tween_property(heart, "scale", Vector2(0.8, 0.8), 0.1)
 				tween.parallel().tween_property(heart, "modulate", Color.BLACK, 0.1)
 				tween.tween_property(heart, "scale", Vector2(1.0, 1.0), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
@@ -170,72 +191,21 @@ func update_health(health: int):
 				heart.modulate = Color.BLACK
 
 func reset_bar():
+	if _bar_tween:
+		_bar_tween.kill()
+	_stop_full_bar_pulse()
 	_bar.max_value = Globals.POWERUP_THRESHOLD
 	_bar.value = 0
 
 func update_bar(value):
-	var old_value = _bar.value
-	
-	# Smooth bar fill animation
-	var tween = create_tween()
-	tween.tween_property(_bar, "value", value, 0.3).set_ease(Tween.EASE_OUT)
-	
-	# Check if bar is getting full (90%+ of max)
-	if value >= _bar.max_value * 0.9 and value < _bar.max_value:
-		# Subtle glow pulse for near-full bar
-		tween.parallel().tween_property(_bar, "modulate", Color(1.2, 1.2, 1.2), 0.2)
-		tween.parallel().tween_property(_bar, "modulate", Color(1.0, 1.0, 1.0), 0.2)
-	
-	# If bar is completely full, make it dramatic and start pulsing!
+	if _bar_tween:
+		_bar_tween.kill()
+	_bar_tween = create_tween()
+	_bar_tween.tween_property(_bar, "value", value, 0.2).set_ease(Tween.EASE_OUT)
 	if value >= _bar.max_value:
-		_play_full_bar_effect()
 		_start_full_bar_pulse()
 	else:
-		# Stop pulsing if bar is no longer full
 		_stop_full_bar_pulse()
-
-func _play_full_bar_effect(drama_level := 3.0):
-	# Clamp drama level to sane range
-	drama_level = clamp(drama_level, 0.0, 3.0)
-	
-	var tween = create_tween()
-	var flashes = int(3 + 3 * drama_level)
-	var shake_count = int(5 + 5 * drama_level)
-	var shake_magnitude = 5.0 * drama_level
-	var rotation_magnitude = 3.0 * drama_level
-	var scale_peak = 1.0 + 0.3 * drama_level
-	var flash_intensity = 1.5 + drama_level
-	
-	var original_pos = _bar.position
-	var original_rot = _bar.rotation_degrees
-	
-	# Flash effect
-	for i in range(flashes):
-		tween.tween_property(_bar, "modulate", Color(flash_intensity, flash_intensity, flash_intensity), 0.04)
-		tween.tween_property(_bar, "modulate", _col, 0.04)
-
-	# Shake (position + rotation)
-	for i in range(shake_count):
-		var shake_offset = Vector2(
-			randf_range(-shake_magnitude, shake_magnitude),
-			randf_range(-shake_magnitude, shake_magnitude)
-		)
-		var rot_offset = randf_range(-rotation_magnitude, rotation_magnitude)
-		tween.parallel().tween_property(_bar, "position", original_pos + shake_offset, 0.03)
-		tween.parallel().tween_property(_bar, "rotation_degrees", original_rot + rot_offset, 0.03)
-
-	# Snap back to original
-	tween.tween_property(_bar, "position", original_pos, 0.3)\
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween.parallel().tween_property(_bar, "rotation_degrees", original_rot, 0.3)\
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-
-	# Scale pop
-	tween.parallel().tween_property(_bar, "scale", Vector2(scale_peak, scale_peak), 0.1)
-	tween.tween_property(_bar, "scale", Vector2(1.0, 1.0), 0.35)\
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
-
-
 
 func play_hp_fx():
 	# Screen shake effect for damage
@@ -255,62 +225,20 @@ func play_hp_fx():
 	tween.tween_property(self, "modulate", Color.WHITE, 0.3)
 
 func play_powerup_mode_fx():
-	# Epic powerup activation effect
-	var tween = create_tween()
-	
-	# Grow and glow
-	tween.parallel().tween_property(self, "scale", Vector2(1.15, 1.15), 0.3).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(self, "modulate", Color(1.3, 1.3, 1.3), 0.3)
-	
-	# Pulsing glow effect during powerup mode
-	tween.tween_callback(_start_powerup_pulse)
-	
-	# Return to normal after powerup
-	await get_tree().create_timer(5.0).timeout  # Adjust timing as needed
-	_stop_powerup_pulse()
+	write_bash_mode()
+	$Label.text = "STAR POWER!"
+	_start_full_bar_pulse()
 
-var _powerup_pulse_tween: Tween
 var _full_bar_pulse_tween: Tween
 
-func _start_powerup_pulse():
-	_powerup_pulse_tween = create_tween().set_loops()
-	_powerup_pulse_tween.tween_property(self, "modulate", Color(1.4, 1.4, 1.4), 0.5)
-	_powerup_pulse_tween.tween_property(self, "modulate", Color(1.1, 1.1, 1.1), 0.5)
-
-func _stop_powerup_pulse():
-	if _powerup_pulse_tween:
-		_powerup_pulse_tween.kill()
-	
-	var tween = create_tween()
-	tween.parallel().tween_property(self, "scale", Vector2(1.0, 1.0), 0.3).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(self, "modulate", Color.WHITE, 0.3)
-
 func _start_full_bar_pulse():
-	# Stop any existing full bar pulse
-	if _full_bar_pulse_tween:
-		_full_bar_pulse_tween.kill()
-	
-	# Create an intense pulsing effect for the full bar with shake
+	if _full_bar_pulse_tween and _full_bar_pulse_tween.is_running():
+		return
 	_full_bar_pulse_tween = create_tween().set_loops()
-	var original_pos = _bar.position
-	
-	# Pulse color and add subtle shake
-	_full_bar_pulse_tween.tween_callback(func(): _shake_bar_during_pulse(original_pos))
-	_full_bar_pulse_tween.tween_property(_bar, "modulate", Color(2.0, 2.0, 2.0), 0.4)
-	_full_bar_pulse_tween.tween_callback(func(): _shake_bar_during_pulse(original_pos))
-	_full_bar_pulse_tween.tween_property(_bar, "modulate", _col, 0.4)
-
-func _shake_bar_during_pulse(original_pos: Vector2):
-	# Small shake during each pulse
-	var shake_tween = create_tween()
-	var shake_offset = Vector2(randf_range(-2, 2), randf_range(-1, 1))
-	shake_tween.tween_property(_bar, "position", original_pos + shake_offset, 0.05)
-	shake_tween.tween_property(_bar, "position", original_pos, 0.05)
+	_full_bar_pulse_tween.tween_property(_bar, "modulate", Color(1.15, 1.15, 1.15), 0.5)
+	_full_bar_pulse_tween.tween_property(_bar, "modulate", Color.WHITE, 0.5)
 
 func _stop_full_bar_pulse():
 	if _full_bar_pulse_tween:
 		_full_bar_pulse_tween.kill()
-	
-	# Return bar to normal color
-	var tween = create_tween()
-	tween.tween_property(_bar, "modulate", Color.WHITE, 0.2)
+	_bar.modulate = Color.WHITE

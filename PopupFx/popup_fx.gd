@@ -8,11 +8,10 @@ func display_popup(msg: String, position: Vector2, color: Color = Color.WHITE):
 	label.label_settings.font = CUSTOM_FONT
 	label.global_position = position
 	label.text = msg
-	label.z_index = 5 
-	label.label_settings = LabelSettings.new()
+	label.z_index = 5
 	
 	label.label_settings.font_color = color
-	label.label_settings.font_size = 28
+	label.label_settings.font_size = 24
 	label.label_settings.outline_color = Color.BLACK
 	label.label_settings.outline_size = 1
 	
@@ -22,12 +21,12 @@ func display_popup(msg: String, position: Vector2, color: Color = Color.WHITE):
 	
 	label.pivot_offset = Vector2(label.size/2)
 	
-	var foo = 2
+	var duration_scale = 1.0
 	
 	var t = get_tree().create_tween().set_parallel()
-	t.tween_property(label, "position:y", label.position.y - 24, 0.25*foo).set_ease(Tween.EASE_OUT)
-	t.tween_property(label, "position:y", label.position.y, 0.5 *foo).set_ease(Tween.EASE_IN).set_delay(0.25*foo)
-	t.tween_property(label, "scale", Vector2.ZERO, 0.25*foo).set_ease(Tween.EASE_IN).set_delay(0.25*foo)
+	t.tween_property(label, "position:y", label.position.y - 24, 0.25*duration_scale).set_ease(Tween.EASE_OUT)
+	t.tween_property(label, "position:y", label.position.y, 0.5 *duration_scale).set_ease(Tween.EASE_IN).set_delay(0.25*duration_scale)
+	t.tween_property(label, "scale", Vector2.ZERO, 0.25*duration_scale).set_ease(Tween.EASE_IN).set_delay(0.25*duration_scale)
 	
 	await t.finished
 	label.queue_free()
@@ -160,7 +159,7 @@ func display_score_popup(score_increase: int, position: Vector2, color: Color = 
 		label.label_settings.outline_size = 3
 	else:
 		# Regular scoring
-		label.label_settings.font_size = 28
+		label.label_settings.font_size = 24
 		label.label_settings.font_color = color
 		label.label_settings.outline_color = Color.BLACK
 		label.label_settings.outline_size = 1

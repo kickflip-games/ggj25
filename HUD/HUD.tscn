@@ -1138,10 +1138,12 @@ cache/0/90/1/glyphs/70/uv_rect = Rect2(1, 147, 52, 77)
 cache/0/90/1/glyphs/70/texture_idx = 0
 
 [node name="Hud" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_h3xh4")
 score_container_scene = ExtResource("4_vhx22")
 
 [node name="GameUi" type="MarginContainer" parent="."]
+process_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1197,9 +1199,6 @@ offset_top = 10.0
 offset_right = 1910.0
 offset_bottom = 1070.0
 
-[node name="StartGameButton" type="Button" parent="StartMarginContainer"]
-layout_mode = 2
-
 [node name="GameText" type="Label" parent="StartMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1251,19 +1250,70 @@ Fill StarBar to Attack
 fit_content = true
 horizontal_alignment = 1
 
-[node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
-
-[node name="BackButton" type="Button" parent="."]
-offset_left = 873.0
-offset_top = 1001.0
-offset_right = 1047.0
-offset_bottom = 1060.0
+[node name="StartGameButton" type="Button" parent="StartMarginContainer"]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-size_flags_stretch_ratio = 4.75
 theme = ExtResource("2_2cp7m")
-theme_override_font_sizes/font_size = 50
-text = "Back?"
+theme_override_font_sizes/font_size = 32
+text = "Back to Lobby"
+
+[node name="StartSequence" parent="." instance=ExtResource("4_0p38o")]
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.015, 0.025, 0.09, 0.7)
+
+[node name="Center" type="CenterContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Options" type="VBoxContainer" parent="PauseMenu/Center"]
+layout_mode = 2
+theme = ExtResource("2_2cp7m")
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="PauseMenu/Center/Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/Center/Options"]
+custom_minimum_size = Vector2(340, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Continue"
+
+[node name="BackButton" type="Button" parent="PauseMenu/Center/Options"]
+custom_minimum_size = Vector2(340, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Back to Main"
 
 [connection signal="pressed" from="StartMarginContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Center/Options/BackButton" to="." method="_on_back_button_pressed"]
+
+[connection signal="pressed" from="PauseMenu/Center/Options/ContinueButton" to="." method="_on_continue_button_pressed"]

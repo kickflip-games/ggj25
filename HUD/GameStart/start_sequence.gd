@@ -1,24 +1,33 @@
-"""
-StartSequence
-- TitleScreen
-- MappingScreen
-"""
 extends Control
+signal match_requested(configuration: Array)
 @onready var title_screen = $TitleScreen
+@onready var lobby = $Lobby
 @onready var mapping_screen = $MappingScreen
 
-func _ready() -> void:
-	mapping_screen.hide()
-	# Connect the visibility changed signal if you want to track state changes
-	mapping_screen.visibility_changed.connect(mapping_screen._on_visibility_changed)
+func _ready():
+	title_screen.play_requested.connect(show_lobby)
+	lobby.capture_requested.connect(mapping_screen.start_capture)
+	lobby.match_requested.connect(_start_match)
+	mapping_screen.input_chosen.connect(_on_input_chosen)
 
-func _on_title_screen_button_pressed(num_players: int) -> void:
-	mapping_screen.num_players = num_players
+func _on_input_chosen(slot_id: int, event: InputEvent):
+	var error = lobby.assign_input(slot_id, event)
+	if error.is_empty():
+		mapping_screen.finish_capture()
+	else:
+		mapping_screen.warning.text = error
+
+func _start_match(configuration: Array):
+	mapping_screen.finish_capture()
+	hide()
+	match_requested.emit(configuration)
+
+func show_lobby():
 	title_screen.hide()
-	mapping_screen.show()
-	# Start the mapping process after showing the screen
-	mapping_screen.start_mapping()
-	
-func _on_mapping_screen_keys_mapped() -> void:
-	mapping_screen.hide()
-	self.hide()
+	lobby.show()
+	lobby.refresh()
+	show()
+
+func return_to_lobby():
+	mapping_screen.finish_capture()
+	show_lobby()

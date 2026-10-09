@@ -29,6 +29,7 @@ Shaker="*res://addons/shaker/src/Shaker.gd"
 TimeManager="*res://TimeManager/TimeManager.tscn"
 PopupFx="*res://PopupFx/popup_fx.gd"
 MusicManager="*res://Music/MusicManager.tscn"
+_mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [display]
 
@@ -38,7 +39,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/DampedOscillator/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/DampedOscillator/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [gui]
 

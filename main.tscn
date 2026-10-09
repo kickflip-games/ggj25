@@ -24,8 +24,6 @@ amplitude = Vector2(30, 30)
 script = ExtResource("8_p8pca")
 PositionShake = Array[ExtResource("5_exxlh")]([SubResource("Resource_mwkiu")])
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_seagh"]
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_apr01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ch7fi"]
@@ -100,7 +98,6 @@ physics_material_override = ExtResource("4_ihst0")
 [node name="Polygon2D" type="Polygon2D" parent="GameBounds/GameBoundsOctagon" unique_id=17194629]
 modulate = Color(0, 0.062499993, 0.24999999, 1)
 antialiased = true
-texture = SubResource("ViewportTexture_seagh")
 invert_enabled = true
 invert_border = 110.0
 polygon = PackedVector2Array(-339, 198, -339, 798, -139, 998, 1201, 998, 1401, 798, 1401, 198, 1201, -2, -139, -2)

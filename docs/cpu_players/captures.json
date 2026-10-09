@@ -1,0 +1,65 @@
+[
+	{
+		"description": "Default lobby: same configuration as baseline, CPU now selectable.",
+		"file": "00_lobby_default.png",
+		"seconds_remaining": 0.0,
+		"size": [
+			1920,
+			1080
+		]
+	},
+	{
+		"description": "P1 SPACE, P2–P4 CPU, Start enabled.",
+		"file": "00_lobby_mixed.png",
+		"seconds_remaining": 0.0,
+		"size": [
+			1920,
+			1080
+		]
+	},
+	{
+		"description": "One stationary human and one CPU; unstaged gameplay after four seconds.",
+		"file": "01_human_cpu.png",
+		"seconds_remaining": 115.966666666667,
+		"size": [
+			1920,
+			1080
+		]
+	},
+	{
+		"description": "One stationary human and three CPUs; unstaged gameplay after eight seconds.",
+		"file": "02_human_three_cpus.png",
+		"seconds_remaining": 111.966666666667,
+		"size": [
+			1920,
+			1080
+		]
+	},
+	{
+		"description": "Naturally earned CPU Star Power, not manually triggered.",
+		"file": "03_cpu_star_power.png",
+		"seconds_remaining": 99.3500000000012,
+		"size": [
+			1920,
+			1080
+		]
+	},
+	{
+		"description": "Four CPUs with developer-only goals, targets and predicted paths enabled.",
+		"file": "04_cpu_debug.png",
+		"seconds_remaining": 114.966666666667,
+		"size": [
+			1920,
+			1080
+		]
+	},
+	{
+		"description": "Four CPU players, debug disabled; unstaged gameplay after six seconds.",
+		"file": "05_four_cpus.png",
+		"seconds_remaining": 113.966666666667,
+		"size": [
+			1920,
+			1080
+		]
+	}
+]

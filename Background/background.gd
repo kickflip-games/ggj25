@@ -10,7 +10,8 @@ const C2: Color = Color(0.09, 0.09, 0.09, 1.0)
 const SPEED: float = 3.0
 const LINES: int = 20
 const FADE_DURATION: float = 0.5
-const MAX_ALPHA = 1.0
+@export_range(0.0, 1.0) var sustained_alpha: float = 0.32
+@export_range(0.0, 1.0) var activation_alpha: float = 0.48
 
 
 var is_powerup_mode: bool = false
@@ -41,8 +42,8 @@ func reset():
 
 func set_color(c: Color):
 	print("Set background color based on player")
-	var c1 = c.darkened(0.8)
-	var c2 = c.darkened(0.6)
+	var c1 = c.darkened(0.35)
+	var c2 = c.darkened(0.2)
 	var current_alpha = shader_mat.get_shader_parameter("alpha")
 	set_shader(SPEED * 2, LINES * 2, c1, c2, current_alpha)
 
@@ -77,14 +78,15 @@ func fade_shader_in():
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_method(set_shader_alpha, 0.0, MAX_ALPHA, FADE_DURATION)
+	tween.tween_method(set_shader_alpha, shader_mat.get_shader_parameter("alpha"), activation_alpha, 0.15)
+	tween.tween_method(set_shader_alpha, activation_alpha, sustained_alpha, FADE_DURATION)
 	tween.set_ease(Tween.EASE_IN)
 
 func fade_shader_out():
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_method(set_shader_alpha, MAX_ALPHA, 0.0, FADE_DURATION)
+	tween.tween_method(set_shader_alpha, shader_mat.get_shader_parameter("alpha"), 0.0, FADE_DURATION)
 	tween.set_ease(Tween.EASE_OUT)
 
 # Public interface functions
@@ -96,7 +98,7 @@ func end_powerup():
 
 # Instant switching for debugging
 func instant_show_shader():
-	set_shader_alpha(MAX_ALPHA)
+	set_shader_alpha(sustained_alpha)
 	is_powerup_mode = true
 
 func instant_hide_shader():
