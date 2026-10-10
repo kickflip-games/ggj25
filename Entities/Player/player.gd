@@ -65,6 +65,7 @@ var _kick_force: float
 var _in_power_up_mode: bool = false
 var _can_take_damage: bool = true
 var _init_sprite_scale: Vector2
+var _init_sprite_rotation: float
 var _init_collision_scale: Vector2
 var _next_direction: int = 0
 var _original_collision_mask: int
@@ -84,6 +85,7 @@ func _ready() -> void:
 	current_direction = Direction.RIGHT
 	hide()
 	_init_sprite_scale = sprite.scale
+	_init_sprite_rotation = sprite.rotation
 	_init_collision_scale = collision_shape.scale
 	_setup_tweens()
 	_original_collision_mask = collision_mask
@@ -106,6 +108,7 @@ func respawn_player():
 	position = _start_pos
 	sprite.self_modulate.a = 1
 	sprite.scale = _init_sprite_scale
+	sprite.rotation = _init_sprite_rotation
 	collision_shape.scale = _init_collision_scale
 	hp = Globals.MAX_HP
 	ui.update_health(hp)
@@ -166,13 +169,13 @@ func _input(_event: InputEvent) -> void:
 		kick_in_direction(current_direction)
 
 func cpu_kick(dir: int):
-	# Direct choice; the ordinary impulse, caps and collision behavior still apply.
+	# CPUs must take the same next direction as a human button press.
 	if dir < 0 or dir >= MAX_DIRECTIONS or not player_data or not player_data.is_cpu or hp <= 0 or not is_physics_processing():
 		return
-	current_direction = dir
-	_next_direction = (dir + 1) % MAX_DIRECTIONS
-	direction_arrows.show_arrow(dir)
-	kick_in_direction(dir)
+	if dir != _next_direction:
+		return
+	_update_direction(true)
+	kick_in_direction(current_direction)
 
 func kick_in_direction(dir: int):
 	"""Apply kick force in specified direction"""

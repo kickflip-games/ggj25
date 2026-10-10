@@ -1,12 +1,12 @@
-# Five short, approximate trajectories; all real motion remains in Player.
+# Plan short trajectories, but execute only coast or the human cycle's next kick.
 extends Node2D
 
 enum Goal { COLLECT, HEAL, EVADE, HUNT, ROAM }
 const COAST = -1
 const SAMPLE_COUNT = 8
 
-@export var decision_interval: float = 0.25
-@export var min_kick_interval: float = 0.40
+@export var decision_interval: float = 0.55
+@export var min_kick_interval: float = 0.85
 @export var prediction_horizon: float = 1.0
 @export var target_commitment_time: float = 0.8
 @export var aiming_error: float = 20.0
@@ -58,7 +58,7 @@ func setup(controlled_player: Player, observed_world: Node2D):
 	player.health_collected.connect(func(): diagnostics.hearts += 1)
 	player.player_died.connect(func(): diagnostics.deaths += 1)
 	player.powerup_activated.connect(func(_p): diagnostics.powerups += 1)
-	_decision_left = _rng.randf_range(0.1, decision_interval)
+	_decision_left = decision_interval * _rng.randf_range(0.85, 1.15)
 
 func _physics_process(delta: float):
 	if not is_instance_valid(player):
@@ -76,6 +76,7 @@ func _physics_process(delta: float):
 		_unproductive_time = 0.0
 		_best_distance = INF
 		_commit_left = 0.0
+		_decision_left = decision_interval * _rng.randf_range(0.85, 1.15)
 		_was_alive = true
 	_kick_left = maxf(0.0, _kick_left - delta)
 	_commit_left -= delta
@@ -207,16 +208,25 @@ func _decide():
 	var jitter = Vector2.from_angle(_rng.randf() * TAU) * _rng.randf_range(0.0, aiming_error)
 	var aim = _goal_point + jitter
 	var goal_velocity = _velocity(target) if is_instance_valid(target) else Vector2.ZERO
-	var best_utility: float = -INF
+	var coast = _predict(COAST)
+	var coast_utility = _utility(coast, aim, goal_velocity, dangers, COAST)
 	chosen_direction = COAST
-	for action in range(COAST, 4):
-		if action != COAST and _kick_left > 0.0: continue
-		var trajectory = _predict(action)
-		var utility = _utility(trajectory, aim, goal_velocity, dangers, action)
-		if utility > best_utility:
-			best_utility = utility
-			chosen_direction = action
-			_path = trajectory.points
+	_path = coast.points
+	if _kick_left <= 0.0:
+		var next_direction = player._next_direction
+		var next_path = _predict(next_direction)
+		var next_utility = _utility(next_path, aim, goal_velocity, dangers, next_direction)
+		# Later directions are planning hints only. A setup kick must still advance
+		# one step in the cycle, respect cooldown, and pay its real danger cost.
+		var future_utility = coast_utility
+		for direction in range(4):
+			if direction == next_direction: continue
+			future_utility = maxf(future_utility, _utility(_predict(direction), aim, goal_velocity, dangers, direction))
+		if _path_distance(coast.points, aim, goal_velocity) > 100.0:
+			next_utility += clampf((future_utility - coast_utility - 40.0) * 0.4, 0.0, 80.0)
+		if next_utility > coast_utility:
+			chosen_direction = next_direction
+			_path = next_path.points
 	diagnostics.goals[goal] += 1
 	if chosen_direction != COAST:
 		if goal != Goal.EVADE and _recover_left <= 0.0 and _rng.randf() < hesitation_probability:

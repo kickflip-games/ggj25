@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3]
 [ext_resource type="Script" path="res://HUD/GameStart/lobby.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/background.png" id="2"]
-[ext_resource type="Theme" path="res://HUD/theme.tres" id="4"]
+[ext_resource type="Theme" path="res://HUD/GameStart/lobby_theme.tres" id="4"]
 [ext_resource type="PackedScene" path="res://HUD/GameStart/player_slot/player_slot.tscn" id="5"]
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -55,5 +55,5 @@ disabled = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15, 0.18, 0.26, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1

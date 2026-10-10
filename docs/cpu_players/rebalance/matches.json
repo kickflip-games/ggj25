@@ -1,0 +1,280 @@
+[
+	{
+		"humans_stationary": [
+			0
+		],
+		"overlap_seconds": 0.0,
+		"players": [
+			{
+				"cpu": false,
+				"id": 0,
+				"score": 20
+			},
+			{
+				"cpu": true,
+				"id": 1,
+				"metrics": {
+					"attacks": 12,
+					"deaths": 0,
+					"decisions": 213,
+					"directions": [
+						17,
+						17,
+						17,
+						17
+					],
+					"goals": [
+						127,
+						16,
+						18,
+						17,
+						35
+					],
+					"hearts": 5,
+					"kicks": 68,
+					"max_speed": 1000.0,
+					"powerups": 2,
+					"stars": 7,
+					"stuck_seconds": 7.2,
+					"unsticks": 4
+				},
+				"score": 1110
+			}
+		],
+		"seconds": 120,
+		"seed": 250125
+	},
+	{
+		"humans_stationary": [
+			0
+		],
+		"overlap_seconds": 0.0,
+		"players": [
+			{
+				"cpu": false,
+				"id": 0,
+				"score": 20
+			},
+			{
+				"cpu": true,
+				"id": 1,
+				"metrics": {
+					"attacks": 7,
+					"deaths": 1,
+					"decisions": 208,
+					"directions": [
+						18,
+						18,
+						17,
+						17
+					],
+					"goals": [
+						62,
+						76,
+						34,
+						9,
+						27
+					],
+					"hearts": 4,
+					"kicks": 70,
+					"max_speed": 1000.0,
+					"powerups": 1,
+					"stars": 4,
+					"stuck_seconds": 3.6,
+					"unsticks": 2
+				},
+				"score": 780
+			},
+			{
+				"cpu": true,
+				"id": 2,
+				"metrics": {
+					"attacks": 0,
+					"deaths": 2,
+					"decisions": 203,
+					"directions": [
+						17,
+						17,
+						17,
+						16
+					],
+					"goals": [
+						104,
+						34,
+						27,
+						0,
+						38
+					],
+					"hearts": 2,
+					"kicks": 67,
+					"max_speed": 500.000030517578,
+					"powerups": 0,
+					"stars": 2,
+					"stuck_seconds": 5.4,
+					"unsticks": 3
+				},
+				"score": 20
+			},
+			{
+				"cpu": true,
+				"id": 3,
+				"metrics": {
+					"attacks": 3,
+					"deaths": 1,
+					"decisions": 206,
+					"directions": [
+						18,
+						18,
+						18,
+						18
+					],
+					"goals": [
+						91,
+						57,
+						18,
+						7,
+						33
+					],
+					"hearts": 3,
+					"kicks": 72,
+					"max_speed": 1000.0,
+					"powerups": 1,
+					"stars": 4,
+					"stuck_seconds": 1.8,
+					"unsticks": 1
+				},
+				"score": 220
+			}
+		],
+		"seconds": 120,
+		"seed": 250126
+	},
+	{
+		"humans_stationary": [],
+		"overlap_seconds": 0.0,
+		"players": [
+			{
+				"cpu": true,
+				"id": 0,
+				"metrics": {
+					"attacks": 7,
+					"deaths": 1,
+					"decisions": 205,
+					"directions": [
+						18,
+						18,
+						17,
+						17
+					],
+					"goals": [
+						85,
+						44,
+						21,
+						9,
+						46
+					],
+					"hearts": 4,
+					"kicks": 70,
+					"max_speed": 1000.0,
+					"powerups": 1,
+					"stars": 4,
+					"stuck_seconds": 0.0,
+					"unsticks": 0
+				},
+				"score": 780
+			},
+			{
+				"cpu": true,
+				"id": 1,
+				"metrics": {
+					"attacks": 8,
+					"deaths": 2,
+					"decisions": 199,
+					"directions": [
+						17,
+						16,
+						16,
+						16
+					],
+					"goals": [
+						93,
+						38,
+						28,
+						9,
+						31
+					],
+					"hearts": 3,
+					"kicks": 65,
+					"max_speed": 1000.0,
+					"powerups": 1,
+					"stars": 5,
+					"stuck_seconds": 0.0,
+					"unsticks": 0
+				},
+				"score": 910
+			},
+			{
+				"cpu": true,
+				"id": 2,
+				"metrics": {
+					"attacks": 0,
+					"deaths": 2,
+					"decisions": 199,
+					"directions": [
+						18,
+						17,
+						17,
+						17
+					],
+					"goals": [
+						75,
+						47,
+						24,
+						0,
+						53
+					],
+					"hearts": 3,
+					"kicks": 69,
+					"max_speed": 500.000030517578,
+					"powerups": 0,
+					"stars": 0,
+					"stuck_seconds": 1.8,
+					"unsticks": 1
+				},
+				"score": 0
+			},
+			{
+				"cpu": true,
+				"id": 3,
+				"metrics": {
+					"attacks": 0,
+					"deaths": 2,
+					"decisions": 198,
+					"directions": [
+						15,
+						15,
+						14,
+						14
+					],
+					"goals": [
+						87,
+						35,
+						27,
+						0,
+						49
+					],
+					"hearts": 2,
+					"kicks": 58,
+					"max_speed": 500.000030517578,
+					"powerups": 0,
+					"stars": 2,
+					"stuck_seconds": 1.8,
+					"unsticks": 1
+				},
+				"score": 20
+			}
+		],
+		"seconds": 120,
+		"seed": 250127
+	}
+]

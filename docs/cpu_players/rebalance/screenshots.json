@@ -1,0 +1,16 @@
+{
+  "01_slower_cpus.png": {
+    "sha256": "877700f7ce3dbe9b96ac425773f7c5814b12d627bd0b068fd4bcad0f0e8817f1",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "02_upright_respawn.png": {
+    "sha256": "8e50188f3161f413bc675a2294a866299d477950b6e24cb05172a320fffa3693",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+}

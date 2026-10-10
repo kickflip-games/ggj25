@@ -108,6 +108,7 @@ func run():
 	check(human.position.distance_to(human_start) > 5 and human._next_direction == 1, "real human key still moves and cycles in a mixed match")
 	check(p.current_direction == 0 and not p.is_processing_input(), "human key does not steer the CPU")
 	human.freeze = true
+	check(is_equal_approx(cpu.decision_interval, 0.55) and is_equal_approx(cpu.min_kick_interval, 0.85), "casual defaults slow both decisions and kicks")
 	check(not cpu.debug_enabled and cpu._planes.size() >= 8, "debug disabled by default and real arena boundaries read")
 	var star = fixture(0,Vector2(530,500))
 	for direction in range(4):
@@ -119,9 +120,15 @@ func run():
 		cpu._kick_left = 0.0
 		cpu._recover_left = 0.0
 		cpu._decide()
-		check(cpu.chosen_direction == direction and p.current_direction == direction, "direct CPU direction %d is selected coherently" % direction)
+		check(cpu.chosen_direction == direction and p.current_direction == direction, "CPU cycle step %d is selected coherently" % direction)
+		check(p._next_direction == (direction + 1) % 4, "CPU advances the same next-direction indicator as humans")
 		await frames(2)
-		check(p.linear_velocity.dot(p.DIRECTION_VECTORS[direction]) > 0 and p.linear_velocity.length() <= p._speed + 0.01, "direct kick %d uses capped real physics" % direction)
+		check(p.linear_velocity.dot(p.DIRECTION_VECTORS[direction]) > 0 and p.linear_velocity.length() <= p._speed + 0.01, "cycle kick %d uses capped real physics" % direction)
+	var current = p.current_direction
+	var next = p._next_direction
+	var velocity = p.linear_velocity
+	p.cpu_kick((current + 2) % 4)
+	check(p.current_direction == current and p._next_direction == next and p.linear_velocity == velocity, "CPU API rejects an immediate 180-degree kick without consuming the cycle")
 	# Current momentum already passes through the star; an unnecessary kick loses.
 	p.global_position = Vector2(530,500)
 	p.linear_velocity = Vector2.RIGHT * p._speed
@@ -142,6 +149,7 @@ func run():
 	for point in prediction.points:
 		check(point.y <= 1000, "predicted sample stays within south boundary")
 	p.global_position = Vector2(530,900)
+	p._next_direction = 1 # Start the wall fixture at the legal DOWN cycle step.
 	p.cpu_kick(1)
 	await frames(30)
 	check(p.linear_velocity.y < 0 and p.position.y < 981, "real CPU player bounces off wall")
@@ -213,18 +221,27 @@ func run():
 	cpu._stuck_left = 0.0
 	cpu._decide()
 	check(cpu.diagnostics.unsticks > 0 and cpu._recover_left > 0, "stationary anti-stuck chooses a fresh waypoint without teleporting")
+	# Death naturally reaches the sideways pose before the existing respawn timer.
+	cpu.set_physics_process(false)
+	human.hp = 1
+	human._can_take_damage = true
+	human.take_damage(human.position + Vector2(20,0))
 	p.hp = 1
 	p._can_take_damage = true
 	p.take_damage(p.position + Vector2(20,0))
 	cpu.set_physics_process(true)
 	var kicks = cpu.diagnostics.kicks
-	await frames(60)
+	await frames(78)
 	check(p.hp <= 0 and cpu.diagnostics.kicks == kicks and cpu.target == null, "dead CPU stops deciding and clears target")
-	await frames(330)
+	check(absf(p.sprite.rotation - PI/2) < 0.001 and absf(human.sprite.rotation - PI/2) < 0.001, "death animation reproduces the sideways sprite pose")
+	await frames(222)
+	check(p.hp == 3 and absf(p.sprite.rotation - p._init_sprite_rotation) < 0.001, "CPU respawns upright")
+	check(human.hp == 3 and absf(human.sprite.rotation - human._init_sprite_rotation) < 0.001, "human respawns upright")
+	await frames(90)
 	check(p.hp == 3 and p.visible and not p.is_processing_input() and cpu.diagnostics.kicks > kicks, "existing respawn restores CPU decisions without human input")
 	var old_kicks = cpu.diagnostics.kicks
 	await frames(60)
-	check(cpu.diagnostics.kicks - old_kicks <= 3, "kick frequency remains limited over one second")
+	check(cpu.diagnostics.kicks - old_kicks <= 2, "slower kick frequency remains limited over one second")
 	for scenario in [[[0],[1]],[[0],[1,2,3]],[[],[0,1,2,3]]]:
 		game.return_to_lobby()
 		await process_frame

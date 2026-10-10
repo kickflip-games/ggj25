@@ -1,0 +1,123 @@
+Godot Engine v4.8.dev6.official.8898c2b3d - https://godotengine.org
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+Music playing: true
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 0
+HEALTH update 2
+HEALTH update 0
+HEALTH update 2
+HEALTH update 0
+HEALTH update 2
+HEALTH update 0
+HEALTH update 2
+PASS: P1 compact HUD leaves room for gameplay
+PASS: P1 input does not overlap score
+PASS: P1 status does not overlap hearts
+PASS: P1 bar does not overlap status
+PASS: P1 header fits its corner
+PASS: P1 six-digit score remains complete
+PASS: P1 latest filled heart retains color
+PASS: P1 empty heart is visibly dimmed
+PASS: P1 HUD has no persistent particle clutter
+PASS: P1 score settles without scaling
+PASS: P2 compact HUD leaves room for gameplay
+PASS: P2 input does not overlap score
+PASS: P2 status does not overlap hearts
+PASS: P2 bar does not overlap status
+PASS: P2 header fits its corner
+PASS: P2 six-digit score remains complete
+PASS: P2 latest filled heart retains color
+PASS: P2 empty heart is visibly dimmed
+PASS: P2 HUD has no persistent particle clutter
+PASS: P2 score settles without scaling
+PASS: P3 compact HUD leaves room for gameplay
+PASS: P3 input does not overlap score
+PASS: P3 status does not overlap hearts
+PASS: P3 bar does not overlap status
+PASS: P3 header fits its corner
+PASS: P3 six-digit score remains complete
+PASS: P3 latest filled heart retains color
+PASS: P3 empty heart is visibly dimmed
+PASS: P3 HUD has no persistent particle clutter
+PASS: P3 score settles without scaling
+PASS: P4 compact HUD leaves room for gameplay
+PASS: P4 input does not overlap score
+PASS: P4 status does not overlap hearts
+PASS: P4 bar does not overlap status
+PASS: P4 header fits its corner
+PASS: P4 six-digit score remains complete
+PASS: P4 latest filled heart retains color
+PASS: P4 empty heart is visibly dimmed
+PASS: P4 HUD has no persistent particle clutter
+PASS: P4 score settles without scaling
+PASS: CPU input label retained
+PASS: P1 compact HUD leaves room for gameplay
+PASS: P1 input does not overlap score
+PASS: P1 status does not overlap hearts
+PASS: P1 bar does not overlap status
+PASS: P1 header fits its corner
+PASS: respawn status remains readable
+PASS: activation replaces respawn pulse and restores opacity
+PASS: latest bar state cancels full-bar pulse
+PASS: expiry restores normal label
+PASS: P1 compact HUD leaves room for gameplay
+PASS: P1 input does not overlap score
+PASS: P1 status does not overlap hearts
+PASS: P1 bar does not overlap status
+PASS: P1 header fits its corner
+PASS: P1 stays within 720p window
+PASS: P2 compact HUD leaves room for gameplay
+PASS: P2 input does not overlap score
+PASS: P2 status does not overlap hearts
+PASS: P2 bar does not overlap status
+PASS: P2 header fits its corner
+PASS: P2 stays within 720p window
+PASS: P3 compact HUD leaves room for gameplay
+PASS: P3 input does not overlap score
+PASS: P3 status does not overlap hearts
+PASS: P3 bar does not overlap status
+PASS: P3 header fits its corner
+PASS: P3 stays within 720p window
+PASS: P4 compact HUD leaves room for gameplay
+PASS: P4 input does not overlap score
+PASS: P4 status does not overlap hearts
+PASS: P4 bar does not overlap status
+PASS: P4 header fits its corner
+PASS: P4 stays within 720p window
+Already in normal mode!
+>>>> RESET TIME <<<<
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+HEALTH update 3
+HEALTH update 3
+player colors reset
+HEALTH update 3
+PASS: non-contiguous P1 and P3 HUDs retained
+PASS: inactive corner HUDs stay hidden
+Already in normal mode!
+>>>> RESET TIME <<<<
+RESULT: 76 checks, 0 failures
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2604)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

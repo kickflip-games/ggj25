@@ -2,11 +2,13 @@
 
 Implemented 10 October 2026. Changes are uncommitted. The title → Play → four-quadrant lobby flow is retained. Choose **Use CPU** on any slot; CPU slots need no input. **Switch to Human** opens that slot's existing input capture. OFF, HUMAN and CPU can be mixed in any original slot, including CPU-only matches.
 
+The follow-up [difficulty and respawn fixes](rebalance/README.md) replace free direction choice with the human cycle and slow CPU reactions. Earlier screenshots, video and result logs below are preserved as historical evidence.
+
 ## Implementation
 
-`Entities/Player/cpu_controller.gd` is the only additional production script. It attaches only to CPU instances of the existing Player scene. Humans retain their one-button direction cycle. CPUs choose a cardinal direction directly or coast, using the same kick impulse, mass, speed cap, collisions, health, scoring, power-up and respawn code. Direct kicks keep the stored direction and character indicator coherent. CPU input processing remains disabled after respawning.
+`Entities/Player/cpu_controller.gd` is the only additional production script. It attaches only to CPU instances of the existing Player scene. Humans retain their one-button direction cycle. CPUs choose whether to coast or take the next kick in the same RIGHT → DOWN → LEFT → UP cycle, using the same kick impulse, mass, speed cap, collisions, health, scoring, power-up and respawn code. The CPU kick entry point rejects skipped directions and shares the human direction/indicator update. CPU input processing remains disabled after respawning.
 
-Each decision considers at most 12 nearby observations from the spawner's existing lists and the active player list. Collected/fading pickups, spawning or dead enemies, and dead players are excluded. Decisions use an independent random stream and run about four times per second, with slight timing variation.
+Each decision considers at most 12 nearby observations from the spawner's existing lists and the active player list. Collected/fading pickups, spawning or dead enemies, and dead players are excluded. Decisions use an independent random stream and run about every 0.55 seconds, with slight timing variation.
 
 Goals:
 
@@ -16,7 +18,7 @@ Goals:
 - **HUNT:** during Star Power, seek eligible skulls and vulnerable opponents within plausible reach before expiry. Moving targets receive bounded velocity prediction, capped at 0.6 seconds.
 - **ROAM:** temporary waypoints inside the existing pickup spawn region. Low displacement or prolonged lack of goal progress triggers a fresh waypoint and a brief recovery period.
 
-Five candidates—coast and four kicks—receive eight trajectory samples over approximately one second. Kick prediction uses `min(kick_force / mass, effective_speed_cap)`; coast begins with current capped velocity. The controller reads the arena's existing WorldBoundaryShape2D and octagon polygon geometry once at setup and estimates reflections. It evaluates minimum relative distance along each path segment, including passes through targets between samples, then combines goal progress, contact value, danger, unproductive wall contact and an unnecessary-kick cost. All actual movement is performed by Godot and the original Player; the prediction never writes positions or velocities.
+Coast and cardinal trajectories receive eight samples over approximately one second. Only coast or the next cycle direction may be executed. Later headings are planning hints that can justify a setup kick through an intermediate direction; the CPU cannot skip that direction or its cooldown. Kick prediction uses `min(kick_force / mass, effective_speed_cap)`; coast begins with current capped velocity. The controller reads the arena's existing WorldBoundaryShape2D and octagon polygon geometry once at setup and estimates reflections. It evaluates minimum relative distance along each path segment, including passes through targets between samples, then combines goal progress, contact value, danger, unproductive wall contact and an unnecessary-kick cost. All actual movement is performed by Godot and the original Player; the prediction never writes positions or velocities.
 
 Goal commitment, mild aiming error, occasional hesitation and a kick cooldown limit precision. There is no simulated input, navigation mesh, behavior tree, additional character class or dependency.
 
@@ -60,7 +62,7 @@ The optional `match_frames/` directory contains 30/60/90-second checkpoints and 
 
 ## Validation
 
-**205 runtime checks passed, zero failures:**
+Historical validation for the initial direct-control implementation: **205 runtime checks passed, zero failures.** The follow-up has **214 passing checks**; see `rebalance/README.md`.
 
 | Suite | Checks | Evidence |
 |---|---:|---|
@@ -73,7 +75,7 @@ The CPU suite tests actual GUI selection, CPU → human capture, clearing bindin
 
 Three complete 120-second physics matches ran headlessly, then the same three configurations ran graphically with checkpoint captures. Each uses 60 physics frames per simulated second and fixed seeds; headless runs can complete faster than wall-clock time. No configuration, spawn rate, score rule or difficulty value is changed by the match harness. JSON metrics and complete logs are in `matches.json`, `matches.log` and `graphical_matches.log`.
 
-Headless results, reproduced by the rendered runs:
+Historical headless results for the initial direct-control defaults, reproduced by its rendered runs:
 
 | Seed / configuration | CPU | Score | Stars | Hearts | Deaths | Power activations | Attack score events | Kicks | Recovery events |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -98,8 +100,8 @@ The controller exports:
 
 | Value | Default | Effect |
 |---|---:|---|
-| `decision_interval` | 0.25 s | Observation/reaction frequency, varied ±15% |
-| `min_kick_interval` | 0.40 s | Limits direct direction changes |
+| `decision_interval` | 0.55 s | Observation/reaction frequency, varied ±15% |
+| `min_kick_interval` | 0.85 s | Limits successive cycle kicks |
 | `prediction_horizon` | 1.0 s | Path look-ahead |
 | `target_commitment_time` | 0.8 s | Reduces target switching |
 | `aiming_error` | 20 px | Adds bounded spatial uncertainty |

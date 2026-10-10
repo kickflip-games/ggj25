@@ -2,7 +2,7 @@
 [ext_resource type="Script" path="res://HUD/GameStart/player_slot/player_slot.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/player.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/face.png" id="3"]
-[ext_resource type="Theme" path="res://HUD/theme.tres" id="4"]
+[ext_resource type="Theme" path="res://HUD/GameStart/lobby_theme.tres" id="4"]
 [node name="PlayerSlot" type="PanelContainer"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -15,8 +15,7 @@ theme_override_constants/separation = 8
 alignment = 1
 [node name="Name" type="Label" parent="Content"]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_type_variation = &"LobbyHeading"
 theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
 [node name="Preview" type="CenterContainer" parent="Content"]
@@ -40,8 +39,6 @@ stretch_mode = 5
 mouse_filter = 2
 [node name="Mode" type="Label" parent="Content"]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
 [node name="Enable" type="Button" parent="Content"]
@@ -67,5 +64,6 @@ text = "Off"
 [node name="Cpu" type="Button" parent="Content"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 18
+custom_minimum_size = Vector2(230, 44)
+theme_override_font_sizes/font_size = 24
 text = "Use CPU"

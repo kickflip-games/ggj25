@@ -12,7 +12,10 @@ extends VBoxContainer
 @onready var _sparks:Array[CPUParticles2D] = [
 	$PowerupBar/ColorRect/Sparks,
 ]
-@onready var _playerButtonLabel = $PlayerButton
+@onready var _playerButtonLabel = $PanelContainer/PlayerButton
+@onready var _statusLabel: Label = $HealthLabel/Label
+
+const EMPTY_HEART_COLOR := Color(0.65, 0.68, 0.75, 0.45)
 
 var _score_tween: Tween
 var _bar_tween: Tween
@@ -24,23 +27,23 @@ var _current_score: int = 0
 var _player_id: int = -1  # Store the player ID
 
 func write_resapwning():
-	$Label.modulate = _col
-	$Label.text = "Respawning..."
+	_statusLabel.modulate = _col
+	_statusLabel.text = "Respawning..."
 	# Add a gentle pulse to respawning text
 	if _status_tween:
 		_status_tween.kill()
 	var tween = create_tween().set_loops()
 	_status_tween = tween
-	tween.tween_property($Label, "modulate:a", 0.5, 1.0)
-	tween.tween_property($Label, "modulate:a", 1.0, 1.0)
+	tween.tween_property(_statusLabel, "modulate:a", 0.5, 1.0)
+	tween.tween_property(_statusLabel, "modulate:a", 1.0, 1.0)
 	
 func write_bash_mode():
-	$Label.modulate = _col
-	$Label.text = "STAR POWER"
+	_statusLabel.modulate = _col
+	_statusLabel.text = "Star Power"
 	if _status_tween:
 		_status_tween.kill()
-	$Label.scale = Vector2.ONE
-	$Label.rotation = 0.0
+	_statusLabel.scale = Vector2.ONE
+	_statusLabel.rotation = 0.0
 	_stop_full_bar_pulse()
 
 var _is_cpu: bool = false
@@ -124,10 +127,11 @@ func refresh_button_display():
 func set_colors():
 	_playerLbl.modulate = _col
 	_scoreLbl.modulate = _col
-	$Label.modulate = _col
+	_statusLabel.modulate = _col
 	update_health(Globals.MAX_HP)
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = _col
+	sb.set_corner_radius_all(5)
 	_bar.add_theme_stylebox_override("fill", sb)
 	for fx in _sparks:
 		fx.color = _col
@@ -146,14 +150,6 @@ func update_score(score: int):
 	var tween = create_tween()
 	_score_tween = tween
 	tween.parallel().tween_method(_animate_score_count, old_score, score, 0.5).set_ease(Tween.EASE_OUT)
-	
-	# Scale pop effect
-	tween.parallel().tween_property(_scoreLbl, "scale", Vector2(1.08, 1.08), 0.1)
-	tween.parallel().tween_property(_scoreLbl, "modulate", Color.WHITE, 0.1)
-	
-	tween.tween_interval(0.1)	
-	tween.parallel().tween_property(_scoreLbl, "scale", Vector2(1.0, 1.0), 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween.parallel().tween_property(_scoreLbl, "modulate", _col, 0.4)
 
 func _animate_score_count(value: int):
 	_scoreLbl.text = str(value).pad_zeros(4)
@@ -161,34 +157,34 @@ func _animate_score_count(value: int):
 
 func update_health(health: int):
 	print("HEALTH update ", health)
-	# Color the first "health" hearts by color, others are set to black
+	# Keep the original artwork; dim empty hearts instead of filling them black.
 	for i in range(hearts.size()):
 		var heart = hearts[i]
 		if _heart_tweens.has(i):
 			_heart_tweens[i].kill()
 		heart.scale = Vector2.ONE
 		if i < health:
-			# Check if heart was previously black/transparent
-			var was_black = heart.modulate.is_equal_approx(Color.BLACK) or heart.modulate.a < 0.1
+			# Animate only hearts gaining health.
+			var was_empty = heart.modulate.is_equal_approx(EMPTY_HEART_COLOR) or heart.modulate.a < 0.5
 			heart.modulate = _col
 			
 			# Heart pop animation when gaining health
-			if was_black:
+			if was_empty:
 				var tween = create_tween()
 				_heart_tweens[i] = tween
-				tween.tween_property(heart, "scale", Vector2(1.2, 1.2), 0.15).set_ease(Tween.EASE_OUT)
+				tween.tween_property(heart, "scale", Vector2(1.1, 1.1), 0.15).set_ease(Tween.EASE_OUT)
 				tween.tween_property(heart, "scale", Vector2(1.0, 1.0), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 		else:
 			# Animate hearts losing health with a shrink effect
-			var was_colored = !heart.modulate.is_equal_approx(Color.BLACK) and heart.modulate.a > 0.1
+			var was_colored = !heart.modulate.is_equal_approx(EMPTY_HEART_COLOR) and heart.modulate.a >= 0.5
 			if was_colored:
 				var tween = create_tween()
 				_heart_tweens[i] = tween
 				tween.parallel().tween_property(heart, "scale", Vector2(0.8, 0.8), 0.1)
-				tween.parallel().tween_property(heart, "modulate", Color.BLACK, 0.1)
+				tween.parallel().tween_property(heart, "modulate", EMPTY_HEART_COLOR, 0.1)
 				tween.tween_property(heart, "scale", Vector2(1.0, 1.0), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 			else:
-				heart.modulate = Color.BLACK
+				heart.modulate = EMPTY_HEART_COLOR
 
 func reset_bar():
 	if _bar_tween:
@@ -226,7 +222,7 @@ func play_hp_fx():
 
 func play_powerup_mode_fx():
 	write_bash_mode()
-	$Label.text = "STAR POWER!"
+	_statusLabel.text = "Star Power!"
 	_start_full_bar_pulse()
 
 var _full_bar_pulse_tween: Tween
@@ -235,7 +231,7 @@ func _start_full_bar_pulse():
 	if _full_bar_pulse_tween and _full_bar_pulse_tween.is_running():
 		return
 	_full_bar_pulse_tween = create_tween().set_loops()
-	_full_bar_pulse_tween.tween_property(_bar, "modulate", Color(1.15, 1.15, 1.15), 0.5)
+	_full_bar_pulse_tween.tween_property(_bar, "modulate", Color(1.04, 1.04, 1.04), 0.5)
 	_full_bar_pulse_tween.tween_property(_bar, "modulate", Color.WHITE, 0.5)
 
 func _stop_full_bar_pulse():

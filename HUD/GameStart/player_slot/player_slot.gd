@@ -19,7 +19,7 @@ func _ready():
 func display(slot_id: int, active: bool, caption: String, is_cpu: bool = false):
 	var color = Globals.PLAYER_COLORS[slot_id]
 	var panel = StyleBoxFlat.new()
-	panel.bg_color = Color(1, 1, 1, 0.72 if active else 0.5)
+	panel.bg_color = Color(1, 1, 1, 0.96 if active else 0.9)
 	panel.border_color = color.darkened(0.12)
 	panel.set_border_width_all(3)
 	panel.set_corner_radius_all(12)
@@ -29,11 +29,11 @@ func display(slot_id: int, active: bool, caption: String, is_cpu: bool = false):
 	panel.content_margin_bottom = 16
 	add_theme_stylebox_override("panel", panel)
 	$Content/Name.text = "P%d" % (slot_id + 1)
-	$Content/Name.modulate = color if active else Color(0.7, 0.7, 0.7)
+	$Content/Name.modulate = Color.WHITE
 	$Content/Preview/Body.self_modulate = color if active else Color(0.55, 0.55, 0.55, 0.55)
 	$Content/Preview/Body/Face.modulate = Color.WHITE if active else Color(0.55, 0.55, 0.55, 0.55)
 	$Content/Mode.text = ("CPU" if is_cpu else "HUMAN") if active else "OFF"
-	$Content/Mode.modulate = color if active else Color(0.7, 0.7, 0.7)
+	$Content/Mode.modulate = Color.WHITE
 	$Content/Enable.visible = not active
 	$Content/Actions.visible = active
 	$Content/Actions/Binding.text = "Switch to Human" if is_cpu else caption

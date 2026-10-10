@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgo5kx0jbt04d"]
+[gd_scene load_steps=8 format=3 uid="uid://bgo5kx0jbt04d"]
 
 [ext_resource type="Script" uid="uid://21enfbisruj7" path="res://HUD/player_ui/player_ui.gd" id="1_istvb"]
 [ext_resource type="Theme" uid="uid://c87yk8aut7ts7" path="res://HUD/theme.tres" id="1_v4tk5"]
@@ -7,104 +7,120 @@
 [ext_resource type="Texture2D" uid="uid://caisr1e6surtu" path="res://Art/heart_white.png" id="5_fawbg"]
 [ext_resource type="Texture2D" uid="uid://072jlqrbatbk" path="res://Art/circle.png" id="5_kfeji"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_track"]
+bg_color = Color(0.65, 0.68, 0.75, 0.22)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_left = 5
+corner_radius_bottom_right = 5
+
 [node name="PlayerUi" type="VBoxContainer"]
-offset_right = 968.0
-offset_bottom = 413.0
+custom_minimum_size = Vector2(300, 0)
+offset_right = 300.0
+offset_bottom = 85.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 2
 theme = ExtResource("1_v4tk5")
-theme_override_constants/separation = 2
-alignment = 1
+theme_override_constants/separation = 6
 script = ExtResource("1_istvb")
 
 [node name="PanelContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(50, 44)
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
+theme_override_constants/separation = 6
 
 [node name="PlayerLabel" type="Label" parent="PanelContainer"]
-custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_kfeji")
+theme_override_font_sizes/font_size = 26
 text = "P1"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Colon" type="Label" parent="PanelContainer"]
-custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_kfeji")
-text = ":"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_fawbg")
+theme_override_font_sizes/font_size = 16
+text = "·"
 vertical_alignment = 1
+
+[node name="PlayerButton" type="Label" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_fawbg")
+theme_override_font_sizes/font_size = 16
+text = "SPACE"
+vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="ScoreLabel" type="Label" parent="PanelContainer"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(92, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_kfeji")
+theme_override_font_sizes/font_size = 28
 text = "0000"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="PlayerButton" type="Label" parent="."]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("4_fawbg")
-theme_override_font_sizes/font_size = 24
-text = "Mouse 1 "
-
 [node name="HealthLabel" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme_override_constants/separation = 6
 
 [node name="ColorRect" type="TextureRect" parent="HealthLabel"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("5_fawbg")
-expand_mode = 3
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ColorRect2" type="TextureRect" parent="HealthLabel"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("5_fawbg")
-expand_mode = 3
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ColorRect3" type="TextureRect" parent="HealthLabel"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("5_fawbg")
-expand_mode = 3
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(50, 0)
+[node name="Spacer" type="Control" parent="HealthLabel"]
 layout_mode = 2
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 24
-text = "BASH MODE"
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HealthLabel"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_fawbg")
+theme_override_font_sizes/font_size = 16
+text = "Star Power"
+vertical_alignment = 1
 
 [node name="PowerupBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(50, 24)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 0
-theme = ExtResource("1_v4tk5")
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_track")
 show_percentage = false
 
 [node name="ColorRect" type="ColorRect" parent="PowerupBar"]
@@ -116,22 +132,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="Sparks" type="CPUParticles2D" parent="PowerupBar/ColorRect"]
-position = Vector2(7, 69)
-amount = 20
+emitting = false
 texture = ExtResource("5_kfeji")
-lifetime = 10.0
-randomness = 0.5
-lifetime_randomness = 0.56
-fixed_fps = 20
-emission_shape = 3
-emission_rect_extents = Vector2(5.48, -63.23)
-direction = Vector2(0, 0)
-spread = 6.0
-gravity = Vector2(20, 0)
-initial_velocity_min = 86.16
-initial_velocity_max = 86.16
-scale_amount_min = 0.01
-scale_amount_max = 0.05
